@@ -1,0 +1,8 @@
+- how to write a spec
+- modularity/components, pipelines
+- mutation considered harmful
+- favor data over procedure 
+- don't repeat yourself
+- avoid premature optimization
+- don't generalize too soon (rule of 3)
+- unix philosophy

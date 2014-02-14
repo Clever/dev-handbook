@@ -1,0 +1,6 @@
+- why write a readme
+- what goes in a readme
+- when to write docs
+- when to leave comments
+- how to write good docs
+- what's wrong with "the tests are the docs"

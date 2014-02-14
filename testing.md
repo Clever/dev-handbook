@@ -1,0 +1,5 @@
+- why test?
+- unit tests vs integration tests
+- test workflow (TDD?)
+- always run tests before deploying
+- code isnt done until it's tested
