@@ -1,5 +1,9 @@
 # Git Workflow
 
+This document describes the workflow, conventions, and best practices we use with regard to Git. If you aren't already familiar with what Git does, how it works, and the basic commands (or you want a refresher), check out these links:
+
+TODO: link to some Git overviews/tutorials
+
 ## Github as Filesystem
 
 Since our work is highly collaborative, you should keep all of your progress it on Github so that your teammates can stay up to date on what you're working on. They may have ideas or suggestions, or they may just be curious. The goal is not to judge or criticize incomplete code, but to make sure we can all support and encourage each other as our code progresses.
