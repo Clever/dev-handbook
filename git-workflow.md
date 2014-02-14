@@ -1,0 +1,73 @@
+# Git Workflow
+
+## Github as Filesystem
+
+Since our work is highly collaborative, you should keep all of your progress it on Github so that your teammates can stay up to date on what you're working on. They may have ideas or suggestions, or they may just be curious. The goal is not to judge or criticize incomplete code, but to make sure we can all support and encourage each other as our code progresses.
+
+There's also another reason to keep all of your work on Github: individual computers can get lost, stolen, or corrupted at any time. If your work is only saved locally, you run the risk of losing it if anything goes wrong on your computer (it could just be an accidental `rm -rf`...).
+
+## Branching
+
+`master` is the branch that gets deployed to production, so it should always be in a production-ready state (i.e. all tests should pass). Every change, whether it's a new feature, bug fix, or spelling correction, should be developed on a separate branch. 
+
+    Branch names should be lower-case and use hyphens to separate words. Use descriptive branch names.
+
+    Good:
+
+        bigger-api-keys
+        sftp-row-validation-error
+        clever-js-deps-update
+
+    Bad:
+
+        no_sync_tag (uses underscores instead of hyphens) 
+        errors (not descriptive)
+        rewrite-ongoing (not descriptive)
+
+## Committing
+
+A commit should contain one conceptual change to your code. This is crucial, so I will say it again. A commit should contain one self-contained, reversible, readable change to your code. This has numerous benefits:
+
+- If you want to undo a change, you can revert a specific commit. If a commit contains multiple changes, you will have to manually undo individual changes.
+- You can easily describe the changes in the commit message. This makes it easy to find the commit where a change was made.
+- A reviewer (or anybody reading the code) can easily see which pieces of code are relevant to a change by looking at the commit for that change. If a commit contains multiple changes, it is often unclear which pieces of code are relevant to which change.
+
+When committing, it's a good idea to review every line of code that you commit. Even if you have multiple conceptual changes implemented, craft your commits such that each commit only contains one change. A great way to do this is to use `git add -p`, which breaks your changes up into individual patches and allows you to interactively choose which ones to stage.
+
+When writing commit messages, the first line should be a short description of the change. Since you only have one conceptual change in your commit, it should be easy to describe in one line, right? Use the rest of the commit message to expand on the context of the change so that it is easier to understand.  
+
+Good: TODO
+Bad: TODO
+
+## Workflow
+
+Here is the simplest development workflow you should use:
+
+0. Get the latest version of `master`.
+
+        cd some-repo
+        git checkout master
+        git pull
+
+1.  Make a new branch off of `master`.
+
+        git checkout -b my-great-feature
+
+2. Implement your changes, pushing your commits along the way.
+
+        git add -p
+        git commit
+        git push
+
+3. If you are developing over a long period of time, and `master` is changing, you should merge `master` into your branch often to make sure it stays up to date. This will reduce merge conflicts when you finally merge your branch back into `master`.
+
+        git checkout master
+        git pull
+        git checkout my-great-feature
+        git merge master
+
+4. When you are ready to start having your code reviewed, open a pull request (PR) and assign it to a reviewer.
+
+5. Make changes based on the reviewer's comments. Respond to comments with the SHA of the commit that address the comment so that both you and the reviewer can make sure every comment is addressed.
+
+6. Once the reviewer signs off on the PR, merge your branch into master.
