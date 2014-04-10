@@ -17,3 +17,6 @@ As a code reviewer, you should hold people accountable to following the style gu
 ## Python
 
 ## Bash
+
+The [Google Shell Style Guide](https://google-styleguide.googlecode.com/svn/trunk/shell.xml) is what we follow for shell scripts.
+There are no automated tools that we use for following this, however there is [ShellCheck](http://www.shellcheck.net/about.html) which covers some of what's in the style guide.
