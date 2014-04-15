@@ -20,6 +20,7 @@ The style guides used for Go are [Effective Go](http://golang.org/doc/effective_
 ### Recommended setups
 
 * Makefiles: A Go package should have a Makefile that runs "golint" on all files, e.g.
+
     ```Makefile
     $(PKG):
     ifeq ($(LINT),1)
