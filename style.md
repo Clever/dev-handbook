@@ -30,7 +30,12 @@ The style guides used for Go are [Effective Go](http://golang.org/doc/effective_
     ...
     ```
     See [clever-go](https://github.com/Clever/clever-go/blob/master/Makefile) for an example.
-* emacs
+* emacs: Go has an official [emacs mode](http://golang.org/misc/emacs/go-mode.el) that ships with a `gofmt` command. To get it to run on save, you can add this to your `.emacs`:
+
+    ```
+    (add-hook 'before-save-hook 'gofmt-before-save)
+    ```
+
 * sublime: Add [GoSublime](https://github.com/DisposaBoy/GoSublime) for code highlighting and `go fmt` on save.
 * vim
 
