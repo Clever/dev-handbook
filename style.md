@@ -42,6 +42,8 @@ The style guides used for Go are [Effective Go](http://golang.org/doc/effective_
 
 ## CoffeeScript
 
+The style guide used for CoffeeScript can be found [here](https://github.com/Clever/coffeescript-style-guide). [coffeelint](https://github.com/clutchski/coffeelint) should be added as a test. The coffeelint config can be found [here](https://github.com/Clever/coffeescript-style-guide/blob/master/coffeelint-config.json).
+
 ## Python
 
 The style guide we use is [PEP8](http://legacy.python.org/dev/peps/pep-0008/) with exceptions for allowing tab widths of two spaces and line lengths of up to 100.
