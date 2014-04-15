@@ -44,6 +44,31 @@ The style guides used for Go are [Effective Go](http://golang.org/doc/effective_
 
 ## Python
 
+The style guide we use is [PEP8](http://legacy.python.org/dev/peps/pep-0008/) with exceptions for allowing tab widths of two spaces and line lengths of up to 100.
+
+### Recommended setups
+
+PEP8 has an accompanying command-line tool, `pep8` (`pip install pep8`) that accepts a config file:
+
+```
+[pep8]
+ignore = E111
+max-line-length = 100
+```
+
+There is also the tool `autopep8` (`pip install autopep8`) that will fix all the problems found by `pep8`.
+
+* emacs: You can run `autopep8` on save by installing [`py-autopep8`](https://github.com/paetzke/py-autopep8.el) and adding the following to your `.emacs`:
+
+    ```Makefile
+    (add-hook 'before-save-hook 'py-autopep8-before-save)
+    (setq py-autopep8-options '("--max-line-length=100" "--indent-size=2"))
+    ```
+
+* vim: https://github.com/tell-k/vim-autopep8
+
+* sublime: https://github.com/wistful/SublimeAutoPEP8
+
 ## Bash
 
 The [Google Shell Style Guide](https://google-styleguide.googlecode.com/svn/trunk/shell.xml) is what we follow for shell scripts.
