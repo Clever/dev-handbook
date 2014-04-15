@@ -21,7 +21,7 @@ The style guides used for Go are [Effective Go](http://golang.org/doc/effective_
 
 * Makefiles
 * emacs
-* sublime
+* sublime: Add [GoSublime](https://github.com/DisposaBoy/GoSublime) for code highlighting and `go fmt` on save.
 * vim
 
 ## CoffeeScript
