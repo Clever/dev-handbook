@@ -12,7 +12,7 @@ As a code reviewer, you should hold people accountable to following the style gu
 
 ## Go
 
-The style guides used for Go are [Effective Go](http://golang.org/doc/effective_go.html) and the community [Go style guide]. There are two tools that can be used to detect common mistakes.
+The style guides used for Go are [Effective Go](http://golang.org/doc/effective_go.html) and the community [Go style guide](https://code.google.com/p/go-wiki/wiki/CodeReviewComments). There are two tools that can be used to detect common mistakes.
 
 * `go fmt` should be run in any directory that contains go files. It will automatically format the code.
 * `golint file.go` should be run for every go file. It will lint the code and return any issues it finds.
