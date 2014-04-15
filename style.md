@@ -17,7 +17,7 @@ The style guides used for Go are [Effective Go](http://golang.org/doc/effective_
 * `go fmt` should be run in any directory that contains go files. It will automatically format the code.
 * `golint file.go` should be run for every go file. It will lint the code and return any issues it finds.
 
-### Recommended setups
+### Recommended setup
 
 * Makefiles: A Go package should have a Makefile that runs "golint" on all files, e.g.
 
@@ -46,7 +46,7 @@ The style guides used for Go are [Effective Go](http://golang.org/doc/effective_
 
 The style guide we use is [PEP8](http://legacy.python.org/dev/peps/pep-0008/) with exceptions for allowing tab widths of two spaces and line lengths of up to 100.
 
-### Recommended setups
+### Recommended setup
 
 PEP8 has an accompanying command-line tool, `pep8` (`pip install pep8`) that accepts a config file:
 
