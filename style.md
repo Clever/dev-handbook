@@ -39,7 +39,7 @@ The style guides used for Go are [Effective Go](http://golang.org/doc/effective_
 
 * sublime: Add [GoSublime](https://github.com/DisposaBoy/GoSublime) for code highlighting and `go fmt` on save.
 
-* vim (TODO)
+* vim: See the directions [here](http://tip.golang.org/misc/vim/readme.txt). It's strongly advised to set up `gofmt` on save.
 
 ## CoffeeScript
 
