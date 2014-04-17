@@ -7,7 +7,8 @@ Style is important to standardize for a few reasons:
 * Avoids holy wars over small details, but still encourages an approach to coding that sweats the details.
 
 For each of the languages below we link to a style guide reference and outline tools to use in order to help follow the style guide.
-These tools should be part of every project's build and test cycle.
+Making sure you follow these guidelines is at the same level of importance of making sure tests pass, so the tools outlined below should be part of the build and test cycle for every project.
+Doing it as part of the build and test cycle (as opposed to elsewhere, e.g. git hooks) ensures that no code is merged into master that fails these checks and allows for maximum flexibility during development.
 As a code reviewer, you should hold people accountable to following the style guide for the appropriate language.
 
 ## Go
