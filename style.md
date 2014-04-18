@@ -43,7 +43,7 @@ The style guides used for Go are [Effective Go](http://golang.org/doc/effective_
 
 ## CoffeeScript
 
-The style guide used for CoffeeScript can be found [here](https://github.com/Clever/coffeescript-style-guide). [coffeelint](https://github.com/clutchski/coffeelint) should be added as a test. The coffeelint config can be found [here](https://github.com/Clever/coffeescript-style-guide/blob/master/coffeelint-config.json).
+The style guide used for CoffeeScript can be found [here](https://github.com/Clever/coffeescript-style-guide). [coffeelint](https://github.com/clutchski/coffeelint) and [coffee-jshint](https://github.com/Clever/coffee-jshint) should be added as a test. The coffeelint config can be found [here](https://github.com/Clever/coffeescript-style-guide/blob/master/coffeelint-config.json).
 
 ## Python
 
