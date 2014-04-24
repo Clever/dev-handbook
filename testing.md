@@ -19,21 +19,47 @@
     - any change (e.g. bug fix) should be accompanied by a changed/new test encoding new behavior
 
 - how to write tests
-    - 
-
-- unit tests vs integration tests
-    - need both
+  - two main types of tests:
     - unit tests
-        - many
-        - for everything
-        - fast
-        - test all cases, good and bad and weird
-    - integration tests
-        - few
-        - just test that parts of system fit together correctly
-        - slow
-        - test only a few "happy paths"
+      - test small, isolated pieces of code
+      - fast
+      - test all cases, good and bad and weird
+    - everything else (commonly integration, end-to-end, system tests)
+      - test the linkages between code and system behavior as a whole
+      - slow
+      - test "happy cases"
+  - focus on unit tests primarily
+    - stub/mock to keep them light, fast
+      - code under test shouldn't:
+        - call out into (non-trivial) collaborators
+        - access the network
+        - hit a database
+        - use the file system
+        - spin up a thread
+    - functions should have as few side effects as possible to make them easy to test/reason about
+    - when there are side effects, isolate those, and test the side effects with mocks and stubs
+    - the only thing tests should know about implementation is what dependencies need to be mocked - tests respect interfaces
+  - still need some integration tests
+    - why do you only need a few integration tests
+      - logic should be covered in unit tests
+    - two types of tests here
+      - testing that your unit-tested functions are linked together properly
+        - basically entirely mocks
+      - testing that the system as a whole performs as expected
+        - probably involve starting a web server and throwing requests at it
 
-- test workflow (TDD?)
+- load testing
+  - TBD, still not enough of this to have conventions
+
+- how to start testing un-tested, legacy code
+  1. start with integration tests that cover all the behavior
+    - usually can't start with unit tests, because the code probably isn't modular enough to test
+  2. refactor, modularize
+  3. unit tests
+  4. can probably do away with most integration tests
+
 - always run tests before deploying
+  - continuous integration
+  - do tests block deploys?
+    - no, you don't want to be blocked by your tools
 - code isnt done until it's tested
