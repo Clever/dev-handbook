@@ -8,7 +8,7 @@
 - what goes in a readme
     - overview
         - what the software is for
-        - why it's a good choice vs competitors
+        - existing solution(s) to the problem the software solves, differences vs existing solutions
     - how to install
         - the software
         - deps
