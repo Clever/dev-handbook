@@ -1,7 +1,7 @@
 # Documentation
 
 - why write docs
-    - you have teammates that need to be able to use your code
+    - you have teammates that need to use your code
     - you will have to use your code in the future
     - helps improve your code design by making you think about how to write it down
 
