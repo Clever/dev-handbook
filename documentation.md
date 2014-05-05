@@ -38,6 +38,7 @@
         - for anyone who wants to use your project
         - should be oblivious to internals of code
     - some api docs may be generated from comments
+        - for a good example of this, see [godocdown](https://github.com/robertkrimen/godocdown)
 
 - repetition
     - ideally each piece of information is only written in one place (makes it easy to keep up to date)
