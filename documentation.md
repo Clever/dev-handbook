@@ -3,7 +3,7 @@
 - why write docs
     - you have teammates that need to use your code
     - you will have to use your code in the future
-    - helps improve your code design by making you think about how to write it down
+    - helps improve your design by making you think about how others view it (see [Readme-driven Development](http://tom.preston-werner.com/2010/08/23/readme-driven-development.html))
 
 - what goes in a readme
     - overview
