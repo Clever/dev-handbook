@@ -19,7 +19,6 @@
         - env vars
     - small code examples if a library
         - biggest indicator of if you will be able to use a piece of code!
-    - well defined i/o spec
     - changelog or link to changelog
     - api docs
         - all args documented
