@@ -18,6 +18,7 @@ A reference (a.k.a. API documentation) should have every detail of your software
 
 For an example of a guide, see [Express: Getting Started](http://expressjs.com/guide.html).
 For an example of a reference, see [go-uuid](http://godoc.org/code.google.com/p/go-uuid/uuid).
+For an example of both together, see [go-qml](http://godoc.org/gopkg.in/qml.v0) or [go-sqlite](http://godoc.org/code.google.com/p/go-sqlite/go1/sqlite3).
 
 ## What goes in a README?
 
