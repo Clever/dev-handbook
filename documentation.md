@@ -1,6 +1,6 @@
 ## Why write documentation?
 
-When it comes to writing documentation, it's not uncommon to hear people ask "what's the point?".
+When it comes to writing documentation, it's not uncommon to hear people ask "what's the point?"
 There are several very good reasons for why you should write documentation:
   1. You have teammates that need to use your software. If there's no documentation, they won't know what to do.
   2. You will have to use your software in the future, probably after a long abscence where you haven't looked at it. If there's no documentation, you won't know what to do.
