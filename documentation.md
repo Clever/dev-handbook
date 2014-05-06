@@ -4,7 +4,7 @@ When it comes to writing documentation, it's not uncommon to hear people ask "wh
 There are several very good reasons for why you should write documentation:
   1. You have teammates that need to use your software. If there's no documentation, they won't know what to do.
   2. You will have to use your software in the future, probably after a long absence where you haven't looked at it. If there's no documentation, you won't know what to do.
-  3. Writing a README forces you to think about your software from another person's perspective. This results in more well-designed software (see [README-driven Development](http://tom.preston-werner.com/2010/08/23/readme-driven-development.html)).
+  3. Writing a README forces you to think about your software from another person's perspective. This results in better-designed software (see [README-driven Development](http://tom.preston-werner.com/2010/08/23/readme-driven-development.html)).
 
 ## What makes good documentation?
 
@@ -31,7 +31,7 @@ If applicable, a small example (10-20 lines) of how your software works can be b
 ### Installation
 
 You should have instructions on how to install your software, as well as instructions on installing its dependencies.
-Try to assume as little knowledge of your user as possible;
+Try to assume that your user knows nothing;
 if your software runs on node, link to instructions on installing node.
 
 ### Run the tests
