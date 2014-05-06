@@ -1,64 +1,99 @@
-# Documentation
+## Why write documentation?
 
-- why write docs
-    - you have teammates that need to use your code
-    - you will have to use your code in the future
-    - helps improve your design by making you think about how others view it (see [Readme-driven Development](http://tom.preston-werner.com/2010/08/23/readme-driven-development.html))
+When it comes to writing documentation, it's not uncommon to hear people ask "what's the point?".
+There are several very good reasons for why you should write documentation:
+  1. You have teammates that need to use your software. If there's no documentation, they won't know what to do.
+  2. You will have to use your software in the future, probably after a long abscence where you haven't looked at it. If there's no documentation, you won't know what to do.
+  3. Writing a README forces you to think about your software from another person's perspective. This results in more well-designed software (see [Readme-driven Development](http://tom.preston-werner.com/2010/08/23/readme-driven-development.html)).
 
-- what goes in a readme
-    - overview
-        - what the software is for
-        - existing solution(s) to the problem the software solves, differences vs existing solutions
-    - how to install
-        - the software
-        - deps
-    - how to run tests
-    - how to run (usage)
-    - how to run locally if a service
-        - commands
-        - env vars
-    - small code examples if a library
-        - biggest indicator of if you will be able to use a piece of code!
-    - changelog or link to changelog
-    - api docs
-        - all args documented
-        - type info
-        - what the function does
-        - how it works with other functions
-        - examples
-        - runtime info
-    - troubleshooting/gotchas
+## What makes good documentation?
 
-- when to write docs/when to leave comments
-    - should overlap as little as possible
-    - comments
-        - for when somebody is reading the code
-        - explain potentially confusing/non-obvious code
-    - docs
-        - for anyone who wants to use your project
-        - should be oblivious to internals of code
-    - some api docs may be generated from comments
-        - for a good example of this, see [godocdown](https://github.com/robertkrimen/godocdown)
+Keep your documentation up to date and consistent.
+Wrong documentation is actually *worse* than missing documentation;
+in both cases the user has to dive into the code to figure out how it works, but in the first case they've also wasted time trying to do something wrong and figuring out that it's the documentation that's wrong.
 
-- repetition
-    - ideally each piece of information is only written in one place (makes it easy to keep up to date)
-    - can dynamically move information where it's needed
-    - ex: type spec for complex object inlined in docs for multiple functions
+Generally you want both a guide and a reference.
+A guide is about conceptual examples, and usually serves as the introduction to a README or a reference.
+A reference (a.k.a. API documentation) should have every minutae of your software documented in full.
 
-- tests vs docs
-    - tests should capture full behavior of code on all inputs
-    - docs should communicate most common behavior of code
-    - can point to tests for examples of uncommon cases (e.g. unexpected types of input)
-    - docs shouldnt drown reader in a huge list of cases/minutiae
+## What goes in a README?
 
-- how to write good docs
-    - make minimal assumptions about what your readers know
-        - might not know the language
-        - might not know tools (e.g. package manager)
-        - might not know meaning of env vars
-    - keep docs up to date and consistent
-        - worse than missing docs, because they mislead
-        - might need to change docs every time you change your code
-    - guide vs reference
-        - guide should be about conceptual examples
-        - reference/api docs should have all arguments/options documented in full
+### Overview
+
+What is the software for? What problem does it solve?
+What existing solutions solve this same problem, and what's the difference between your solution and already-existing ones?
+If applicable, a small example (10-20 lines) of how your software works can be better than paragraphs of text.
+
+### Installation
+
+You should have instructions on how to install your software, as well as instructions on installing all of its dependencies.
+Try to assume as little knowledge of your user as possible;
+if your software runs on node, link to instructions on installing node.
+
+### Run the tests
+
+You should always have instructions on how to run your test cases, because
+  1. [It means that you have tests](https://github.com/Clever/dev-handbook/blob/master/testing.md).
+  2. [Clear test cases will make it easier for others to contribute to your software](https://github.com/Clever/dev-handbook/blob/master/testing.md).
+
+### Usage
+
+If your software is a service, you should have instructions on how to run it, as well as documentation about any command flags or environment variables that it uses.
+
+If your software is a module or library, you should include a lot more information.
+
+You can start with a variety of usage examples, showing the most common uses of your software.
+When someone is looking for a library to solve some problem, usage examples are the fastest way for them to know if your software solves their problem.
+
+After that, you can get into more instructions on how to include it in another piece of software, as well as API documentation.
+
+API documentation should include a description of each function, type, or interface that your library provides.
+Some API documentation may be autogenerated.
+For a good example of this, see [godocdown](https://github.com/robertkrimen/godocdown) and [baseworker-go](https://github.com/Clever/baseworker-go/blob/master/README.md)
+
+Functions should document all of their arguments, as well as default arguments (if applicable).
+Where possible, you should also thoroughly document type information (even for dynamically typed languages).
+More complex functions should also include their own examples.
+
+### Troubleshooting/gotchas
+
+As much as we all wish it wasn't the case, all software fails eventually.
+If there are common patterns for failure, you should document those and how to avoid them:
+  * Did you forget to install dependency **<x>**?
+  * Did you misconfigure the service?
+  * Are you using an old version of some dependency?
+
+### Changelog
+
+The changlog doesn't necessarily have to be in the README, you could just link to one (autogenerated based on Github releases?).
+
+However, no matter how you do it, you should have one.
+Changelogs allow prospective users of your software to see how much it's changing and how actively it's developed.
+For existing users, it provides a convenient way for them to weigh the benefits of upgrading the version they're using to a new one.
+
+## What doesn't go in a README?
+
+There's some documentation that you need that shouldn't be in a README.
+There's basically two types of people you want to have documentation for: people who want to use your software and people who want to contribute to your software.
+
+The README mostly accomodates the first type of person, and because of this should be oblivious to implementation details of your software.
+
+To accomodate the second person, you want comments within your code that explain potentially confusing/non-obvious code, as well as [extensive test cases](https://github.com/Clever/dev-handbook/blob/master/testing.md).
+
+There should be as little overlap as possible between your README and your comments ([unless your README is generated from your comments](https://github.com/robertkrimen/godocdown)).
+
+## General, miscellaneous principles for documentation
+
+### Repetition
+
+Ideally, each piece of information should be written in only once place.
+Otherwise, when that information changes, there's multiple places you need to update it, which very often leads to outdated documentation.
+
+If you want information in more than one place, it should still only be written once, and then included in other places through some sort of templating library or document generation.
+
+### Tests vs docs
+
+Tests should capture the full behavior of your software on all inputs.
+Docs should communicate the most common behavior of code (e.g. through short examples).
+You can then point to test cases for examples of uncommon usage of your software.
+Your documentation shouldn't drown the reader in a huge list of options ("do one thing and do it well").
