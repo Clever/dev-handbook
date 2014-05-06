@@ -16,6 +16,9 @@ Generally you want both a guide and a reference.
 A guide is about conceptual examples, and usually serves as the introduction to a README or a reference.
 A reference (a.k.a. API documentation) should have every detail of your software documented in full.
 
+For an example of a guide, see [Express: Getting Started](http://expressjs.com/guide.html).
+For an example of a reference, see [go-uuid](http://godoc.org/code.google.com/p/go-uuid/uuid).
+
 ## What goes in a README?
 
 ### Overview
