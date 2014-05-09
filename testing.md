@@ -1,6 +1,6 @@
 # Testing
 
-# Why write tests?
+## Why write tests?
 
 There are a few main motivations for writing automated tests for your code.
 
@@ -16,7 +16,7 @@ Testing is also a helpful design tool. Since tests are another way to express a 
 
 Lastly, testing is unavoidable. You will always need to confirm that a program behaves as expected after writing it or changing it. Automated testing applies the main insight of programming - making the computer do the repetitive work - to testing. Instead of manually running a program and confirming that it behaves correctly each time you change it, automated tests offload this repetitive task to the computer.
 
-# When should you write tests?
+## When should you write tests?
 
 The short answer is **always**. Just write tests all the time.
 
@@ -34,50 +34,59 @@ A piece of code is not done until it's tested.
 
 So just write tests. All the time.
 
-# How do you write tests?
+## How do you write tests?
 
-- how to write tests
-  - two main types of tests:
-    - unit tests
-      - test small, isolated pieces of code
-      - fast
-      - test all cases, good and bad and weird
-    - everything else (commonly integration, end-to-end, system tests)
-      - test the linkages between code and system behavior as a whole
-      - slow
-      - test "happy cases"
-  - focus on unit tests primarily
-    - stub/mock to keep them light, fast
-      - code under test shouldn't:
-        - call out into (non-trivial) collaborators
-        - access the network
-        - hit a database
-        - use the file system
-        - spin up a thread
-    - functions should have as few side effects as possible to make them easy to test/reason about
-    - when there are side effects, isolate those, and test the side effects with mocks and stubs
-    - the only thing tests should know about implementation is what dependencies need to be mocked - tests respect interfaces
-  - still need some integration tests
-    - why do you only need a few integration tests
-      - logic should be covered in unit tests
-    - two types of tests here
-      - testing that your unit-tested functions are linked together properly
-        - basically entirely mocks
-      - testing that the system as a whole performs as expected
-        - probably involve starting a web server and throwing requests at it
+You'll probably want to use some sort of testing framework to help you write tests. Most languages support testing either with language constructs or with libraries. For example, we use [Mocha](http://visionmedia.github.io/mocha/) for node.js and [nose](https://nose.readthedocs.org/en/latest/) for Python.
 
-- load testing
-  - TBD, still not enough of this to have conventions
+### Test interfaces
 
-- how to start testing un-tested, legacy code
-  1. start with integration tests that cover all the behavior
-    - usually can't start with unit tests, because the code probably isn't modular enough to test
-  2. refactor, modularize
-  3. unit tests
-  4. can probably do away with most integration tests
+The first thing to keep in mind when writing tests is that tests should describe the behavior program with respect to its interface, not its implementation. When testing a program (or function or module), the tests should be written with respect to the expected behavior of the program, not the internal details of its implementation. If a test relies on internal implementation details, then the test will not be useful in preserving the behavior of the program if the internal implementation needs to change. This technique of testing against interfaces as opposed to implementations is known as black-box testing.
 
-# When should you run tests?
-- always run tests before deploying
-  - continuous integration
-  - do tests block deploys?
-    - no, you don't want to be blocked by your tools
+### Test deterministically
+
+Tests should be deterministic. That means that if you run a test multiple times without changing the code, it should produce the same results. A test that sometimes fails and sometimes passes is not consistent, and therefore can't be relied on to give you confidence about the correctness of a program. Concretely, this means you should avoid relying on factors like randomness or time in tests.
+
+### Test small components (unit tests)
+
+Tests that are responsible for testing small pieces of code in isolation are generally referred to as *unit tests*. A unit test generally concerns itself with a single function. It tests the function one a representative sample of the full range of inputs, ensuring that the function produces the expected output in all cases. That means a unit test should be sure to cover weird edge cases.
+
+A unit test should test a function independently from the context in which the function is called. This is easiest to achieve if your functions are pure (i.e. have no external side-effects). Pure functions can often be tested simply by
+specifying a list of pairs of inputs and their expected outputs (often called *table tests*).
+
+If a function has external dependencies (e.g. a database, remote service, or file system) or creates side-effects (e.g. mutates shared state, creates threads), then the externalities should be mocked or stubbed. It's best to isolate side-effects as much as possible in the code so that business logic can be tested with simple unit tests.
+
+Since unit tests have no external dependencies, they should be very fast. You should be able to run a large number of unit tests in seconds. (And since you are testing all the time, you will probably have a lot of tests!)
+
+### Test integration of components (integration tests)
+
+If you have a system composed of many small pieces, which are all independently unit tested, you will also want to test that the composition works correctly. These kinds of tests are generally referred to as *integration tests* (or *end-to-end tests* or *system tests*). Integration tests ensure that the different pieces of your system fit together as expected - they test components in context.
+
+In order to test that different components are properly linked together, you should only need to test a small number of paths through the code. Most of the cases your program handles should be handled by the individual components and tested by unit tests. The integration tests need only test a few "happy paths" to ensure that data flows through the program as expected.
+
+For example, if a program has 5 sequential true/false decision points, that means there are 2^5 paths through the code. It's better to use 5 unit tests to test the decision points and one integration test to ensure the decision happen sequentially than to write 2^5 integration tests to cover all the cases.
+
+To test that individual components are linked together properly, you will probably want to use mocks to ensure that the components communicate with each other as expected. For instance, when testing an API, this could mean mocking the database and ensuring that the proper queries are made for certain API calls.
+
+To test that the system as a whole functions correctly, you'll want to run the entire system at once with no mocks. For instance, when testing an API, this could mean spinning up a web server and database and serving actual requests.
+
+Since integration tests are concerned with the communication between components, they often need to perform I/O, which can be very slow (compared to unit tests). Because they are slow (and, as mentioned above, you should only test a few paths), you should have much fewer integration tests than unit tests.
+
+### Test large inputs (load tests)
+
+If your want your program to perform well at scale, you'll want to test how it handles large inputs. These type of tests are generally referred to as *load tests*.
+
+We don't do enough load testing currently to have conventions, but it's generally a good idea to keep these tests separate from unit and integration tests since they may take a long time.
+
+### Test untested code
+
+The harsh reality of real-world software development is that sometimes you come across code without tests (a.k.a. legacy code). Fixing bugs or changing the behavior of untested code can be daunting, if not downright terrifying.
+
+Since the code was not written with tests originally, it will probably not be designed in a way that makes it amenable to unit testing. Thus, you'll have to test the code from the outside in.
+
+First, write integration tests to cover as much of the behavior as possible. Once you have adequately covered the behavior, you can start refactoring the code into smaller, less-tightly-coupled modules that can be unit tested. As you add unit tests, you can start removing integration tests.
+
+## When should you run tests?
+
+Tests can provide a lot of value as you write code. You can run unit tests repeatedly as you write code to provide a tight feedback loop. In the ideal case where your tests fully cover the behavior of the program, you should never have to manually test your code as you write it.
+
+You should also always run tests before deploying. Code that causes test failures should not be deployed. [Continuous integration](http://en.wikipedia.org/wiki/Continuous_integration) tools like [Travis](https://travis-ci.org/) and [Drone](https://drone.io/) will automatically run your tests whenever you commit changes to your code.
