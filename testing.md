@@ -1,6 +1,6 @@
 # Testing
 
-# Why test?
+# Why write tests?
 
 There are a few main motivations for writing automated tests for your code.
 
@@ -16,15 +16,25 @@ Testing is also a helpful design tool. Since tests are another way to express a 
 
 Lastly, testing is unavoidable. You will always need to confirm that a program behaves as expected after writing it or changing it. Automated testing applies the main insight of programming - making the computer do the repetitive work - to testing. Instead of manually running a program and confirming that it behaves correctly each time you change it, automated tests offload this repetitive task to the computer.
 
+# When should you write tests?
 
-- when to write tests
-    - always
-    - just write tests
-    - TDD? if it works for you
-    - most important thing is that tests exists
-    - some tests is better than no tests
-    - so just write tests
-    - any change (e.g. bug fix) should be accompanied by a changed/new test encoding new behavior
+The short answer is **always**. Just write tests all the time.
+
+Building a new feature? Write some tests so you can be sure it works! Fix a bug in some existing code? Add a test so it will never happen again! Scared to modify some legacy code? Assuage your fear with tests! They say there's a fine line between bravery and stupidity. That line is made of tests.
+
+"But, what if my tests are hard to maintain?" That's better than no tests.
+"But, what if my tests take a long time to run?" Still better than no tests.
+Some tests are strictly better than no tests.
+
+So just write tests all the time.
+
+It doesn't matter if you write your tests before your code, at the same time as your code, or after, as long as you are writing tests. If you like [test-driven development](http://en.wikipedia.org/wiki/Test-driven_development), go for it! If you think test-driven development is only for brainwashed zealots, that's fine too... as long as you still write tests.
+
+A piece of code is not done until it's tested.
+
+So just write tests. All the time.
+
+# How do you write tests?
 
 - how to write tests
   - two main types of tests:
@@ -66,8 +76,8 @@ Lastly, testing is unavoidable. You will always need to confirm that a program b
   3. unit tests
   4. can probably do away with most integration tests
 
+# When should you run tests?
 - always run tests before deploying
   - continuous integration
   - do tests block deploys?
     - no, you don't want to be blocked by your tools
-- code isnt done until it's tested
