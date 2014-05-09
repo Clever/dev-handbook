@@ -1,13 +1,21 @@
 # Testing
 
-- why test?
-    - nails down behavior of code
-    - lets you be confident that changes to code don't change its behavior
-        - also lets other people make changes
-        - tests seem like they duplicate knowledge that's encoded in code, but you need to duplicate that knowledge if you want to safely develop over time
-    - helps you think about what your code should do
-    - forces you to break code down into testable parts which leads to more modular code
-    - teammates rely on tests to collaborate on code
+# Why test?
+
+There are a few main motivations for writing automated tests for your code.
+
+First, tests nail down the behavior of a program. You can think of tests like a specification of how a program should behave when given different inputs. But, better than a written spec, tests can also check whether or not a program meets that specification.
+
+Having a spec that can be checked allows you to be confident that changes to a program don't change its behavior. If a program's tests pass before you make changes and pass after you make changes, then you haven't changed the external behavior of the program - only its internal workings. Thus, tests allow you to safely refactor and optimize a program.
+
+It may seem like a waste of time to encode all the behavior of a program twice: once in the program itself and once in the tests. However, this duplication of information is one of the key factors that makes testing useful. Having the behavior written down twice ensures you can't change the behavior in one without changing the other. Since tests and code express a program's behavior in different ways, unintentional or mistaken changes to code will be flagged in the tests. Expressing a program's behavior twice and requiring that both versions agree helps ensure that the behavior expressed correctly - as the author intended.
+
+These benefits of tests manifest most strongly when developing software collaboratively or developing software over time. When working with a team, tests allow you to communicate the expected behavior of your code to your teammates so they too can safely make changes. When working on a project over time, tests allow you to communicate in the same way with your future self.
+
+Testing is also a helpful design tool. Since tests are another way to express a program's behavior, writing tests can be a good way to think about what you want a program to do. Testing also forces you to design your code in a way that makes the individual parts testable, which leads to simpler, more modular code.
+
+Lastly, testing is unavoidable. You will always need to confirm that a program behaves as expected after writing it or changing it. Automated testing applies the main insight of programming - making the computer do the repetitive work - to testing. Instead of manually running a program and confirming that it behaves correctly each time you change it, automated tests offload this repetitive task to the computer.
+
 
 - when to write tests
     - always
