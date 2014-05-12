@@ -2,7 +2,8 @@
 
 This document describes the workflow, conventions, and best practices we use with regard to Git. If you aren't already familiar with what Git does, how it works, and the basic commands (or you want a refresher), check out these links:
 
-TODO: link to some Git overviews/tutorials
+http://git-scm.com/docs/gittutorial
+TODO: Add some more tutorials
 
 ## Github as Filesystem
 
