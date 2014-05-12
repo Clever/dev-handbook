@@ -40,7 +40,7 @@ You'll probably want to use some sort of testing framework to help you write tes
 
 ### Test interfaces
 
-The first thing to keep in mind when writing tests is that tests should describe the behavior program with respect to its interface, not its implementation. When testing a program (or function or module), the tests should be written with respect to the expected behavior of the program, not the internal details of its implementation. If a test relies on internal implementation details, then the test will not be useful in preserving the behavior of the program if the internal implementation needs to change. This technique of testing against interfaces as opposed to implementations is known as black-box testing.
+The first thing to keep in mind when writing tests is that tests should describe the behavior of the program with respect to its interface, not its implementation. When testing a program (or function or module), the tests should be written with respect to the expected behavior of the program, not the internal details of its implementation. If a test relies on internal implementation details, then the test will not be useful in preserving the behavior of the program if the internal implementation needs to change. This technique of testing against interfaces as opposed to implementations is known as black-box testing.
 
 ### Test deterministically
 
@@ -48,10 +48,9 @@ Tests should be deterministic. That means that if you run a test multiple times 
 
 ### Test small components (unit tests)
 
-Tests that are responsible for testing small pieces of code in isolation are generally referred to as *unit tests*. A unit test generally concerns itself with a single function. It tests the function one a representative sample of the full range of inputs, ensuring that the function produces the expected output in all cases. That means a unit test should be sure to cover weird edge cases.
+Tests that are responsible for testing small pieces of code in isolation are generally referred to as *unit tests*. A unit test generally concerns itself with a single function. It tests the function on a representative sample of the full range of inputs, ensuring that the function produces the expected output in all cases. That means a unit test should be sure to cover weird edge cases.
 
-A unit test should test a function independently from the context in which the function is called. This is easiest to achieve if your functions are pure (i.e. have no external side-effects). Pure functions can often be tested simply by
-specifying a list of pairs of inputs and their expected outputs (often called *table tests*).
+A unit test should test a function independently from the context in which the function is called. This is easiest to achieve if your functions are pure (i.e. have no external side-effects). Pure functions can often be tested simply by specifying a list of pairs of inputs and their expected outputs (often called *table tests*).
 
 If a function has external dependencies (e.g. a database, remote service, or file system) or creates side-effects (e.g. mutates shared state, creates threads), then the externalities should be mocked or stubbed. It's best to isolate side-effects as much as possible in the code so that business logic can be tested with simple unit tests.
 
