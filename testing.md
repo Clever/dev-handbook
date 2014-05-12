@@ -18,21 +18,19 @@ Lastly, testing is unavoidable. You will always need to confirm that a program b
 
 ## When should you write tests?
 
-The short answer is **always**. Just write tests all the time.
+The short answer is **always**.
 
 Building a new feature? Write some tests so you can be sure it works! Fix a bug in some existing code? Add a test so it will never happen again! Scared to modify some legacy code? Assuage your fear with tests! They say there's a fine line between bravery and stupidity. That line is made of tests.
 
-"But, what if my tests are hard to maintain?" That's better than no tests.
-"But, what if my tests take a long time to run?" Still better than no tests.
-Some tests are strictly better than no tests.
+"But, what if my tests are hard to maintain?" That's better than no tests. "But, what if my tests take a long time to run?" Still better than no tests. Some tests are strictly better than no tests.
 
-So just write tests all the time.
+So just write tests always.
 
 It doesn't matter if you write your tests before your code, at the same time as your code, or after, as long as you are writing tests. If you like [test-driven development](http://en.wikipedia.org/wiki/Test-driven_development), go for it! If you think test-driven development is only for brainwashed zealots, that's fine too... as long as you still write tests.
 
 A piece of code is not done until it's tested.
 
-So just write tests. All the time.
+So just write tests. Always.
 
 ## How do you write tests?
 
