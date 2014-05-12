@@ -62,7 +62,7 @@ If you have a system composed of many small pieces, which are all independently 
 
 In order to test that different components are properly linked together, you should only need to test a small number of paths through the code. Most of the cases your program handles should be handled by the individual components and tested by unit tests. The integration tests need only test a few "happy paths" to ensure that data flows through the program as expected.
 
-For example, if a program has 5 sequential true/false decision points, that means there are 2^5 paths through the code. It's better to use 5 unit tests to test the decision points and one integration test to ensure the decision happen sequentially than to write 2^5 integration tests to cover all the cases.
+For example, if a program has 5 sequential true/false decision points, that means there are 2^5 paths through the code. It's better to use multiple unit tests to test the decision points and one integration test to ensure the decision happen sequentially than to write 2^5 integration tests to cover all the cases.
 
 To test that individual components are linked together properly, you will probably want to use mocks to ensure that the components communicate with each other as expected. For instance, when testing an API, this could mean mocking the database and ensuring that the proper queries are made for certain API calls.
 
