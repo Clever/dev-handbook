@@ -1,6 +1,6 @@
 # Git Workflow
 
-This document describes the workflow, conventions, and best practices we use with regard to Git. If you aren't already familiar with what Git does, how it works, and the basic commands (or you want a refresher), check out these links. 1 covers the basics of configuring git and creating/cloning repos. 2 introduces branches and pushing
+This document describes the workflow, conventions, and best practices we use with regard to Git. If you aren't already familiar with what Git does, how it works, and the basic commands (or you want a refresher), check out these links: 
 
 [link 1](https://www.atlassian.com/git/tutorial/git-basics) - Covers the basics of configuring git and creating/cloning repos 
 
