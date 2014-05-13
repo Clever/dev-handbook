@@ -2,10 +2,13 @@
 
 This document describes the workflow, conventions, and best practices we use with regard to Git. If you aren't already familiar with what Git does, how it works, and the basic commands (or you want a refresher), check out these links. 1 covers the basics of configuring git and creating/cloning repos. 2 introduces branches and pushing
 
-[https://www.atlassian.com/git/tutorial/git-basics](link 1) - Covers the basics of configuring git and creating/cloning repos
-[http://rogerdudler.github.io/git-guide/](link 2) - Introduces branches and pushing
-[http://git-scm.com/docs/gittutorial](link 3) - A little more detail on all this stuff
-[http://sixrevisions.com/resources/git-tutorials-beginners](link 4) - Links to 6 more tutorials. Git magic (5) was very useful - lots of details.
+[link 1](https://www.atlassian.com/git/tutorial/git-basics) - Covers the basics of configuring git and creating/cloning repos 
+
+[link 2](http://rogerdudler.github.io/git-guide/) - Introduces branches and pushing
+
+[link 3](http://git-scm.com/docs/gittutorial) - A little more detail on all this stuff
+
+[link 4](http://sixrevisions.com/resources/git-tutorials-beginners) - Links to 6 more tutorials. Git magic (5) was very useful - lots of details.
 
 ## Github as Filesystem
 
