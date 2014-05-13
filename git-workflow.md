@@ -63,6 +63,8 @@ Here is the simplest development workflow you should use:
         git commit
         git push
 
+    You should push early and often in order to ensure that the most up to date code is on Github - remember, use [github as a filesystem](#github-as-filesystem). That can mean pushing after every commit, or pushing every time you stop a work session. At the bare minimum, push before you stop for the day.
+
 3. If you are developing over a long period of time, and `master` is changing, you should merge `master` into your branch often to make sure it stays up to date. This will reduce merge conflicts when you finally merge your branch back into `master`.
 
         git checkout master
