@@ -3,8 +3,11 @@
 This document describes the workflow, conventions, and best practices we use with regard to Git. If you aren't already familiar with what Git does, how it works, and the basic commands (or you want a refresher), check out these links. They are organised from simplest to most complicated.
 
 https://www.atlassian.com/git/tutorial/git-basics 
+
 http://rogerdudler.github.io/git-guide/
+
 http://git-scm.com/docs/gittutorial 
+
 http://sixrevisions.com/resources/git-tutorials-beginners/ (6 good links)
 
 ## Github as Filesystem
