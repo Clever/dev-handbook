@@ -76,4 +76,4 @@ Here is the simplest development workflow you should use:
 
 5. Make changes based on the reviewer's comments. Respond to comments with the SHA of the commit that address the comment so that both you and the reviewer can make sure every comment is addressed.
 
-6. Once the reviewer signs off on the PR, merge your branch into `master`.
+6. Once the reviewer signs off on the PR, merge your branch into `master`, delete your branch, and deploy. Since `master` should always be in a deployable state, you should deploy immediately after merging to ensure that your changes don't cause problems in production for the next person who wants to deploy.
