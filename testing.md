@@ -42,7 +42,11 @@ The first thing to keep in mind when writing tests is that tests should describe
 
 ### Test deterministically
 
-Tests should be deterministic. That means that if you run a test multiple times without changing the code, it should produce the same results. A test that sometimes fails and sometimes passes is not consistent, and therefore can't be relied on to give you confidence about the correctness of a program. Concretely, this means you should avoid relying on factors like randomness or time in tests.
+Tests should be deterministic. That means that if you run a test multiple times without changing the code, it should produce the same results. A test that sometimes fails and sometimes passes is not consistent, and therefore can't be relied on to give you confidence about the correctness of a program. Concretely, this means you should avoid relying on factors like randomness, time, or external services in the structure of your tests.
+
+For instance, if you are testing a button that changes a piece of UI, you shouldn't wait for an arbitrary number of seconds to check that the UI refreshes, since the time that it takes to refresh is not deterministic. Instead, you can emit some sort of event when the UI is finished refreshing, and make the test listen for this event.
+
+Avoiding non-determinism doesn't mean your tests can't generate random inputs. [Generative testing](http://blog.8thlight.com/connor-mendenhall/2013/10/31/check-your-work.html), in which a program generates different test inputs each time the tests are run, can help describe properties of your program that should hold for all inputs. They can make a stronger assertion about correctness, since, if they pass, it means your program works for many random inputs, not just a few representative ones. Generative tests can also come up with edge cases that you may not have thought of.
 
 ### Test small components (unit tests)
 
