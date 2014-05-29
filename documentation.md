@@ -77,7 +77,7 @@ For existing users, it provides a convenient way for them to weigh the benefits 
 
 ## What doesn't go in a README?
 
-Some documentation doesn't below in the README.
+Some documentation doesn't belong in the README.
 There are basically two types of people you want to have documentation for: people who want to use your software and people who want to contribute to your software.
 
 The README mostly accommodates the first type of person, and because of this should be oblivious to implementation details of your software.
