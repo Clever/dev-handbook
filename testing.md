@@ -93,3 +93,16 @@ First, write integration tests to cover as much of the behavior as possible. Onc
 Tests can provide a lot of value as you write code. You can run unit tests repeatedly as you write code to provide a tight feedback loop. In the ideal case where your tests fully cover the behavior of the program, you should never have to manually test your code as you write it.
 
 You should also always run tests before deploying. Code that causes test failures should not be deployed. [Continuous integration](http://en.wikipedia.org/wiki/Continuous_integration) tools like [Travis](https://travis-ci.org/) and [Drone](https://drone.io/) will automatically run your tests whenever you commit changes to your code.
+
+## Choosing dummy values
+
+When testing, we often need to provide our code objects that are similar to those it will encounter in production. This can be a challenge when the code deals with sensitive data such as API keys, email addresses or passwords. In these cases, we should provide input that looks like the real value, but is obviously fake. We should never use real world keys or user information in tests, even in private repos.
+
+### Emails
+`test@example.com` is a good choice for a dummy email address - [example.com](http://www.example.com/) is reserved. While `<some-silly-name>@gmail.com` is a tempting choice, it is likely in use and so we want to avoid it.
+
+### Long, random looking keys, ids or secrets
+While generating a pseudorandom key (by closing your eyes and hitting your keyboard) may appear to be good, this choice fails the "obviously fake" test. You have generated a key that is so similar to the real one that reviewers will not know whether it is real or not. Instead, match the length and style (number, hex, alphanumeric) and use keys such as `1234567`, `123abc` or `123xyz` respectively. 
+
+### Passwords
+The easiest dummy password is simply `password`, but if you want to make it more realistic a variation on this theme such as `th!s!sth3p@55w0rd!` is appropriate.
