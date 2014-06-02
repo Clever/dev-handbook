@@ -91,7 +91,7 @@ First, write integration tests to cover as much of the behavior as possible. Onc
 ### Test using fake data
 
 When testing, you often need to provide the code data that is similar to what it will encounter in production. However, as the code you are testing may only deal with a small part of the data, you should reduce the input to just these important sections. This will keep tests concise and readable. 
-If the data that the code needs is sensitive (API keys, email address, passwords), you must ensure that while the data is obviously fake. You should never use real world keys or user information in tests, even in private repos.
+If the data that the code needs is sensitive (API keys, email address, passwords), you must ensure that the data is obviously fake. You should never use real world keys or user information in tests, even in private repos.
 
 #### Emails
 `test@example.com` is a good choice for a dummy email address as [example.com](http://www.example.com/) is reserved. While `<some-silly-name>@gmail.com` is a tempting choice, it is likely in use and so you should avoid it.
