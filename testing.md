@@ -2,7 +2,9 @@
 
 ## Why write tests?
 
-There are a few main motivations for writing automated tests for your code.
+> "Testing shows the presence, not the absence of bugs" - Edsger Dijkstra
+
+Even if testing can't prove that your code is completely correct, there are still a few important motivations for writing automated tests for your code.
 
 First, tests nail down the behavior of a program. You can think of tests like a specification of how a program should behave when given different inputs. But, better than a written spec, tests can also check whether or not a program meets that specification.
 
