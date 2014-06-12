@@ -90,21 +90,22 @@ First, write integration tests to cover as much of the behavior as possible. Onc
 
 ### Test using fake data
 
-When testing, you often need to provide the code data that is similar to what it will encounter in production. However, as the code you are testing may only deal with a small part of the data, you should reduce the input to just these important sections. This will keep tests concise and readable. 
-If the data that the code needs is sensitive (API keys, email address, passwords), you must ensure that the data is obviously fake. You should never use real world keys or user information in tests, even in private repos.
+When testing your code, you should provide it data that is similar to what it will encounter in production. This can become tricky when the data the code needs is sensitive - E.g API keys, email address, passwords. In these cases, you must ensure that the data is obviously fake. You should never use real world keys or user information in tests, even in private repos.
 
 #### Emails
-`test@example.com` is a good choice for a dummy email address as [example.com](http://www.example.com/) is reserved. While `<some-silly-name>@gmail.com` is a tempting choice, it is likely in use and so you should avoid it.
+Recommended: `test@example.com`. This is a good choice as [example.com](http://www.example.com/) is reserved. 
+Avoid: `<some-silly-name>@gmail.com`. While this is tempting, someone probably uses it and so we do not want to.
 
 #### Long, random looking keys, ids or secrets
-While generating a pseudorandom key (by closing your eyes and hitting your keyboard) may appear to be good, this choice fails the "obviously fake" test. You have generated a key that is so similar to the real one that readers will not know whether it is real or not. Instead, match the length and style (number, hex, alphanumeric) and use keys such as `1234567`, `123abc` or `123xyz` respectively. 
+Recommended: Match the length and style (number, hex, alphanumeric) of the real key and use obviously fake keys such as `12345`, `123abc`, `123xyz` respectively.
+Avoid: Generating a pseudorandom key by closing your eyes and hitting your keyboard. This fails the "obviously fake" test and readers will now know whether it is real or not.
 
 #### Passwords
-The easiest dummy password is simply `password`, but if you want to make it more realistic a variation on this theme such as `th!s!sth3p@55w0rd!` is appropriate.
+Recommended: `password`. If you want to make it more realistic use a variation on this theme such as `th!s!sth3p@55w0rd!`.
+Avoid: Anything that could actually be the password.
 
 ## When should you run tests?
 
 Tests can provide a lot of value as you write code. You can run unit tests repeatedly as you write code to provide a tight feedback loop. In the ideal case where your tests fully cover the behavior of the program, you should never have to manually test your code as you write it.
 
 You should also always run tests before deploying. Code that causes test failures should not be deployed. [Continuous integration](http://en.wikipedia.org/wiki/Continuous_integration) tools like [Travis](https://travis-ci.org/) and [Drone](https://drone.io/) will automatically run your tests whenever you commit changes to your code.
-
