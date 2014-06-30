@@ -94,18 +94,22 @@ When testing your code, you should provide it data that is similar to what it wi
 
 #### Emails
 Recommended: `test@example.com`. This is a good choice as [example.com](http://www.example.com/) is reserved. 
+
 Avoid: `<some-silly-name>@gmail.com`. While this is tempting, someone probably uses it and so we do not want to.
 
 #### Passwords
 Recommended: `password`. If you want to make it more realistic use a variation on this theme such as `th!s!sth3p@55w0rd!`.
+
 Avoid: Anything that looks like it could actually be the password.
 
 #### Long, random looking keys, ids or secrets
 Recommended: Match the length and style (number, hex, alphanumeric) of the real key and use obviously fake keys such as `12345`, `123abc`, `123xyz` respectively.
-Avoid: Generating a pseudorandom key by closing your eyes and hitting your keyboard. This fails the "obviously fake" test and readers will now know whether it is real or not.
+
+Avoid: Generating a pseudorandom key by closing your eyes and hitting your keyboard. This fails the "obviously fake" test and readers will not know whether it is real or not.
 
 #### Keys or ids for consecutive tests
 Recommended: Match the style and length of the key or id. Choose some function to increment the key between tests.
+
 Avoid: Relying on properties that may not hold true in production such as the keys being consecutive, not changing, or being monotonic. Of course, if these are true in production then you should follow them!
 
 ## When should you run tests?
