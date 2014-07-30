@@ -1,6 +1,6 @@
 # Git Workflow
 
-This document describes the workflow, conventions, and best practices we use with regard to Git. If you aren't already familiar with what Git does, how it works, and the basic commands (or you want a refresher), check out these links: 
+This document describes the workflow, conventions, and best practices we use with regard to Git. If you aren't already familiar with what Git does, how it works, and the basic commands (or you want a refresher), check out these links:
 
 - [Atlassian git tutorial](https://www.atlassian.com/git/tutorial/git-basics) - Covers the basics of configuring git and creating/cloning repos
 - [git - the simple quide](http://rogerdudler.github.io/git-guide/) - Introduces branches and pushing
@@ -16,7 +16,7 @@ There's also another reason to keep all of your work on Github: individual compu
 
 ## Branching
 
-`master` is the branch that gets deployed to production, so it should always be in a production-ready state (i.e. all tests should pass). Every change, whether it's a new feature, bug fix, or spelling correction, should be developed on a separate branch. 
+`master` is the branch that gets deployed to production, so it should always be in a production-ready state (i.e. all tests should pass). Every change, whether it's a new feature, bug fix, or spelling correction, should be developed on a separate branch.
 
 Branch names should be lower-case and use hyphens to separate words. Use descriptive branch names.
 
@@ -28,7 +28,7 @@ Branch names should be lower-case and use hyphens to separate words. Use descrip
 
     Bad:
 
-        no_sync_tag (uses underscores instead of hyphens) 
+        no_sync_tag (uses underscores instead of hyphens)
         errors (not descriptive)
         rewrite-ongoing (not descriptive)
 
@@ -42,7 +42,7 @@ A commit should contain one conceptual change to your code. This is crucial, so 
 
 When committing, it's a good idea to review every line of code that you commit. Even if you have multiple conceptual changes implemented, craft your commits such that each commit only contains one change. A great way to do this is to use `git add -p`, which breaks your changes up into individual patches and allows you to interactively choose which ones to stage.
 
-When writing commit messages, the first line should be a short description of the change. Since you only have one conceptual change in your commit, it should be easy to describe in one line, right? You may want to prefix this line with the name of the subcomponent/part of the system your changes affect followed by a colon (e.g. `student schema: added validation for email`). Use the rest of the commit message to expand on the context of the change so that it is easier to understand.  
+When writing commit messages, the first line should be a short description of the change. Since you only have one conceptual change in your commit, it should be easy to describe in one line, right? You may want to prefix this line with the name of the subcomponent/part of the system your changes affect followed by a colon (e.g. `student schema: added validation for email`). Use the rest of the commit message to expand on the context of the change so that it is easier to understand.
 
 Good: TODO
 Bad: TODO
@@ -69,7 +69,7 @@ Here is the simplest development workflow you should use:
 
     You should push early and often in order to ensure that the most up to date code is on Github - remember, use [github as a filesystem](#github-as-filesystem). That can mean pushing after every commit, or pushing every time you stop a work session. At the bare minimum, push before you stop for the day.
 
-3. If you are developing over a long period of time, and `master` is changing, you should merge `master` into your branch often to make sure it stays up to date. This will reduce merge conflicts when you finally merge your branch back into `master`.
+    If you are developing over a long period of time, and `master` is changing, you should merge `master` into your branch often to make sure it stays up to date. This will reduce merge conflicts when you finally merge your branch back into `master`.
 
         git checkout master
         git pull
@@ -78,6 +78,15 @@ Here is the simplest development workflow you should use:
 
 4. When you are ready to start having your code reviewed, open a pull request (PR) and assign it to a reviewer.
 
-5. Make changes based on the reviewer's comments. Respond to comments with the SHA of the commit that address the comment so that both you and the reviewer can make sure every comment is addressed.
+     Make changes based on the reviewer's comments. Respond to comments with the SHA of the commit that address the comment so that both you and the reviewer can make sure every comment is addressed.
 
-6. Once the reviewer signs off on the PR, merge your branch into `master`, delete your branch, and deploy. Since `master` should always be in a deployable state, you should deploy immediately after merging to ensure that your changes don't cause problems in production for the next person who wants to deploy.
+5. Once the reviewer signs off on the PR, rebase your branch to `master`. This will ensure that all of the commits from your branch will be next to each other once you merge into `master`, simplifying the history and making it easier to debug or rollback changes.
+
+    This is also a good opportunity to clean up the commit history from your branch. Consider recombining commits into better logical chunks.
+
+        git checkout master
+        git pull
+        git checkout my-great-feature
+        git rebase -i master
+
+6. Finally, merge your branch into `master`, delete your branch, and deploy. Since `master` should always be in a deployable state, you should deploy immediately after merging to ensure that your changes don't cause problems in production for the next person who wants to deploy.
