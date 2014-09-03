@@ -11,14 +11,38 @@ Making sure you follow these guidelines is at the same level of importance of ma
 Doing it as part of the build and test cycle (as opposed to elsewhere, e.g. git hooks) ensures that no code is merged into master that fails these checks and allows for maximum flexibility during development.
 As a code reviewer, you should hold people accountable to following the style guide for the appropriate language.
 
-## Go
+## Tools
+
+It is much easier to follow style rules when your editor displays feedback as you code. The following tools for each editor do just that for any language, provided that the linters for those languages are present on your system and configured properly.
+
+### vim
+
+[Syntastic](https://github.com/scrooloose/syntastic) triggers linters on save. Steps:
+
+1. Follow the installation instructions on the README.
+2. Ensure the linter you want to use is present. For instances, on Python you should have `pep8` installed on your system (you should be able to run it from the command line).
+3. Add the corresponding syntastic linter invocation to your `.vimrc` file to activate that tool; for `pep8`, for example, it would be: `let g:syntastic_python_checkers=['pep8']`
+
+You can add multiple linters for a language by adding more entries to the array corresponding to that language (they will be invoked in the order they are declared). Check the documentation for more settings by typing `:help syntastic` in vim.
+
+### sublime
+
+Sublime Linter ([2](https://github.com/SublimeLinter/SublimeLinter-for-ST2), [3](https://github.com/SublimeLinter/SublimeLinter3)) looks like a promising choice for linting as you code. TODO: someone who uses Sublime should try this out
+
+### emacs
+
+[Flycheck](https://github.com/flycheck/flycheck) looks like a promising choice for linting as you code in emacs. TODO: someone who uses emacs should try this out
+
+## Language-specific linters
+
+### Go
 
 The style guides used for Go are [Effective Go](http://golang.org/doc/effective_go.html) and the community [Go style guide](https://code.google.com/p/go-wiki/wiki/CodeReviewComments). There are two tools that can be used to detect common mistakes.
 
 * `go fmt` should be run in any directory that contains go files. It will automatically format the code.
 * `golint file.go` should be run for every go file. It will lint the code and return any issues it finds.
 
-### Recommended setup
+#### Recommended setup
 
 * Makefiles: A Go package should have a Makefile that runs "golint" on all files, e.g.
 
@@ -39,17 +63,19 @@ The style guides used for Go are [Effective Go](http://golang.org/doc/effective_
 
 * sublime: Add [GoSublime](https://github.com/DisposaBoy/GoSublime) for code highlighting and `go fmt` on save.
 
-* vim: See the directions [here](http://tip.golang.org/misc/vim/readme.txt). It's strongly advised to set up `gofmt` on save.
+* vim:
+    * The [go-vim](https://github.com/fatih/vim-go) plugin adds a lot of functionality, including `gofmt` on save as well as much more.
+    * Alternatively, if `go-vim` is too heavy for you, see the directions [here](http://tip.golang.org/misc/vim/readme.txt). It's strongly advised to set up `gofmt` on save.
 
-## CoffeeScript
+### CoffeeScript
 
 The style guide used for CoffeeScript can be found [here](https://github.com/Clever/coffeescript-style-guide). [coffeelint](https://github.com/clutchski/coffeelint) and [coffee-jshint](https://github.com/Clever/coffee-jshint) should be added as a test. The coffeelint config can be found [here](https://github.com/Clever/coffeescript-style-guide/blob/master/coffeelint-config.json).
 
-## Python
+### Python
 
 The style guide we use is [PEP8](http://legacy.python.org/dev/peps/pep-0008/) with exceptions for allowing tab widths of two spaces and line lengths of up to 100.
 
-### Recommended setup
+#### Recommended setup
 
 PEP8 has an accompanying command-line tool, `pep8` (`pip install pep8`) that accepts a config file:
 
@@ -72,7 +98,7 @@ There is also the tool `autopep8` (`pip install autopep8`) that will fix all the
 
 * sublime: https://github.com/wistful/SublimeAutoPEP8
 
-## Bash
+### Bash
 
 The [Google Shell Style Guide](https://google-styleguide.googlecode.com/svn/trunk/shell.xml) is what we follow for shell scripts.
 There are no automated tools that we use for following this, however there is [ShellCheck](http://www.shellcheck.net/about.html) which covers some of what's in the style guide.
