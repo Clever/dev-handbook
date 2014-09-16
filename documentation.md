@@ -5,6 +5,7 @@ There are several very good reasons for why you should write documentation:
   1. You have teammates that need to use your software. If there's no documentation, they won't know what to do.
   2. You will have to use your software in the future, probably after a long absence where you haven't looked at it. If there's no documentation, you won't know what to do.
   3. Writing a README forces you to think about your software from another person's perspective. This results in better-designed software (see [README-driven Development](http://tom.preston-werner.com/2010/08/23/readme-driven-development.html)).
+  4. Some IDEs utilise the documentation for type hinting. This enables devs that utilise IDEs to be more productive.  
 
 ## What makes good documentation?
 
