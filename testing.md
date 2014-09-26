@@ -74,7 +74,7 @@ To test that individual components are linked together properly, you will probab
 
 To test that the system as a whole functions correctly, you'll want to run the entire system at once with no mocks. For instance, when testing an API, this could mean spinning up a web server and database and serving actual requests.
 
-Since integration tests are concerned with the communication between components, they often need to perform I/O, which can be very slow (compared to unit tests). Because they are slow (and, as mentioned above, you should only test a few paths), you should have much fewer integration tests than unit tests.
+Since integration tests are concerned with the communication between components, they often need to perform I/O, which can be very slow (compared to unit tests). Because they are slow (and, as mentioned above, you should only test a few paths), you should have many fewer integration tests than unit tests.
 
 ### Test large inputs (load tests)
 
