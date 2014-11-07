@@ -2,14 +2,16 @@
 
 This document defines logging and the expectations from logs that are generated at different parts of the system. The purpose of logging is to allow transparency into the state of systems. It is used to keep tabs on processes running and to allow investigative analysis. Some examples of when logs are investigated include: _audits, crash reports, partner dialogs, certain aggregation metrics, and diagnosing problems._
 
-Logging should allow investigation and involves a specific part of code (unit) or on a whole process (integration).  Logs are broken into severity levels. Each level has a set of standards. The code authors and reviewers should try to ensure that logs at each of these layers are well represented and can be interpreted independently of each other.
+Logging should allow investigation and involves a specific part of code (unit) or on a whole process (integration). Logs are broken into severity levels. Each level has a set of standards. The code authors and reviewers should try to ensure that logs at each of these layers are well represented and can be interpreted independently of each other.
 
 The levels are grouped into four larger categories that we are more concerned with:
 
-  1. Process Layer Logs
-  2. Application Errors
-  3. Application Audit Information
-  4. Application Status Logs
+  1. Process Layer Logs: _starting, ending and failure status a process including status such as memory usage, cpu usage_
+  2. Application Errors: _application code making note of any known and unknown error conditions (all unexpected)_
+  3. Application Audit Information: _application exposing information about significant events in a running system (e.g. Warnings and Notices)_
+  4. Application Status Logs: _application details about high level operational progress. (e.g. processed x records successfully, starting data dump etc)_
+
+Another important concern for logs is to be able to filter out logs for the instance, application or feature that is under investigation. For e.g. when debugging a specific feature details logs for that feature are useful, but logs from other parts of the system should be ideally hidden. These separation is often referred to as `locality` or `facility`. More details around _locality_ are discussed in the section on *debugging*.
 
 ## Best Practices
 
