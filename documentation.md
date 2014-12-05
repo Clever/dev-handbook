@@ -102,3 +102,7 @@ Tests should capture the full behavior of your software on all inputs.
 Docs should communicate the most common behavior of code (e.g. through short examples).
 You can then point to test cases for examples of uncommon usage of your software.
 Your documentation shouldn't drown the reader in a huge list of options ("do one thing and do it well").
+
+## Appendix
+
+* [Write The Docs](http://docs.writethedocs.org/): A site dedicated to "the art of writing documentation."
