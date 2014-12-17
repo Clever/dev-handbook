@@ -47,6 +47,25 @@ When writing commit messages, the first line should be a short description of th
 Good: TODO
 Bad: TODO
 
+## Pull Requests
+
+We use the [shared repository model](https://help.github.com/articles/using-pull-requests/#shared-repository-model) of pull requests (PRs) for code reviews.
+
+All pull requests descriptions should contain the following things:
+
+- What does the change do? Typically this would be a one line description that goes in the "subject"
+of the PR
+- Why is this change needed? Provide a context around what motivates this change. This could be
+an explanation inside the description or a reference to a discussion in some other place like
+a mailing list, JIRA issue etc. Not only is it helpful for the reviewer, it can also be used to
+figure out why a particular change was made when looking back.
+- How is the change tested? Since you should be [testing all your changes](https://github.com/Clever/dev-handbook/blob/master/testing.md), provide that information in the PR description. This has two
+benefits. It assures the reviewer that change indeed works correctly and he/she can prescribe
+any additionals test if needed. It can also be used as a guideline for someone else making changes
+to the same parts of the codebase.
+
+[This](https://github.com/Clever/optimus/pull/12) is a good example of a PR description.
+
 ## Workflow
 
 Here is the simplest development workflow you should use:
@@ -78,7 +97,7 @@ Here is the simplest development workflow you should use:
 
 4. When you are ready to start having your code reviewed, open a pull request (PR) and assign it to a reviewer.
 
-     Make changes based on the reviewer's comments. Respond to comments with the SHA of the commit that address the comment so that both you and the reviewer can make sure every comment is addressed.
+    Make changes based on the reviewer's comments. Respond to comments with the SHA of the commit that address the comment so that both you and the reviewer can make sure every comment is addressed.
 
 5. Once the reviewer signs off on the PR, rebase your branch to `master`. This will ensure that all of the commits from your branch will be next to each other once you merge into `master`, simplifying the history and making it easier to debug or rollback changes.
 
