@@ -18,13 +18,14 @@ There's also another reason to keep all of your work on Github: individual compu
 
 `master` is the branch that gets deployed to production, so it should always be in a production-ready state (i.e. all tests should pass). Every change, whether it's a new feature, bug fix, or spelling correction, should be developed on a separate branch.
 
-Branch names should be lower-case and use hyphens to separate words. Use descriptive branch names.
+Branch names should be lower-case and use hyphens to separate words. Use descriptive branch names. If there is a JIRA issue for the change, include the JIRA key (e.g. INFRA-101) in the branch name to link it to the JIRA ticket.
 
     Good:
 
         bigger-api-keys
         sftp-row-validation-error
         clever-js-deps-update
+        INFRA-101-update-node-package
 
     Bad:
 
