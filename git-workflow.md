@@ -52,7 +52,7 @@ Bad: TODO
 
 We use the [shared repository model](https://help.github.com/articles/using-pull-requests/#shared-repository-model) of pull requests (PRs) for code reviews.
 
-All pull requests descriptions should contain the following things:
+The description of a pull request must contain the following things:
 
 - What does the change do? Typically this would be a one line description that goes in the "subject"
 of the PR
