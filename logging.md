@@ -6,7 +6,7 @@ Logging should allow investigation and involves a specific part of code (unit) o
 
 The levels are grouped into four larger categories that we are more concerned with:
 
-  1. Process Layer Logs: _starting, ending and failure status a process including status such as memory usage, cpu usage_
+  1. Process Layer Logs: _starting, ending, and failure for a process. Could include status such as memory usage and cpu usage._
   2. Application Errors: _application code making note of any known and unknown error conditions (all unexpected)_
   3. Application Audit Information: _application exposing information about significant events in a running system (e.g. Warnings and Notices)_
   4. Application Status Logs: _application details about high level operational progress. (e.g. processed x records successfully, starting data dump etc)_
@@ -28,14 +28,16 @@ Another important concern for logs is to be able to filter out logs for the inst
 
 ## Logging Format
 
-Logs should be machine parsable and human readable. 
+Logs should be machine parsable and human readable. The [Kayvee](https://github.com/Clever/kayvee) makes it easy to enforce log formats.
 
- - log with `key:value` pairs. The key, value delimiter should be consistent with the language semantics. In case there is no clear choice use `:` as the delimiter. e.g. 
+ - log with `key:value` pairs or a known format such as `json` or `yaml`. The key, value delimiter should be consistent with the language semantics. e.g. 
      `route:api/sso type:invalid-request message:"access code not found" user:"john doe"`. 
  - whenever possible add unique identifiers to the start of the log line. e.g. 
      `[b65318c4-8330-4d50-993d-6d76d41c29bb] REQUEST: path=/resource/id remoteaddr=127.0.0.1:47059 Connection=close`
  - the application deployment environment should append _timestamp_, _hostnames_, _process name_ and ideally _log level_ to the beginning of the line.  
      `Jun  9 22:50:55 machine-name-12389123 supervisord: sync_service id=000000 action=posting-coach....`
+
+Further reading: [logfmt by Heroku](https://brandur.org/logfmt)
 
 ## Security
 
@@ -84,7 +86,8 @@ Examples of situations where Application Errors can usually be found:
 
 
 #### Logging practices for Application Errors
-1. **Error*:
+
+1. *Error*:
 
     **Node**: use 'console.error' or use a logging library
 
@@ -154,6 +157,12 @@ These logs are typically used to identify the operational state of a running sys
 | 6     | **Info**   | *The lowest priority that you would normally log, and purely informational in nature.*                                                    | This is the most common type of logging. It explains how the application is running, what component is running at what point, etc. It is mostly for investigative purposes after the fact. </br> e.g. "validating url" |
 | 7     | **Debug**   | *This is the lowest priority, and normally not logged except for messages from the kernel.*                                                    | This is the lowest priority, and normally not logged except for messages from the kernel.|
 
+#### Logging Format for Application Audit Logs
+
+1. component name (e.g. which process/worker)
+2. input or output
+3. actor (user, process name, system id)
+
 ### Info (level 6)
 
 #### Logging Practices
@@ -195,6 +204,8 @@ These logs are typically used to identify the operational state of a running sys
 
 
 ##### Debugging Format
-There is no standard format. Debugging is for whatever you need as it is only for the development environment.
+There is no standard format. However, `locality` is extremely important for debugging logs. Ensure that there is a token that allows developers to focus on the debug messages only for the context they are interested in. This can take the form of `classname` or `modulename` or the `component` that is generating these logs. Some tools such as `debug` for node allow the use of `environment variables` to control which logs are logged to STDOUT.
+
+Debugging is for whatever you need as it is only for the development environment.
 
 **NOTE** Your code is for developers too, so make it clear why you are logging something or needed to log something.
