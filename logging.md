@@ -26,6 +26,8 @@ Another important concern for logs is to be able to filter out logs for the inst
 
 - Log messages should link related processes (e.g. using a prefix, using a common id across a system).
 
+- All informational logs should go to stderr. Only program output should be logged to stdout. This is mostly useful for command-line programs so they can be piped together - for services it doesn't matter as much - but it's a good habit to get into.
+
 ## Logging Format
 
 Logs should be machine parsable and human readable. The [Kayvee](https://github.com/Clever/kayvee) logging libraries make it easy to enforce log formats.
@@ -127,7 +129,7 @@ application. These logs are also used to create reports on failure rates and pla
 
 1. Log starting and ending of major components or anything needed to show the major work flow of our system.
 
-    **Node**: use 'console.log' or a logging library
+    **Node**: use 'console.warn' or a logging library
 
     **Python**: use 'logging.info' or 'logging.notice'
 
@@ -169,11 +171,11 @@ These logs are typically used to identify the operational state of a running sys
 
 - Log starting and ending of major components or anything needed to show the major work flow of our system.
 
-    **Node**: use 'console.log' *todo - use a logging library*
+    **Node**: use 'console.error' or a logging library
 
     **Python**: use 'logging.info'
 
-    **Go**: 'log.Print(f|ln)' *todo - use a logging library*
+    **Go**: 'log.Print(f|ln)' or a logging library
 
 
 #### Logging Format
