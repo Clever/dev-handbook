@@ -28,7 +28,7 @@ Another important concern for logs is to be able to filter out logs for the inst
 
 ## Logging Format
 
-Logs should be machine parsable and human readable. The [Kayvee](https://github.com/Clever/kayvee) makes it easy to enforce log formats.
+Logs should be machine parsable and human readable. The [Kayvee](https://github.com/Clever/kayvee) logging libraries make it easy to enforce log formats.
 
  - log with `key:value` pairs or a known format such as `json` or `yaml`. The key, value delimiter should be consistent with the language semantics. e.g. 
      `route:api/sso type:invalid-request message:"access code not found" user:"john doe"`. 
