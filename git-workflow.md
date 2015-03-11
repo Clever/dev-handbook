@@ -98,7 +98,10 @@ Here is the simplest development workflow you should use:
 
 4. When you are ready to start having your code reviewed, open a pull request (PR) and assign it to a reviewer.
 
-    Make changes based on the reviewer's comments. Respond to comments with the SHA of the commit that address the comment so that both you and the reviewer can make sure every comment is addressed.
+    Make changes based on the reviewer's comments. Respond to comments with the SHA of the commit
+    that address the comment so that both you and the reviewer can make sure every comment is
+    addressed. Once you have addressed the comments assign the PR back to the reviewer. Repeat
+    this until the reviewer no longer has comments.
 
 5. Once the reviewer signs off on the PR, rebase your branch to `master`. This will ensure that all of the commits from your branch will be next to each other once you merge into `master`, simplifying the history and making it easier to debug or rollback changes.
 
