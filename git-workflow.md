@@ -67,6 +67,8 @@ to the same parts of the codebase.
 
 [This](https://github.com/Clever/optimus/pull/12) is a good example of a PR description.
 
+For more good advice on how to write and review a PR, see [Github's guidelines](https://github.com/blog/1943-how-to-write-the-perfect-pull-request).
+
 ## Workflow
 
 Here is the simplest development workflow you should use:
