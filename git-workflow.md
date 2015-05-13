@@ -110,6 +110,7 @@ Here is the simplest development workflow you should use:
     Repeat this until the reviewer no longer has comments.
 
 5. Once the reviewer signs off on the PR, rebase your branch to `master`. This will ensure that all of the commits from your branch will be next to each other once you merge into `master`, simplifying the history and making it easier to debug or rollback changes.
+It's worth noting that when working on a large project with frequently updated repos like clever-dashboard, you might want to rebase often with master to limit the scope of the commits you need to investigate if the rebase breaks your code.
 
     This is also a good opportunity to clean up the commit history from your branch. Consider recombining commits into better logical chunks.
 
