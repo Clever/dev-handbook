@@ -111,11 +111,12 @@ Here is the simplest development workflow you should use:
 
 5. Once the reviewer signs off on the PR, rebase your branch to `master`. This will ensure that all of the commits from your branch will be next to each other once you merge into `master`, simplifying the history and making it easier to debug or rollback changes.
 
-    This is also a good opportunity to clean up the commit history from your branch. Consider recombining commits into better logical chunks.
+    This is also a good opportunity to clean up the commit history from your branch. Consider recombining commits into better logical chunks. Note that if you are working with someone on the same branch (uncommon here), make sure you are on the same page before rebasing and force pushing. If you don't force push then you will run into issues of being behind on your branch and merge conflicts ensues... You could read more about git rebase [here](https://help.github.com/articles/using-git-rebase/)
 
         git checkout master
         git pull
         git checkout my-great-feature
         git rebase -i master
+        git push -f origin my-great-feature
 
 6. Finally, merge your branch into `master`, delete your branch, and deploy. Since `master` should always be in a deployable state, you should deploy immediately after merging to ensure that your changes don't cause problems in production for the next person who wants to deploy.
