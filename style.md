@@ -42,6 +42,14 @@ The style guides used for Go are [Effective Go](http://golang.org/doc/effective_
 * `go fmt` should be run in any directory that contains go files. It will automatically format the code.
 * `golint file.go` should be run for every go file. It will lint the code and return any issues it finds.
 
+Optionally you can have Vim run the linters for you:
+
+```vim
+" highlight Go errors
+let g:syntastic_go_checkers = ['golint', 'govet']
+```
+
+
 #### Recommended setup
 
 * Makefiles: A Go package should have a Makefile that runs "golint" on all files, e.g.
@@ -64,8 +72,8 @@ The style guides used for Go are [Effective Go](http://golang.org/doc/effective_
 * sublime: Add [GoSublime](https://github.com/DisposaBoy/GoSublime) for code highlighting and `go fmt` on save.
 
 * vim:
-    * The [go-vim](https://github.com/fatih/vim-go) plugin adds a lot of functionality, including `gofmt` on save as well as much more.
-    * Alternatively, if `go-vim` is too heavy for you, see the directions [here](http://tip.golang.org/misc/vim/readme.txt). It's strongly advised to set up `gofmt` on save.
+    * The [vim-go](https://github.com/fatih/vim-go) plugin adds a lot of functionality, including `gofmt` on save as well as much more.
+    * Alternatively, if `vim-go` is too heavy for you, see the directions [here](https://github.com/golang/go/wiki/IDEsAndTextEditorPlugins). It's strongly advised to set up `gofmt` on save.
 
 ### CoffeeScript
 
@@ -77,7 +85,7 @@ The style guide we use is [PEP8](http://legacy.python.org/dev/peps/pep-0008/) wi
 
 #### Recommended setup
 
-PEP8 has an accompanying command-line tool, `pep8` (`pip install pep8`) that accepts a config file:
+PEP8 has an accompanying command-line tool, `pep8` (`pip install pep8`) that accepts a config file, this should live at `~/.config/pep8`
 
 ```
 [pep8]
