@@ -107,7 +107,7 @@ As an example, if the test involves talking to a database, then different tests 
 different logical databases. Another example, if you are testing the behavior of a particular class,
 different tests should create their own instances of the class object. In this scenario, you could
 run all your tests in parallel keeping the outcome invariant. This becomes increasingly important
-as your code grows and your tests start to take longer . Retroactively making tests parallelizable
+as your code grows and your tests start to take longer. Retroactively making tests parallelizable
 can be hard while it's usually very little work to program them as such from the start.
 
 ## How do you write tests?
