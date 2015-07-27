@@ -38,7 +38,7 @@ So just write tests. Always.
 
 Things you should keep in mind while writing tests for a codebase.
 
-### Write Complete Testing Suites
+### Write complete testing suites
 
 Testing suites should attempt to be exhaustive in verifying the code does what is expected. None of
 these tests should require any manual work, other than executing the initial command to run the
@@ -50,7 +50,7 @@ to verify code changes should be encoded as automated tests that run in your con
 environment.  As an example, if to test your code, you bring up an instance of your service and
 manually send it an example request, then this flow should be encoded as an integration test.
 
-### Test Deterministically
+### Test deterministically
 
 Tests should be deterministic. That means that if you run a test multiple times without changing the
 code, it should produce the same results. A test that sometimes fails and sometimes passes is not
@@ -75,7 +75,7 @@ correctness, since, if they pass, it means your program works for many random in
 representative ones. Generative tests can also come up with edge cases that you may not have thought
 of.
 
-### Prefer Readability and Ease of Code
+### Prefer readability and ease of code
 
 Tests should be written in a manner that prioritizes readability and ease of writing new tests and
 modifying existing ones. In particular, these should be prioritized over other typical concerns like
@@ -94,7 +94,7 @@ modify your tests if the current state was not appropriate for them.
 Instead, a better approach is to provide easy abstractions for creating individual pieces of data
 like `add_student`, `add_district` and use them as needed in different tests.
 
-### Ensure Tests are Independent
+### Ensure tests are independent
 
 Each test should be written in a manner that makes it independent of other tests. If there is any
 state needed for a test, the test should be responsible for getting to the state before running it
