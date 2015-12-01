@@ -21,7 +21,7 @@ PKGS := $(shell go list ./... | grep -v /vendor)
 # thrift services should also filter out "gen-go"
 # PKGS := $(shell go list ./... | grep -v /vendor | grep -v /gen-go)
 
-# declaration of godep as well as assuring that the most recent version is in use
+# declaration of godep as well as ensuring that the most recent version is in use
 GODEP := $(GOPATH)/bin/godep
 $(GODEP):
     go get -u github.com/tools/godep
@@ -92,15 +92,17 @@ github.com
 First ensure that you have your desired version of the package checked out in your `$GOPATH`.
 In our structure, this means that we now have `v2` of `github.com/Clever/worker` checked out.
 
-When to change the version of an existing package, you will need to use the godep tool manually without a Makefile target.
+When changing the version of an existing package, you will need to use the godep tool manually without a Makefile target.
 You must specify the package with the `update` command, if you use multiple subpackages of a repo you will need to specify all of them.
 If you do not specify all packages, an error message of `godep: no packages can be updated` will be outputted.
 
 So in order to upgrade `Clever/service` to use v2 packages from `Clever/worker`, we will need to specify both the packages.
 
 ```bash
-# (in github.com/Clever/service)
-# improper update w/o all subpackages of worker
+$ pwd
+~/go/github.com/Clever/service
+
+# improper update without all subpackages of worker
 $ godep upgrade github.com/Clever/worker/models
 godep: no packages can be updated
 
