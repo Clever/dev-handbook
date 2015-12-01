@@ -49,6 +49,10 @@ if _, isCrew := crew["River"]; isCrew {
 }
 ```
 
+- **(suggested)** Full example of bool map set: https://play.golang.org/p/0NngCA8e6t
+- Full example of comma ok set: https://play.golang.org/p/OCxq0U7olc
+- Full example of slice set: https://play.golang.org/p/0NngCA8e6t
+
 
 
 ## Docker Images
