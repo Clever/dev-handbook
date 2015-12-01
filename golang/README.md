@@ -1,15 +1,61 @@
 # Golang at Clever
 
+## Onboarding
+
+It is suggested that you introduce yourself to Golang by first completing [the tour](https://tour.golang.org/welcome/1).
+Most topics are covered to help you hit the ground running.
+
+Most Go idioms can then be learned by reading [Effective Go]Effective Go](https://golang.org/doc/effective_go.html).
+This is highly suggested before you begin writing Go code for production.
+
+[The Go Blog](http://blog.golang.org/) contains many useful articles going over how to use several essential Go features like go-routines, JSON, constants, etc.
+
+
 ## Golang versions
 
-All golang services (with some exceptions, like Heka) at Clever should be on go-1.5.
+All golang services written by Clever should be on Go 1.5.
+Some 3rd-party tools that we use, such as Heka, are not on Go 1.5.
+
+
+## Best Practices
+
+### Sets
+
+Sets are typically best represented by a `map[key type]bool` structure where every boolean value is set to `true`.
+Since maps return the default value of the value type when a key does not exist, they will return `false` (the default boolean value) when accessed with a nonexistent key.
+This allows you to use code like:
+
+```go
+crew := map[string]bool{
+    "Malcom":   true,
+    "Zoe":      true,
+    "Wash":     true,
+    "Inara":    true,
+    "Jayne":    true,
+    "Kaylee":   true,
+    "Simon":    true,
+    "River":    true,
+    "Shepherd": true,
+}
+
+// now we can use a map access like a boolean condition
+if crew["River"] {
+    println("member of the crew!")
+}
+
+// alternatively the "comma ok" idiom obfuscates what is happening
+if _, isCrew := crew["River"]; isCrew {
+    println("member of the crew!")
+}
+```
+
 
 
 ## Docker Images
 
 #### drone
 
-`clever/drone-go:1.5`
+Use `clever/drone-go:1.5` as the `image` to ensure that Go1.5 is already installed.
 
 #### runtime
 
