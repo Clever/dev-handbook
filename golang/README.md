@@ -2,7 +2,7 @@
 
 ## Golang versions
 
-All golang services (with some exceptions) at Clever should be on go-1.5.
+All golang services (with some exceptions, like Heka) at Clever should be on go-1.5.
 
 
 ## Docker Images
@@ -13,18 +13,21 @@ All golang services (with some exceptions) at Clever should be on go-1.5.
 
 #### runtime
 
-  - `gliderlabs/alpine:3.2`
-    - smaller image footprint
-    - requires additional build configuration
-    - see [catapult/Makefile](https://github.com/Clever/catapult/blob/master/Makefile) as an example
-  - `google/debian:wheezy`
-    - larger image
-    - no special configuration needed
+Drone should build your executable and it should be copied into Docker:
 
+- `gliderlabs/alpine:3.2`
+  - smaller image footprint
+  - requires additional build configuration
+  - see [catapult/Makefile](https://github.com/Clever/catapult/blob/master/Makefile) as an example
+- `debian:jessie`
+  - larger image
+  - no special configuration needed
+  - suggested if you have any dependencies you exec
+  - see [shorty/Dockerfile](https://github.com/Clever/shorty/blob/master/Dockerfile) as an example
 
 ## Dependencies
 
-Both `godeps` and `glide` are used to manage golang dependencies.
+Both `godep` and `glide` are used to manage golang dependencies.
 
 ### Godeps
 
