@@ -81,7 +81,9 @@ Both `godep` and `glide` are used to manage golang dependencies.
 
 ### Godeps
 
-See the [Godeps documentation in Google docs](https://docs.google.com/a/clever.com/document/d/1YZg2S7v1bir3MG1YvswAD2Y0KrsuDr-NCr6pPG2ycEM/edit?usp=sharing)
+See the [Clever godep documentation](./godep.md).
+
+[Essential Godep](https://docs.google.com/a/clever.com/document/d/1YZg2S7v1bir3MG1YvswAD2Y0KrsuDr-NCr6pPG2ycEM/edit?usp=sharing) for extended instruction.
 
 ### Glide
 
