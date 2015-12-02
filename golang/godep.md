@@ -103,11 +103,11 @@ $ pwd
 ~/go/github.com/Clever/service
 
 # improper update without all subpackages of worker
-$ godep upgrade github.com/Clever/worker/models
+$ godep update github.com/Clever/worker/models
 godep: no packages can be updated
 
 # proper upgrade of all subpackages
-$ godep upgrade github.com/Clever/worker/models github.com/Clever/worker/collections
+$ godep update github.com/Clever/worker/models github.com/Clever/worker/collections
 ```
 
 
