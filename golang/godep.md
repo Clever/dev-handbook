@@ -6,7 +6,7 @@ Due to the blunt nature, we have a small work around for nested `vendor` directo
 
 Godep creates and saves a configuration file in `Godeps/Godeps.json`.
 This shows which packages have their dependencies tracked as well as every dependency package and their versions.
-View the [shorty godep config](https://github.com/Clever/shorty/blob/master/Godeps/Godeps.json) for an example.
+View the [hall-monitor godep config](https://github.com/Clever/hall-monitor/blob/master/Godeps/Godeps.json) for an example.
 
 
 ## Makefile
