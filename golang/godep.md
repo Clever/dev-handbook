@@ -107,7 +107,7 @@ $ godep update github.com/Clever/worker/models
 godep: no packages can be updated
 
 # proper upgrade of all subpackages
-$ godep update github.com/Clever/worker/models github.com/Clever/worker/collections
+$ godep update $(go list github.com/Clever/worker/... | grep -v /vendor/)
 ```
 
 
