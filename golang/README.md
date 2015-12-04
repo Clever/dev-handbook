@@ -53,6 +53,9 @@ if _, isCrew := crew["River"]; isCrew {
 - Full example of comma ok set: https://play.golang.org/p/OCxq0U7olc
 - Full example of slice set: https://play.golang.org/p/0NngCA8e6t
 
+If you need more than addition and presence methods, please consider using a more full featured set implementation (https://github.com/fatih/set).
+
+
 
 
 ## Docker Images
