@@ -5,7 +5,7 @@
 It is suggested that you introduce yourself to Golang by first completing [the tour](https://tour.golang.org/welcome/1).
 Most topics are covered to help you hit the ground running.
 
-Most Go idioms can then be learned by reading [Effective Go]Effective Go](https://golang.org/doc/effective_go.html).
+Most Go idioms can then be learned by reading [Effective Go](https://golang.org/doc/effective_go.html).
 This is highly suggested before you begin writing Go code for production.
 
 [The Go Blog](http://blog.golang.org/) contains many useful articles going over how to use several essential Go features like go-routines, JSON, constants, etc.
