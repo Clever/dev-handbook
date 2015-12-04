@@ -34,6 +34,82 @@ A piece of code is not done until it's tested.
 
 So just write tests. Always.
 
+## Testing Principles
+
+Things you should keep in mind while writing tests for a codebase.
+
+### Write complete testing suites
+
+Testing suites should attempt to be exhaustive in verifying the code does what is expected. None of
+these tests should require any manual work, other than executing the initial command to run the
+tests.
+
+An exhaustive test suite implies that you should be confident of merging and deploying your changes
+once all your tests pass in your continuous integration environment. Any manual steps that are needed
+to verify code changes should be encoded as automated tests that run in your continuous integration
+environment.  As an example, if to test your code, you bring up an instance of your service and
+manually send it an example request, then this flow should be encoded as an integration test.
+
+### Test deterministically
+
+Tests should be deterministic. That means that if you run a test multiple times without changing the
+code, it should produce the same results. A test that sometimes fails and sometimes passes is not
+consistent, and therefore can't be relied on to give you confidence about the correctness of a
+program.
+
+Concretely, this means you should avoid relying on factors like randomness, time, or external
+services in the structure of your tests. For instance, if you are testing a button that changes a
+piece of UI, you shouldn't wait for an arbitrary number of seconds to check that the UI refreshes,
+since the time that it takes to refresh is not deterministic. Instead, you can emit some sort of
+event when the UI is finished refreshing, and make the test listen for this event.
+
+Testing non-deterministic code can also be very difficult. If you can, avoid non-deterministic
+behavior in your code. If you must have it, try to isolate it so it can be deterministically mocked
+in tests.
+
+One type of non-determinism that *is* useful for testing is generating random inputs.
+[Generative testing](http://blog.8thlight.com/connor-mendenhall/2013/10/31/check-your-work.html), in
+which a program generates different test inputs each time the tests are run, can help describe
+properties of your program that should hold for all inputs. They can make a stronger assertion about
+correctness, since, if they pass, it means your program works for many random inputs, not just a few
+representative ones. Generative tests can also come up with edge cases that you may not have thought
+of.
+
+### Prefer readability and ease of code
+
+Tests should be written in a manner that prioritizes readability and ease of writing new tests and
+modifying existing ones. In particular, these should be prioritized over other typical concerns like
+abstraction and removing code duplication. If abstractions are needed, they should be created in a
+manner that preserves the logic in the test functions code without requiring many hops. Another way
+of saying this is that it should be apparent what the test is doing by just looking at the test
+code.
+
+As an example, we had a testing library called which populated a bunch of fake data in the database
+specified by the test. A lot of our tests used with a single statement of the form
+`db_test_helpers.set_up_test_data`. This single function populated a bunch of state within the
+database including creating students, teachers, districts, apps. However, it also hid away all the
+details of the state being created. This meant that it became very hard to reason about tests or
+modify your tests if the current state was not appropriate for them.
+
+Instead, a better approach is to provide easy abstractions for creating individual pieces of data
+like `add_student`, `add_district` and use them as needed in different tests.
+
+### Ensure tests are independent
+
+Each test should be written in a manner that makes it independent of other tests. If there is any
+state needed for a test, the test should be responsible for getting to the state before running it
+and resetting it after execution. That is, the state before and after the test should be identical
+whether the test passes or fails. If your tests are independent, then running the tests in any order
+should not affect the outcome of the tests.
+
+A stronger version of independence could mean that there is no shared state between different tests.
+As an example, if the test involves talking to a database, then different tests should talk to
+different logical databases. Another example, if you are testing the behavior of a particular class,
+different tests should create their own instances of the class object. In this scenario, you could
+run all your tests in parallel keeping the outcome invariant. This becomes increasingly important
+as your code grows and your tests start to take longer. Retroactively making tests parallelizable
+can be hard while it's usually very little work to program them as such from the start.
+
 ## How do you write tests?
 
 You'll probably want to use some sort of testing framework to help you write tests. Most languages support testing either with language constructs or with libraries. For example, we use [Mocha](http://visionmedia.github.io/mocha/) for node.js and [nose](https://nose.readthedocs.org/en/latest/) for Python.
@@ -41,16 +117,6 @@ You'll probably want to use some sort of testing framework to help you write tes
 ### Test interfaces
 
 The first thing to keep in mind when writing tests is that tests should describe the behavior of the program with respect to its interface, not its implementation. When testing a program (or function or module), the tests should be written with respect to the expected behavior of the program, not the internal details of its implementation. If a test relies on internal implementation details, then the test will not be useful in preserving the behavior of the program if the internal implementation needs to change. This technique of testing against interfaces as opposed to implementations is known as black-box testing.
-
-### Test deterministically
-
-Tests should be deterministic. That means that if you run a test multiple times without changing the code, it should produce the same results. A test that sometimes fails and sometimes passes is not consistent, and therefore can't be relied on to give you confidence about the correctness of a program.
-
-Concretely, this means you should avoid relying on factors like randomness, time, or external services in the structure of your tests. For instance, if you are testing a button that changes a piece of UI, you shouldn't wait for an arbitrary number of seconds to check that the UI refreshes, since the time that it takes to refresh is not deterministic. Instead, you can emit some sort of event when the UI is finished refreshing, and make the test listen for this event.
-
-Testing non-deterministic code can also be very difficult. If you can, avoid non-deterministic behavior in your code. If you must have it, try to isolate it so it can be deterministically mocked in tests.
-
-One type of non-determinism that *is* useful for testing is generating random inputs. [Generative testing](http://blog.8thlight.com/connor-mendenhall/2013/10/31/check-your-work.html), in which a program generates different test inputs each time the tests are run, can help describe properties of your program that should hold for all inputs. They can make a stronger assertion about correctness, since, if they pass, it means your program works for many random inputs, not just a few representative ones. Generative tests can also come up with edge cases that you may not have thought of.
 
 ### Test small components (unit tests)
 
