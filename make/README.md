@@ -23,7 +23,9 @@ This takes advantage of several less commonly used make features
 
 ## Golang
 
-- version check
+See the [gearcmd Makefile](https://github.com/Clever/gearcmd/blob/master/Makefile) as an example.
+
+- toolchain version check
 - godep
 - testing
   - gofmt
@@ -39,5 +41,3 @@ This takes advantage of several less commonly used make features
   - node
   - python
 - verification of up-to-date client code
-
-
