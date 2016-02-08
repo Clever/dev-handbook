@@ -43,9 +43,15 @@ A commit should contain one conceptual change to your code. This is crucial, so 
 
 When committing, it's a good idea to review every line of code that you commit. Even if you have multiple conceptual changes implemented, craft your commits such that each commit only contains one change. A great way to do this is to use `git add -p`, which breaks your changes up into individual patches and allows you to interactively choose which ones to stage.
 
-When writing commit messages, the first line should be a short description of the change. Since you only have one conceptual change in your commit, it should be easy to describe in one line, right? You may want to prefix this line with the name of the subcomponent/part of the system your changes affect followed by a colon (e.g. `student schema: added validation for email`). Use the rest of the commit message to expand on the context of the change so that it is easier to understand.
+When writing commit messages, the first line should be a short description of the change and include the JIRA issue ID. Since you only have one conceptual change in your commit, it should be easy to describe in one line, right? You may want to prefix this line with the name of the subcomponent/part of the system your changes affect followed by a colon (e.g. `student schema: added validation for email`). Use the rest of the commit message to expand on the context of the change so that it is easier to understand.
 
-### Whitespace changes 
+Examples of good commit messages:
+```
+SCHOOLS-631 - Removed authy config
+SCHOOLS-713 - student schema: added validation for email
+```
+
+### Whitespace changes
 Whitespace changes and renaming/moving files are special cases and should be treated differently. In particlar, it can be diffiult to review code where there are large diffs that move chunks of code around.
  - git (and github) sometimes has trouble displaying changes when a file is both renamed and edited. Instead, make one commit for renaming/moving the files, and a second for the code changes.
  - When making signifiant whitespace changes/reflowing code, it's best to make one commit containing only whitespace changes (pro tip: pulls/<#>/files?w=1), and a second one containing the code changes.
