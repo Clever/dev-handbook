@@ -18,7 +18,7 @@ There's also another reason to keep all of your work on Github: individual compu
 
 `master` is the branch that gets deployed to production, so it should always be in a production-ready state (i.e. all tests should pass). Every change, whether it's a new feature, bug fix, or spelling correction, should be developed on a separate branch.
 
-Branch names should be lower-case and use hyphens to separate words. Use descriptive branch names. If there is a JIRA issue for the change, include the JIRA key (e.g. INFRA-101) in the branch name to link it to the JIRA ticket.
+Branch names should be lower-case and use hyphens to separate words. Use descriptive branch names. If there is a JIRA issue for the change, include the JIRA key (e.g. INFRA-101) in the branch name to link it to the JIRA ticket. This will automatically reference all commits in the JIRA ticket.
 
     Good:
 
@@ -43,12 +43,11 @@ A commit should contain one conceptual change to your code. This is crucial, so 
 
 When committing, it's a good idea to review every line of code that you commit. Even if you have multiple conceptual changes implemented, craft your commits such that each commit only contains one change. A great way to do this is to use `git add -p`, which breaks your changes up into individual patches and allows you to interactively choose which ones to stage.
 
-When writing commit messages, the first line should be a short description of the change and include the JIRA issue ID. Since you only have one conceptual change in your commit, it should be easy to describe in one line, right? You may want to prefix this line with the name of the subcomponent/part of the system your changes affect followed by a colon (e.g. `student schema: added validation for email`). Use the rest of the commit message to expand on the context of the change so that it is easier to understand.
+When writing commit messages, the first line should be a short description of the change. Since you only have one conceptual change in your commit, it should be easy to describe in one line, right? You may want to prefix this line with the name of the subcomponent/part of the system your changes affect followed by a colon (e.g. `student schema: added validation for email`). Use the rest of the commit message to expand on the context of the change so that it is easier to understand.
 
-Examples of good commit messages:
+Commits to branches prefixed with the JIRA ticket id are automatically referenced in the JIRA ticket. For commits not associated with a branch, add the JIRA ticket id before the commit message:
 ```
 SCHOOLS-631 - Removed authy config
-SCHOOLS-713 - student schema: added validation for email
 ```
 
 ### Whitespace changes
