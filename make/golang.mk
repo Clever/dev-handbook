@@ -85,6 +85,16 @@ define golang-test
 @go test -v $(1)
 endef
 
+# golang-test-strict-deps is here for consistency
+golang-test-strict-deps:
+
+# golang-test-strict uses the Go toolchain to run all tests in the pkg with the race flag
+# arg1: pkg path
+define golang-test-strict
+@echo "TESTING $(1)..."
+@go test -v -race $(1)
+endef
+
 # golang-vet-deps is here for consistency
 golang-vet-deps:
 
@@ -107,8 +117,8 @@ $(call golang-vet,$(1))
 $(call golang-test,$(1))
 endef
 
-# golang-test-all-deps-strict: installs all dependencies needed for different test cases.
-golang-test-all-deps-strict: golang-fmt-deps golang-lint-deps-strict golang-test-deps golang-vet-deps
+# golang-test-all-strict-deps: installs all dependencies needed for different test cases.
+golang-test-all-strict-deps: golang-fmt-deps golang-lint-deps-strict golang-test-strict-deps golang-vet-deps
 
 # golang-test-all-strict calls fmt, lint, vet and test on the specified pkg with strict
 # requirements that no errors are thrown while linting.
@@ -117,5 +127,5 @@ define golang-test-all-strict
 $(call golang-fmt,$(1))
 $(call golang-lint-strict,$(1))
 $(call golang-vet,$(1))
-$(call golang-test,$(1))
+$(call golang-test-strict,$(1))
 endef
