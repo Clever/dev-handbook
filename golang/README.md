@@ -34,17 +34,16 @@ let g:syntastic_go_checkers = ['golint', 'govet']
 
 #### Recommended setup
 
-* Makefiles: A Go package should have a Makefile that runs "golint" on all files, e.g.
+* Makefiles: A Go package should have a Makefile that runs "golint" on all files. See the [gearcmd Makefile](https://github.com/Clever/gearcmd/blob/master/Makefile) as an example.
 
-    ```Makefile
-    $(PKG):
-    ifeq ($(LINT),1)
-    	golint $(GOPATH)/src/$@*/**.go
-    endif
-    go test
-    ...
-    ```
-    See [clever-go](https://github.com/Clever/clever-go/blob/master/Makefile) for an example.
+- toolchain version check
+- godep
+- testing
+  - gofmt
+  - golint
+  - go vet
+  - go test
+
 * emacs: Go has an official [emacs mode](http://golang.org/misc/emacs/go-mode.el) that ships with a `gofmt` command. To get it to run on save, you can add this to your `.emacs`:
 
     ```
