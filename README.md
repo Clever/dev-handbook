@@ -8,3 +8,7 @@ All the things you need to know about being a developer at Clever.
 * [Testing](./testing.md)
 * [Logging](./logging.md)
 * [Documentation](./documentation.md)
+
+Onboarding documents:
+* [Engineering Onboarding](https://clever.atlassian.net/wiki/display/ENG/Onboarding)
+* [Tutorial Part 1](https://github.com/Clever/onboarding/blob/master/getting-started/Tutorial-Part-1.md)
