@@ -17,6 +17,46 @@ All golang services written by Clever should be on Go 1.5.
 Some 3rd-party tools that we use, such as Heka, are not on Go 1.5.
 
 
+## Style
+
+The style guides used for Go are [Effective Go](http://golang.org/doc/effective_go.html) and the community [Go style guide](https://code.google.com/p/go-wiki/wiki/CodeReviewComments). There are two tools that can be used to detect common mistakes.
+
+* `go fmt` should be run in any directory that contains go files. It will automatically format the code.
+* `golint file.go` should be run for every go file. It will lint the code and return any issues it finds.
+
+Optionally you can have Vim run the linters for you:
+
+```vim
+" highlight Go errors
+let g:syntastic_go_checkers = ['golint', 'govet']
+```
+
+
+#### Recommended setup
+
+* Makefiles: A Go package should have a Makefile that runs "golint" on all files. See the [gearcmd Makefile](https://github.com/Clever/gearcmd/blob/master/Makefile) as an example.
+
+- toolchain version check
+- godep
+- testing
+  - gofmt
+  - golint
+  - go vet
+  - go test
+
+* emacs: Go has an official [emacs mode](http://golang.org/misc/emacs/go-mode.el) that ships with a `gofmt` command. To get it to run on save, you can add this to your `.emacs`:
+
+    ```
+    (add-hook 'before-save-hook 'gofmt-before-save)
+    ```
+
+* sublime: Add [GoSublime](https://github.com/DisposaBoy/GoSublime) for code highlighting and `go fmt` on save.
+
+* vim:
+    * The [vim-go](https://github.com/fatih/vim-go) plugin adds a lot of functionality, including `gofmt` on save as well as much more.
+    * Alternatively, if `vim-go` is too heavy for you, see the directions [here](https://github.com/golang/go/wiki/IDEsAndTextEditorPlugins). It's strongly advised to set up `gofmt` on save.
+
+
 ## Best Practices
 
 ### Sets
