@@ -1,5 +1,7 @@
 # This is the default Clever Golang Makefile.
 # Please do not alter this file directly.
+GOLANG_MK_VERSION := 0.1.0
+
 SHELL := /bin/bash
 .PHONY: golang-godep-vendor golang-test-deps $(GODEP)
 
