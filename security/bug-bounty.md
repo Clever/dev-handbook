@@ -2,10 +2,12 @@ Clever is committed to working with security experts around the world to stay up
 
 Coordinated disclosure rules
 ----------------------------
+
 * Please let us know as soon as possible upon discovery of a potential security issue, and we’ll make every effort to quickly correct the issue.
 * Provide us with a reasonable amount of time to fix the issue before publishing it elsewhere.
-* Make a good faith effort to not leak, manipulate, or destroy any user data, or affect the availability of the site. Please only test against accounts you own yourself or with explicit permission of the account holder.
+* Make a good faith effort to not leak, manipulate, or destroy any user data, or affect the availability of the site. Please only test against accounts you own yourself or with explicit permission of the account holder. Do not attempt to access data that does not belong to your test accounts.
 * Please refrain from automated/scripted account creation.
+* Please use demo district accounts. If you sign up as a regular district, instead of following the steps below, your report will not be eligible for a bounty.
 
 Bounty eligibility
 ------------------
@@ -16,6 +18,7 @@ Vulnerabilities are eligible for the bug bounty program if they meet a minimum s
 * Include a clear description along with steps to reproduce, including attachments such as screenshots or proof of concept code as necessary.
 
 In general, the following would not meet the threshold for severity:
+
 * Vulnerabilities on sites hosted by third-parties unless they lead to a vulnerability on the Clever services.
 * Denial of service, spamming, or causing annoyance.
 * Issues with Clever's email server configuration (SPF, DKIM, and DMARC) or name server configuration (DNSSec).
@@ -24,6 +27,7 @@ In general, the following would not meet the threshold for severity:
 * Vulnerabilities affecting users of unsupported or unpatched browsers and platforms.
 
 Clever also reserves the right to deny eligibility for a vulnerability that was previously reported or discovered internally.
+
 * Be the first to report a specific vulnerability.
 * Disclose the vulnerability report directly and exclusively to us. Public disclosure or disclosure to other third parties, including vulnerability brokers, before we address your report will cause you to forfeit the reward.
 
@@ -39,7 +43,7 @@ The following web services are in scope for this program:
 
 **Signing up for a school district account**
 
-1. Go to the [schools signup](https://schools.clever.com/signup) page.
+1. Go to the [schools demo signup](https://clever.com/signup/demo) page.
 2. Complete signup, and use a new district name that starts with "#DEMO". Click "Add".
 3. Click "Step 1: Set up accounts"
 4. Select "Custom username and password" for the accounts
