@@ -18,7 +18,7 @@ There's also another reason to keep all of your work on Github: individual compu
 
 `master` is the branch that gets deployed to production, so it should always be in a production-ready state (i.e. all tests should pass). Every change, whether it's a new feature, bug fix, or spelling correction, should be developed on a separate branch.
 
-Branch names should be lower-case and use hyphens to separate words. Use descriptive branch names. If there is a JIRA issue for the change, include the JIRA key (e.g. INFRA-101) in the branch name to link it to the JIRA ticket.
+Branch names should be lower-case and use hyphens to separate words. Use descriptive branch names. If there is a JIRA issue for the change, include the JIRA key (e.g. INFRA-101) in the branch name to link it to the JIRA ticket. This will automatically reference all commits in the JIRA ticket.
 
     Good:
 
@@ -45,7 +45,12 @@ When committing, it's a good idea to review every line of code that you commit. 
 
 When writing commit messages, the first line should be a short description of the change. Since you only have one conceptual change in your commit, it should be easy to describe in one line, right? You may want to prefix this line with the name of the subcomponent/part of the system your changes affect followed by a colon (e.g. `student schema: added validation for email`). Use the rest of the commit message to expand on the context of the change so that it is easier to understand.
 
-### Whitespace changes 
+Commits to branches prefixed with the JIRA ticket id are automatically referenced in the JIRA ticket. For commits not associated with a branch, add the JIRA ticket id before the commit message:
+```
+SCHOOLS-631 - Removed authy config
+```
+
+### Whitespace changes
 Whitespace changes and renaming/moving files are special cases and should be treated differently. In particlar, it can be diffiult to review code where there are large diffs that move chunks of code around.
  - git (and github) sometimes has trouble displaying changes when a file is both renamed and edited. Instead, make one commit for renaming/moving the files, and a second for the code changes.
  - When making signifiant whitespace changes/reflowing code, it's best to make one commit containing only whitespace changes (pro tip: pulls/<#>/files?w=1), and a second one containing the code changes.
