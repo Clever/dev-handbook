@@ -13,8 +13,8 @@ This is highly suggested before you begin writing Go code for production.
 
 ## Golang versions
 
-All golang services written by Clever should be on Go 1.5.
-Some 3rd-party tools that we use, such as Heka, are not on Go 1.5.
+All golang services written by Clever should be on Go 1.6.
+Some 3rd-party tools that we use, such as Heka, are not on Go 1.6.
 
 
 ## Style
@@ -102,7 +102,7 @@ If you need more than addition and presence methods, please consider using a mor
 
 #### drone
 
-Use `clever/drone-go:1.5` as the `image` to ensure that Go1.5 is already installed.
+Use `clever/drone-go:1.6` as the `image` to ensure that Go1.6 is already installed.
 
 #### runtime
 
