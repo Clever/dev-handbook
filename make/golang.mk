@@ -15,8 +15,6 @@ _ := $(if \
 	$(error "must be running Go version $(1)"))
 endef
 
-export GO15VENDOREXPERIMENT=1
-
 # FGT is a utility that exits with 1 whenever any stderr/stdout output is recieved.
 FGT := $(GOPATH)/bin/fgt
 $(FGT):
