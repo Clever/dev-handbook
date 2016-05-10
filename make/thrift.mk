@@ -33,3 +33,16 @@ $(if \
 	@echo thrift client code must match thrift definition && exit 1,
 	@echo thrift client code up to date)
 endef
+
+define thrift-bump-version
+  (cd ./gen-nodejs; npm version $(1) | cut -c2- > ../VERSION)
+endef
+
+define thrift-versioning
+thrift-bump-patch:
+	$(call thrift-bump-version, patch)
+thrift-bump-minor:
+	$(call thrift-bump-version, minor)
+thrift-bump-major:
+	$(call thrift-bump-version, major)
+endef
