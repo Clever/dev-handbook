@@ -41,3 +41,4 @@ See the [gearcmd Makefile](https://github.com/Clever/gearcmd/blob/master/Makefil
   - node
   - python
 - verification of up-to-date client code
+- bump minor/major/patch versions
