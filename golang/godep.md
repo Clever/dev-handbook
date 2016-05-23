@@ -1,5 +1,7 @@
 # Godep
 
+[TL;DR; how do I do X](#how-do-i)
+
 Godep is a tool for vendoring dependencies.
 Godep is a relatively explicit and blunt tool for copying dependencies into `/vendor`.
 Due to the blunt nature, we have a small work around for nested `vendor` directories, but this should be automated by your Makefile.
@@ -110,6 +112,55 @@ godep: no packages can be updated
 $ godep update github.com/Clever/worker/...
 ```
 
+## How do I...?
+
+### vendor my depedencies
+
+1. Can you build your project yet?
+  - If `go build` produces an executable, you're all set.
+  - If it doesn't, you may need to pull in your requirements using `go get <dependency URL>`.
+2. Do you have golang.mk hooked up to a `vendor` target in your Makefile?
+  - Add [golang.mk](https://github.com/Clever/dev-handbook/blob/master/make/golang.mk) to your repo
+  - Copy the [`vendor` target](https://github.com/Clever/shorty/blob/master/Makefile) into your Makefile
+3. Are all of your dependencies up to date locally?
+  - If you rely on any client libraries, you should update your local copy of those clients (`git checkout master && git pull`)
+4. run `make vendor`
+  - If it fails, first try updating `godep` with `go get -u github.com/tools/godep`
+  - Then you can move to #golang for debugging help
+
+### remove a dependency
+
+1. Can you build your project with this dependency?
+  - If `go build` produces an executable, you're all set.
+  - If it doesn't, you may need to pull in your requirements using `go get <dependency URL>`.
+2. run `make vendor`
+
+### add a new dependency
+
+1. Can you build your project with this dependency?
+  - If `go build` produces an executable, you're all set.
+  - `godep: Package (X) not found` -- godep requires that *all* packages are in your `GOPATH`.
+    - `godep restore` will copy all dependecies in your `vendor/` directory into your `GOPATH`.
+    - Warning: this will checkout different versions of your `GOPATH` libraries if they do not match
+  - If it doesn't, you may need to pull in your requirements using `go get <dependency URL>`.
+2. run `make vendor`
+  - This pulls the new dep into your vendor/ directory
+  - If it fails, first try updating `godep` with `go get -u github.com/tools/godep`
+  - Then you can move to #golang for debugging help
+
+### update a new dependency
+
+1. Can you build your project with this dependency?
+  - If `go build` produces an executable, you're all set.
+  - `godep: Package (X) not found` -- godep requires that *all* packages are in your `GOPATH`.
+    - `godep restore` will copy all dependecies in your `vendor/` directory into your `GOPATH`.
+    - Warning: this will checkout different versions of your `GOPATH` libraries if they do not match
+  - If it doesn't, you may need to pull in your requirements using `go get <dependency URL>`.
+2. Make sure you have the new version you want checked out in your `GOPATH`
+  - cd `$GOPATH/src/githbu.com/my/dependency && git checkout master && git pull`
+3. Upgrade via godep
+  - `godep upgrade github.com/my/dependency/...`
+  - The `/...` will pull in all subpackages, otherwise they must be specified individually
 
 ## Committing Vendored Files
 
