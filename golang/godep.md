@@ -1,6 +1,6 @@
 # Godep
 
-tl;dr; how do I do X
+[TL;DR; how do I do X](#how-do-i)
 
 Godep is a tool for vendoring dependencies.
 Godep is a relatively explicit and blunt tool for copying dependencies into `/vendor`.
@@ -112,9 +112,9 @@ godep: no packages can be updated
 $ godep update github.com/Clever/worker/...
 ```
 
-## How do I do X?
+## How do I...?
 
-### first vendor save
+### vendor my depedencies
 
 1. Can you build your project yet?
   - If `go build` produces an executable, you're all set.
@@ -135,7 +135,7 @@ $ godep update github.com/Clever/worker/...
   - If it doesn't, you may need to pull in your requirements using `go get <dependency URL>`.
 2. run `make vendor`
 
-### adding a new dependency
+### add a new dependency
 
 1. Can you build your project with this dependency?
   - If `go build` produces an executable, you're all set.
@@ -148,7 +148,7 @@ $ godep update github.com/Clever/worker/...
   - If it fails, first try updating `godep` with `go get -u github.com/tools/godep`
   - Then you can move to #golang for debugging help
 
-### updating a new dependency
+### update a new dependency
 
 1. Can you build your project with this dependency?
   - If `go build` produces an executable, you're all set.
