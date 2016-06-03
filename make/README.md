@@ -42,3 +42,31 @@ See the [gearcmd Makefile](https://github.com/Clever/gearcmd/blob/master/Makefil
   - python
 - verification of up-to-date client code
 - bump minor/major/patch versions
+
+## Swagger
+
+- validate swagger spec
+- generate Go server
+- generate Go client
+- generate Javascript client
+
+
+Here's an example `Makefile` that includes `swagger.mk`.
+It allows validating a Swagger spec and generating corresponding code.
+
+```make
+include swagger.mk
+
+SWAGGER_CONFIG := swagger.yaml
+SWAGGER_CLIENT_NPM_PACKAGE := @clever/my-package
+
+# validate spec described in SWAGGER_CONFIG
+swagger-validate: swagger-validate-deps
+	$(call swagger-validate,$(SWAGGER_CONFIG))
+
+# generate a Go server, Go client, Node client, based on spec in SWAGGER_CONFIG
+swagger-generate: validate swagger-generate-go-server-deps swagger-generate-javascript-client-deps swagger-generate-go-client-deps
+	$(call swagger-generate-go-server,$(SWAGGER_CONFIG))
+	$(call swagger-generate-javascript-client,$(SWAGGER_CONFIG),$(SWAGGER_CLIENT_NPM_PACKAGE),$(VERSION))
+	$(call swagger-generate-go-client,$(SWAGGER_CONFIG))
+```
