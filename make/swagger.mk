@@ -1,6 +1,6 @@
 # This is the default Clever Swagger Makefile.
 # Please do not alter this file directly.
-SWAGGER_MK_VERSION := 0.2.0
+SWAGGER_MK_VERSION := 0.3.0
 
 SHELL := /bin/bash
 
@@ -36,9 +36,12 @@ $(GOSWAGGER) generate client -f $(1) -t gen-go
 endef
 
 swagger-generate-javascript-client-deps: $(SWAGGER_CODEGEN_CLI)
-
 define swagger-generate-javascript-client
 @echo "GENERATING JAVASCRIPT CLIENT FROM $(1)"
+@echo "    NPM PACKAGE NAME: $(2)"
+@echo "    NPM PACKAGE VERSION: $(3)"
+@echo "    MODULE NAME: $(4)"
 rm -rf gen-js
+python -c 'import json; print(json.dumps({"projectName":"$(2)","projectVersion":"$(3)","moduleName":"$(4)"}, indent=2))' > gen-js.json
 java -jar $(SWAGGER_CODEGEN_CLI) generate -c gen-js.json -i $(1) -l javascript -o gen-js
 endef
