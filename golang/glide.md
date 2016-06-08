@@ -14,7 +14,7 @@ Glide is a tool for managing golang dependencies. You can use it to update, pin,
 
 ```bash
 > glide init
-> vim `glide.yaml` # set the package name (github.com/Clever/project)
+> emacs glide.yaml # set the package name (github.com/Clever/project)
 ```
 
 You now have a `glide.yaml` with no dependencies specified. See the next sections on adding dependencies.
@@ -27,7 +27,11 @@ You now have a `glide.yaml` with no dependencies specified. See the next section
 ```
 
 At this point you now have a glide equivalent of your `Godeps/Godeps.json` file.
-Dependencies should be listed and versions pinned where appropriate in the `glide.yaml`.
+Dependencies and their versions should be listed in the `glide.yaml`.
+This also creates a `glide.lock` file which lists the exact refs of the dependencies.
+In most cases these versions are the same as the `glide.yaml`, but wouldn't be if your `glide.yaml` file uses semantic versioning.
+You should never edit the `glide.lock` file, only the `glide.yaml` file.
+
 You are now ready to install dependencies. See the next step.
 
 ## Using Glide within a project
