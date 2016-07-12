@@ -33,6 +33,23 @@ See the [gearcmd Makefile](https://github.com/Clever/gearcmd/blob/master/Makefil
   - go vet
   - go test
 
+## Node
+
+- node version check
+
+Example Makefile using `node.mk`
+
+```make
+include node.mk
+.DEFAULT_GOAL := test
+
+NODE_VERSION := v6
+
+$(eval $(call node-version-check,$(NODE_VERSION)))
+
+run:
+  NODE_ENV=development node_modules/node-dev/bin/node-dev server.coffee
+```
 
 ## Thrift
 
