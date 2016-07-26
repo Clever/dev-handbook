@@ -10,56 +10,56 @@ Glide is a tool for managing golang dependencies. You can use it to update, pin,
   - Has fewer bugs than `godep` (or so it seems)
 
 
-## Initializing a Glide Project
+## Initializing a Glide project
 
 ```bash
-> export GO15VENDOREXPERIMENT=1
 > glide init
-> vim `glide.yaml` # set the package name (github.com/Clever/project)
+> emacs glide.yaml # set the package name (github.com/Clever/project)
 ```
 
 You now have a `glide.yaml` with no dependencies specified. See the next sections on adding dependencies.
 
-## Converting From Godeps
+## Converting from Godeps
 
 ```bash
-> glide import godep > tmp.yaml
-> mv tmp.yaml glide.yaml
-> rm -rf Godeps/ vendor/
+> glide create && glide update
+> rm -rf Godeps
 ```
 
-At this point you now have a glide equivalent of your `Godeps/godeps.json` file. Dependencies should be listed and versions pinned where appropriate in the `glide.yaml`. You are now ready to install dependencies. See the next step.
+At this point you now have a glide equivalent of your `Godeps/Godeps.json` file.
+Dependencies and their versions should be listed in the `glide.yaml`.
+This also creates a `glide.lock` file which lists the exact refs of the dependencies.
+In most cases these versions are the same as the `glide.yaml`, but wouldn't be if your `glide.yaml` file uses semantic versioning.
+You should never edit the `glide.lock` file, only the `glide.yaml` file.
 
-## Using Glide With in Project
+You are now ready to install dependencies. See the next step.
+
+## Using Glide within a project
 
 Add `Makefile` rules for downloading glide and installing the project's dependencies:
 ```make
-export GO15VENDOREXPERIMENT=1
-
 ...
 
 $(GOPATH)/bin/glide:
-    @go get github.com/Masterminds/glide  
-
-install_deps: $(GOPATH)/bin/glide
-    @$(GOPATH)/bin/glide install
+    @go get github.com/Masterminds/glide
 ```
 
-### Download Project Dependencies
-You can now run `make install_deps` to fetch the dependencies. They will be written into `vendor/`. **NOTE** You no longer need to checkin the `vendor` directory!
+### Add additional dependencies
 
-### Add Additional Dependencies
+Add additional dependencies use `glide get <package>`
 
-To add additional dependencies use `glide get <package>`
+### Update dependencies
 
-### Pin Dependencies
-
-Pin all your dependencies with `glide pin`. You can also edit the yaml file by hand and set specific versions using the `ref` attribute.
+The `glide update <package>` command updates a dependency to the latest version that matches its version specification in the yaml file.
+What this means:
+  - if the version is specified as a git hash, it does nothing. You'll need to modify the glide.yaml file and run `glide update` (similar to the process for updating npm dependencies)
+  - if the version specified is a semantic version, it downloads the latest version matching that semver string.
 
 ## Glide Examples
 
-  - [Catapult](https://github.com/Clever/catapult)
-  - [Ark](https://github.com/Clever/ark)
+  - [Catapult](https://github.com/Clever/catapult) (w/o dependencies checked in)
+  - [Ark](https://github.com/Clever/ark) (w/o dependencies checked in)
+  - [District Authorizations](https://github.com/Clever/district-authorizations) (w/ dependencies checked in)
 
 ## Using private Clever repositories
 
@@ -90,4 +90,3 @@ You will need to add drone's private ssh key for github.
   2. Copy the value from Clever/ark
 
 **NOTE:** Infra may automate this step if glide becomes popular.
-
