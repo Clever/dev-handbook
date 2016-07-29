@@ -43,9 +43,12 @@ Example Makefile using `node.mk`
 include node.mk
 .DEFAULT_GOAL := test
 
+COFFEE_FILE_COUNT := 11
 NODE_VERSION := v6
 
 $(eval $(call node-version-check,$(NODE_VERSION)))
+check-coffee-file-count:
+  $(call node-coffeescript-file-count-check,$(COFFEE_FILE_COUNT))
 
 run:
   NODE_ENV=development node_modules/node-dev/bin/node-dev server.coffee
