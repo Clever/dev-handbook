@@ -1,6 +1,6 @@
 # This is the default Clever Swagger Makefile.
 # Please do not alter this file directly.
-SWAGGER_MK_VERSION := 0.4.0
+SWAGGER_MK_VERSION := 0.4.1
 
 SHELL := /bin/bash
 
@@ -41,6 +41,6 @@ define swagger-generate-javascript-client
 rm -rf gen-js
 docker run -v `pwd`:/src -i -t $(SWAGGER_CODEGEN_CLI_IMAGE) \
   generate -i $(1) -l javascript -o gen-js \
-  --additional-properties "usePromises=true,projectName=$(2),projectVersion=$(3),moduleName=$(4)"
+  --additional-properties "usePromises=true,useTracing=true,projectName=$(2),projectVersion=$(3),moduleName=$(4)"
 sudo chown -R $(USER):$(USER) gen-js
 endef
