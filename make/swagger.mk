@@ -1,6 +1,6 @@
 # This is the default Clever Swagger Makefile.
 # Please do not alter this file directly.
-SWAGGER_MK_VERSION := 0.4.1
+SWAGGER_MK_VERSION := 0.4.2
 
 SHELL := /bin/bash
 
@@ -8,6 +8,11 @@ GOSWAGGER := $(GOPATH)/bin/swagger
 .PHONY: $(GOSWAGGER)
 $(GOSWAGGER):
 	go get -u github.com/go-swagger/go-swagger/cmd/swagger
+
+MOCKGEN := $(GOPATH)/bin/mockgen
+.PHONY: $(MOCKGEN)
+$(MOCKGEN):
+	go get -u github.com/golang/mock/mockgen
 
 SWAGGER_CODEGEN_CLI_IMAGE := clever/swagger-codegen\:latest
 WAG_IMAGE := clever/wag\:latest
@@ -28,6 +33,7 @@ define swagger-generate-go
 @echo "    GENERATED PACKAGE NAME: $(3)"
 docker run -v $(GOPATH)/src:/gopath/src -w /gopath/src/$(2) -i -t $(WAG_IMAGE) -file $(1) -package $(3)
 sudo chown -R $(USER):$(USER) $(GOPATH)/src/$(3)
+go generate $(3)...
 endef
 
 swagger-generate-javascript-client-deps:
