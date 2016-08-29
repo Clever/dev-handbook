@@ -1,6 +1,6 @@
 # This is the default Clever Swagger Makefile.
 # Please do not alter this file directly.
-SWAGGER_MK_VERSION := 0.4.2
+SWAGGER_MK_VERSION := 0.4.3
 
 SHELL := /bin/bash
 
@@ -24,7 +24,7 @@ define swagger-validate
 @$(GOSWAGGER) validate $(1)
 endef
 
-swagger-generate-go-deps:
+swagger-generate-go-deps: $(MOCKGEN)
 	docker pull $(WAG_IMAGE)
 
 define swagger-generate-go
