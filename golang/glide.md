@@ -39,7 +39,7 @@ export GO15VENDOREXPERIMENT=1
 ...
 
 $(GOPATH)/bin/glide:
-    @go get github.com/Masterminds/glide  
+    @go get github.com/Masterminds/glide
 
 install_deps: $(GOPATH)/bin/glide
     @$(GOPATH)/bin/glide install
@@ -51,6 +51,21 @@ You can now run `make install_deps` to fetch the dependencies. They will be writ
 ### Add Additional Dependencies
 
 To add additional dependencies use `glide get <package>`
+
+If the dependency is private, you will need to manually add it to `glide.yaml`, e.g.:
+
+``` yaml
+- package: github.com/Clever/private-repo
+  version: <commit-ish>
+  repo: git@github.com:Clever/private-repo.git
+  vcs: git
+  subpackages:
+  - gen-go/client
+  - gen-go/models
+```
+
+After editing `glide.yaml`, run `glide up` to update `glide.lock` and pull the new dependency into your vendor directory.
+You might also want to run `make install_deps` again to remove any nested vendor directories.
 
 ### Pin Dependencies
 
@@ -89,5 +104,6 @@ You will need to add drone's private ssh key for github.
   1. Edit the project settings and add `drone_key:`
   2. Copy the value from Clever/ark
 
-**NOTE:** Infra may automate this step if glide becomes popular.
+The `clever-drone` user will need access to all of your private repo dependencies, so if you see an error in drone, ask a GitHub admin to grant the `clever-drone` user access to these repos.
 
+**NOTE:** Infra may automate this step if glide becomes popular.
