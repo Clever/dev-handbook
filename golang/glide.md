@@ -67,9 +67,9 @@ If the dependency is private, you will need to manually add it to `glide.yaml`, 
 After editing `glide.yaml`, run `glide up` to update `glide.lock` and pull the new dependency into your vendor directory.
 You might also want to run `make install_deps` again to remove any nested vendor directories.
 
-### Pin Dependencies
+## Removing a Dependency
 
-Pin all your dependencies with `glide pin`. You can also edit the yaml file by hand and set specific versions using the `ref` attribute.
+To remove a dependency, run `glide remove <package>`.
 
 ## Glide Examples
 
