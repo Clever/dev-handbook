@@ -80,16 +80,7 @@ Pin all your dependencies with `glide pin`. You can also edit the yaml file by h
 
 With glide you don’t need to checkin the `vendor` directory, but in order to do this, you do need to add a little extra configuration when depending on private Clever repositories:
 
-For each private `package` in your glide file, add a `vcs` and `repo`. Here is an example of depending on `catapult`
-
-```yaml
-- package: github.com/Clever/catapult
-  version: 2913166e30d6e6cae7d2558b5a8edf64f2488b2d
-  repo: git@github.com:Clever/catapult.git
-  vcs: git
-```
-
-You will also need to edit the `.drone.yml` so that drone can access private Clever repos:
+You will need to edit the `.drone.yml` so that drone can access private Clever repos:
 ```yaml
 script:
 # setup ssh key
