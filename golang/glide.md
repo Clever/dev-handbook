@@ -71,6 +71,18 @@ You might also want to run `make install_deps` again to remove any nested vendor
 
 To remove a dependency, run `glide remove <package>`.
 
+## Updating a single dependency
+
+Manually edit your glide.yaml to point to the version of the dependency that you'd like to download.
+If you're specifying a branch name, you might need to delete glide's cache of that repo if the branch has been force-pushed: `rm -r ~/.glide/cache/src/<folder for the repo>`.
+
+Delete the entry in glide.lock for the dependency.
+
+Delete the folder in `vendor/` for the dependency.
+
+Run `glide up` to pull down the dependency and then `make install_deps` to clear out nested vendor directories.
+
+
 ## Glide Examples
 
   - [Catapult](https://github.com/Clever/catapult)
