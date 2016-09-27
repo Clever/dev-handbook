@@ -1,8 +1,10 @@
 # This is the default Clever Swagger Makefile.
 # Please do not alter this file directly.
-SWAGGER_MK_VERSION := 0.4.3
+SWAGGER_MK_VERSION := 0.4.4
 
 SHELL := /bin/bash
+
+GROUP := $(shell groups | cut -d' ' -f1)
 
 GOSWAGGER := $(GOPATH)/bin/swagger
 .PHONY: $(GOSWAGGER)
@@ -32,7 +34,7 @@ define swagger-generate-go
 @echo "    GOPATH WORKDIR PACKAGE NAME: $(2)"
 @echo "    GENERATED PACKAGE NAME: $(3)"
 docker run -v $(GOPATH)/src:/gopath/src -w /gopath/src/$(2) -i -t $(WAG_IMAGE) -file $(1) -package $(3)
-sudo chown -R $(USER):$(USER) $(GOPATH)/src/$(3)
+sudo chown -R $(USER):$(GROUP) $(GOPATH)/src/$(3)
 go generate $(3)...
 endef
 
@@ -48,5 +50,5 @@ rm -rf gen-js
 docker run -v `pwd`:/src -i -t $(SWAGGER_CODEGEN_CLI_IMAGE) \
   generate -i $(1) -l javascript -o gen-js \
   --additional-properties "usePromises=true,useTracing=true,projectName=$(2),projectVersion=$(3),moduleName=$(4)"
-sudo chown -R $(USER):$(USER) gen-js
+sudo chown -R $(USER):$(GROUP) gen-js
 endef
