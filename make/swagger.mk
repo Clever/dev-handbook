@@ -1,6 +1,6 @@
 # This is the default Clever Swagger Makefile.
 # Please do not alter this file directly.
-SWAGGER_MK_VERSION := 0.4.4
+SWAGGER_MK_VERSION := 0.4.5
 
 SHELL := /bin/bash
 
@@ -52,3 +52,7 @@ docker run -v `pwd`:/src -i -t $(SWAGGER_CODEGEN_CLI_IMAGE) \
   --additional-properties "usePromises=true,useTracing=true,projectName=$(2),projectVersion=$(3),moduleName=$(4)"
 sudo chown -R $(USER):$(GROUP) gen-js
 endef
+
+swagger-update-makefile:
+	@wget https://raw.githubusercontent.com/Clever/dev-handbook/master/make/swagger.mk -O /tmp/swagger.mk 2>/dev/null
+	@if ! grep -q $(SWAGGER_MK_VERSION) /tmp/swagger.mk; then cp /tmp/swagger.mk swagger.mk && echo "swagger.mk updated"; else echo "swagger.mk is up-to-date"; fi

@@ -1,5 +1,6 @@
 # This is the default Clever Thrift Makefile.
 # Please do not alter this file directly.
+THRIFT_MK_VERSION := 0.1.0
 
 # thrift-all generates client code for Python, Golang and Nodejs.
 define thrift-all
@@ -46,3 +47,8 @@ thrift-bump-minor:
 thrift-bump-major:
 	$(call thrift-bump-version, major)
 endef
+
+# thrift-update-makefile downloads latest version of thrift.mk
+thrift-update-makefile:
+	@wget https://raw.githubusercontent.com/Clever/dev-handbook/master/make/thrift.mk -O /tmp/thrift.mk 2>/dev/null
+	@if ! grep -q $(THRIFT_MK_VERSION) /tmp/thrift.mk; then cp /tmp/thrift.mk thrift.mk && echo "thrift.mk updated"; else echo "thrift.mk is up-to-date"; fi

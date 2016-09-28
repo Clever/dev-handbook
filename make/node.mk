@@ -1,6 +1,6 @@
 # This is the default Clever Node Makefile.
 # Please do not alter this file directly.
-NODE_MK_VERSION := 0.2.1
+NODE_MK_VERSION := 0.2.2
 
 # This block checks and confirms that the proper node version is installed.
 # arg1: node version. e.g. v6
@@ -27,3 +27,8 @@ else \
 	exit 1; \
 fi
 endef
+
+# node-update-makefile downloads latest version of node.mk
+node-update-makefile:
+	@wget https://raw.githubusercontent.com/Clever/dev-handbook/master/make/node.mk -O /tmp/node.mk 2>/dev/null
+	@if ! grep -q $(NODE_MK_VERSION) /tmp/node.mk; then cp /tmp/node.mk node.mk && echo "node.mk updated"; else echo "node.mk is up-to-date"; fi
