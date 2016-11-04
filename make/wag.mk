@@ -1,11 +1,11 @@
 # This is the default Clever Wag Makefile.
 # Please do not alter this file directly.
-WAG_MK_VERSION := 0.2.0
+WAG_MK_VERSION := 0.2.1
+SHELL := /bin/bash
 SYSTEM := $(shell uname -a | cut -d" " -f1 | tr '[:upper:]' '[:lower:]')
 WAG_INSTALLED := $(shell [[ -e "bin/wag" ]] && bin/wag --version)
 WAG_LATEST = $(shell curl -s https://api.github.com/repos/Clever/wag/releases/latest | grep tag_name | cut -d\" -f4)
 
-SHELL := /bin/bash
 .PHONY: bin/wag wag-update-makefile wag-generate-deps ensure-wag-version-set
 
 ensure-wag-version-set:
