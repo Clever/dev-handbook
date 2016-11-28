@@ -1,6 +1,6 @@
 # This is the default Clever Golang Makefile.
 # Please do not alter this file directly.
-GOLANG_MK_VERSION := 0.1.1
+GOLANG_MK_VERSION := 0.1.2
 
 SHELL := /bin/bash
 .PHONY: golang-godep-vendor golang-test-deps $(GODEP)
@@ -63,7 +63,7 @@ golang-lint-deps: $(GOLINT)
 # arg1: pkg path
 define golang-lint
 @echo "LINTING $(1)..."
-@$(GOLINT) $(GOPATH)/src/$(1)/*.go
+@find $(GOPATH)/src/$(1)/*.go -type f | grep -v gen_ | xargs $(GOLINT)
 endef
 
 # golang-lint-deps-strict requires the golint tool for golang linting.
@@ -74,7 +74,7 @@ golang-lint-deps-strict: $(GOLINT) $(FGT)
 # arg1: pkg path
 define golang-lint-strict
 @echo "LINTING $(1)..."
-@$(FGT) $(GOLINT) $(GOPATH)/src/$(1)/*.go
+@find $(GOPATH)/src/$(1)/*.go -type f | grep -v gen_ | xargs $(FGT) $(GOLINT)
 endef
 
 # golang-test-deps is here for consistency
