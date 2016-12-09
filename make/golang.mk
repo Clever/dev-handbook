@@ -1,9 +1,12 @@
 # This is the default Clever Golang Makefile.
 # Please do not alter this file directly.
-GOLANG_MK_VERSION := 0.1.2
+GOLANG_MK_VERSION := 0.1.3
 
 SHELL := /bin/bash
 .PHONY: golang-godep-vendor golang-test-deps $(GODEP)
+
+# if the gopath includes several directories, use only the first
+GOPATH=$(shell echo $$GOPATH | cut -d: -f1)
 
 # This block checks and confirms that the proper Go toolchain version is installed.
 # arg1: golang version
