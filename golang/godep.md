@@ -159,7 +159,7 @@ $ godep update github.com/Clever/worker/...
 2. Make sure you have the new version you want checked out in your `GOPATH`
   - cd `$GOPATH/src/githbu.com/my/dependency && git checkout master && git pull`
 3. Upgrade via godep
-  - `godep upgrade github.com/my/dependency/...`
+  - `godep update github.com/my/dependency/...`
   - The `/...` will pull in all subpackages, otherwise they must be specified individually
 
 ## Committing Vendored Files
