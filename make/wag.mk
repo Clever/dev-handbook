@@ -1,6 +1,6 @@
 # This is the default Clever Wag Makefile.
 # Please do not alter this file directly.
-WAG_MK_VERSION := 0.3.0
+WAG_MK_VERSION := 0.3.1
 SHELL := /bin/bash
 SYSTEM := $(shell uname -a | cut -d" " -f1 | tr '[:upper:]' '[:lower:]')
 WAG_INSTALLED := $(shell [[ -e "bin/wag" ]] && bin/wag --version)
@@ -25,8 +25,12 @@ jsdoc2md:
 	hash npm 2>/dev/null || (echo "Could not run npm, please install node" && false)
 	hash jsdoc2md 2>/dev/null || npm install -g jsdoc-to-markdown@^2.0.0
 
+MOCKGEN := $(GOPATH)/bin/mockgen
+$(MOCKGEN):
+	go get -u github.com/golang/mock/mockgen
+
 # wag-generate-deps installs all dependencies needed for wag generate.
-wag-generate-deps: bin/wag jsdoc2md
+wag-generate-deps: bin/wag jsdoc2md $(MOCKGEN)
 
 # wag-generate is a target for generating code from a swagger.yml using wag
 # arg1: path to swagger.yml
