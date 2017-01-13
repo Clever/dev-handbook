@@ -1,6 +1,6 @@
 # This is the default Clever Node Makefile.
 # Please do not alter this file directly.
-NODE_MK_VERSION := 0.3.0
+NODE_MK_VERSION := 0.3.1
 SHELL := /bin/bash
 
 # This block checks and confirms that the proper node version is installed.
@@ -37,7 +37,11 @@ endef
 # arg4: expected number of problems
 define node-guarded-lint
 @$(2) $(3) > /tmp/lint-output.txt || true
-@cat /tmp/lint-output.txt | sed -e 's/\(.\)/\1\n/g' | grep '✖' | wc -l > /tmp/lint-problem-count
+@# look for eslint/tslint-esque problem count, fall back to counting number of ✖'s
+@sed -n 's/^✖ \(.*\) problems.*/\1/p' /tmp/lint-output.txt > /tmp/lint-problem-count
+@if [[ `cat /tmp/lint-problem-count` = "" ]]; then  \
+	cat /tmp/lint-output.txt | sed -e 's/\(.\)/\1\n/g' | grep '✖' | wc -l > /tmp/lint-problem-count;  \
+fi
 @if [ "`cat /tmp/lint-problem-count`" -gt "$(4)" ]; then  \
 	cat /tmp/lint-output.txt;  \
 	echo -e "\033[0;31m✖  Added $(1) errors. Please don't introduce new lint errors! If you are decaffeinating a file, you may increase the $(1) problem count in the Makefile.\033[0m"; \
