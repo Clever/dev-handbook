@@ -1,6 +1,7 @@
 # This is the default Clever Node Makefile.
+# It is stored in the dev-handbook repo, github.com/Clever/dev-handbook
 # Please do not alter this file directly.
-NODE_MK_VERSION := 0.3.1
+NODE_MK_VERSION := 0.3.2
 SHELL := /bin/bash
 
 # This block checks and confirms that the proper node version is installed.
@@ -9,7 +10,7 @@ define node-version-check
 _ := $(if \
 	$(shell node -v | grep $(1)), \
 	@echo "", \
-	$(error "Node $(1) is required, use nvm to install / use node it"))
+	$(error "Node $(1) is required, use nvm to install / use it"))
 endef
 
 # This block checks and confirms the number of coffeescript files in the repo. The function must be
