@@ -10,7 +10,7 @@ This document describes the workflow, conventions, and best practices we use wit
 
 ## Github as Filesystem
 
-Since our work is highly collaborative, you should keep all of your progress it on Github so that your teammates can stay up to date on what you're working on. They may have ideas or suggestions, or they may just be curious. The goal is not to judge or criticize incomplete code, but to make sure we can all support and encourage each other as our code progresses.
+Since our work is highly collaborative, you should keep all of your progress on Github so that your teammates can stay up to date on what you're working on. They may have ideas or suggestions, or they may just be curious. The goal is not to judge or criticize incomplete code, but to make sure we can all support and encourage each other as our code progresses.
 
 There's also another reason to keep all of your work on Github: individual computers can get lost, stolen, or corrupted at any time. If your work is only saved locally, you run the risk of losing it if anything goes wrong on your computer (it could just be an accidental `rm -rf`, which is how [Pixar accidentally deleted all of Toy Story 2](http://thenextweb.com/media/2012/05/21/how-pixars-toy-story-2-was-deleted-twice-once-by-technology-and-again-for-its-own-good/)).
 
