@@ -88,25 +88,8 @@ Run `glide up` to pull down the dependency and then `make install_deps` to clear
   - [Catapult](https://github.com/Clever/catapult)
   - [Ark](https://github.com/Clever/ark)
 
-## Using private Clever repositories
+## Using private Clever repositories in CI
 
-With glide you don’t need to checkin the `vendor` directory, but in order to do this, you do need to add a little extra configuration when depending on private Clever repositories:
+With glide you don’t need to checkin the `vendor` directory, but in order to do this, you do need to add a little extra configuration when depending on private Clever repositories during CI.
 
-You will need to edit the `.drone.yml` so that drone can access private Clever repos:
-```yaml
-script:
-# setup ssh key
-- echo ${drone_key} | sed 's|\\n|\n|g' > ~/.ssh/id_rsa
-- chmod 600 ~/.ssh/id_rsa
-# build and test rules
-...
-```
-
-**Drone Setting (via web UI)**:
-You will need to add drone's private ssh key for github.
-  1. Edit the project settings and add `drone_key:`
-  2. Copy the value from Clever/ark
-
-The `clever-drone` user will need access to all of your private repo dependencies, so if you see an error in drone, ask a GitHub admin to grant the `clever-drone` user access to these repos.
-
-**NOTE:** Infra may automate this step if glide becomes popular.
+See the CircleCI Ops guide for more info: https://clever.atlassian.net/wiki/display/ENG/Build+System
