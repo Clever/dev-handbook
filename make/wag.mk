@@ -16,10 +16,10 @@ ensure-wag-version-set:
 
 bin/wag: ensure-wag-version-set
 	@mkdir -p bin
-	$(eval WAG_VERSION := $(if $(filter latest,$(WAG_VERSION)),v$(WAG_LATEST),v$(WAG_VERSION)))
+	$(eval WAG_VERSION := $(if $(filter latest,$(WAG_VERSION)),$(WAG_LATEST),$(WAG_VERSION)))
 	@echo "Checking for wag updates..."
 	@echo "Using wag version $(WAG_VERSION)"
-	@[[ "$(WAG_VERSION)" != "v$(WAG_INSTALLED)" ]] && echo "Updating wag..." && curl -sL https://github.com/Clever/wag/releases/download/$(WAG_VERSION)/wag-$(WAG_VERSION)-$(SYSTEM)-amd64.tar.gz | tar -xz -C bin || true
+	@[[ "$(WAG_VERSION)" != "$(WAG_INSTALLED)" ]] && echo "Updating wag..." && curl -sL https://github.com/Clever/wag/releases/download/$(WAG_VERSION)/wag-$(WAG_VERSION)-$(SYSTEM)-amd64.tar.gz | tar -xz -C bin || true
 
 jsdoc2md:
 	hash npm 2>/dev/null || (echo "Could not run npm, please install node" && false)
