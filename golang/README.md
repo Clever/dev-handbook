@@ -13,9 +13,7 @@ This is highly suggested before you begin writing Go code for production.
 
 ## Golang versions
 
-All golang services written by Clever should be on Go 1.5.
-Some 3rd-party tools that we use, such as Heka, are not on Go 1.5.
-
+All golang services written by Clever should be on Go 1.8.
 
 ## Style
 
@@ -100,10 +98,6 @@ If you need more than addition and presence methods, please consider using a mor
 
 ## Docker Images
 
-#### drone
-
-Use `clever/drone-go:1.5` as the `image` to ensure that Go1.5 is already installed.
-
 #### runtime
 
 Drone should build your executable and it should be copied into Docker:
@@ -120,14 +114,16 @@ Drone should build your executable and it should be copied into Docker:
 
 ## Dependencies
 
-Both `godep` and `glide` are used to manage golang dependencies.
-
-### Godeps
-
-See the [Clever godep documentation](./godep.md).
-
-[Essential Godep](https://docs.google.com/a/clever.com/document/d/1YZg2S7v1bir3MG1YvswAD2Y0KrsuDr-NCr6pPG2ycEM/edit?usp=sharing) for extended instruction.
+We prefer `glide` to manage golang dependencies.
+Some repos may still use `godeps`.
 
 ### Glide
 
-See the [Glide documentation](./glide.md)
+See our [`glide` documentation](./glide.md)
+
+### Godeps
+
+See our [`godeps` documentation](./godep.md).
+
+[Essential Godeps](https://docs.google.com/a/clever.com/document/d/1YZg2S7v1bir3MG1YvswAD2Y0KrsuDr-NCr6pPG2ycEM/edit?usp=sharing) for extended instruction.
+
