@@ -74,6 +74,7 @@ To remove a dependency, run `glide remove <package>`.
 ## Updating a single dependency
 
 Manually edit your glide.yaml to point to the version of the dependency that you'd like to download.
+
 If you're specifying a branch name, you might need to delete glide's cache of that repo if the branch has been force-pushed: `rm -r ~/.glide/cache/src/<folder for the repo>`.
 
 Delete the entry in glide.lock for the dependency.
