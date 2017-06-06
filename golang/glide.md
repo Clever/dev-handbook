@@ -82,6 +82,8 @@ Delete the folder in `vendor/` for the dependency.
 
 Run `glide up` to pull down the dependency and then `make install_deps` to clear out nested vendor directories.
 
+If your version is not updating, this may be due to multiple dependencies relying on different version. In this case, try to version lock the package in your glide.yaml and run `glide up` again. The output should log a `WARN` line describing which dependencies are conflicting.
+
 
 ## Glide Examples
 
