@@ -1,5 +1,8 @@
 # JavaScript
 
+## Editor
+See the [editor setup guide](https://clever.atlassian.net/wiki/display/ENG/How+to+configure+your+editor+for+Typescript+magic) for instructions on how to configure your editor for typescript.
+
 ## Style
 
 The style guide we use is the [AirBnB Style Guide](https://github.com/airbnb/javascript).
