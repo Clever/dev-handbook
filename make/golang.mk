@@ -10,13 +10,21 @@ SHELL := /bin/bash
 GOPATH=$(shell echo $$GOPATH | cut -d: -f1)
 
 # This block checks and confirms that the proper Go toolchain version is installed.
+# It uses ^ matching in the semver sense -- you can be ahead by a minor
+# version, but not a major version (patch is ignored).
 # arg1: golang version
 define golang-version-check
-GOVERSION := $(shell go version | grep $(1))
-_ := $(if \
-	$(shell go version | grep $(1)), \
-	@echo "", \
-	$(error "must be running Go version $(1)"))
+_ := $(if  \
+		$(shell  \
+			expr >/dev/null  \
+				`go version | cut -d" " -f3 | cut -c3- | cut -d. -f2`  \
+				\>= `echo $(1) | cut -d. -f2`  \
+				\&  \
+				`go version | cut -d" " -f3 | cut -c3- | cut -d. -f1`  \
+				= `echo $(1) | cut -d. -f1`  \
+			&& echo 1),  \
+		@echo "",  \
+		$(error must be running Go version ^$(1) - you are running $(shell go version | cut -d" " -f3 | cut -c3-)))
 endef
 
 export GO15VENDOREXPERIMENT=1
