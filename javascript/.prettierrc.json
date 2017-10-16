@@ -1,0 +1,11 @@
+{
+  "overrides": [
+    {
+      "files": "*",
+      "options": {
+        "trailingComma": "es5",
+        "bracketSpacing": false
+      }
+    }
+  ]
+}

@@ -1,7 +1,9 @@
 {
+  "extends": ["tslint-eslint-rules", "tslint-react"],
   "rules": {
     "align": [
       true,
+      "parameters",
       "statements"
     ],
     "ban": false,
@@ -10,7 +12,7 @@
       true,
       "check-space"
     ],
-    "curly": true,
+    "curly": [true, "ignore-same-line"],  // matches prettier
     "eofline": true,
     "forin": true,
     "indent": [
@@ -19,11 +21,23 @@
     ],
     "interface-name": true,
     "jsdoc-format": true,
+    // turn off unused tslint-react rules and enable desired rules
+    "jsx-alignment": false,
+    "jsx-boolean-value": false,
+    "jsx-curly-spacing": false,
+    "jsx-equals-spacing": false,
+    "jsx-key": false,
+    "jsx-no-bind": false,
+    "jsx-no-lambda": false,
+    "jsx-no-multiline-js": false,
+    "jsx-no-string-ref": false,
+    "jsx-self-close": true,
+    "jsx-use-translation-function": false,
+    "jsx-wrap-multiline": true,
     "label-position": true,
-    "label-undefined": true,
     "max-line-length": [
       true,
-      160
+      100
     ],
     "member-access": false,
     "member-ordering": [
@@ -46,26 +60,49 @@
       "trace"
     ],
     "no-construct": true,
-    "no-constructor-vars": true,
     "no-debugger": true,
-    "no-duplicate-key": true,
     "no-duplicate-variable": true,
     "no-empty": true,
     "no-eval": true,
     "no-inferrable-types": false,
+    "no-inner-declarations": true,
     "no-internal-module": true,
+    "no-invalid-regexp": true,
+    "no-irregular-whitespace": true,
+    "no-multi-spaces": true,
     "no-null-keyword": false,
+    "no-parameter-properties": true,
+    "no-regex-spaces": true,
     "no-require-imports": false,
-    "no-shadowed-variable": false,
+    "no-shadowed-variable": [ // true in spreadsheet and apps-dashboard; false in oauth (which disables it for variables and parameters)
+      true,
+      {
+        "class": true,
+        "enum": true,
+        "function": false,
+        "import": true,
+        "interface": true,
+        "namespace": true,
+        "typeAlias": true,
+        "typeParameter": true
+      }
+    ],
+    "no-sparse-arrays": true,
     "no-string-literal": true,
+    "no-string-throw": true,
     "no-switch-case-fall-through": true,
     "no-trailing-whitespace": true,
-    "no-unreachable": true,
-    "no-unused-expression": true,
-    "no-unused-variable": true,
+    // "no-unnecessary-initializer": {
+    //   "severity": "warning"
+    // },
+    "no-unused-expression": [true, "allow-fast-null-checks"],
+    "no-unused-variable": [true, {"ignore-pattern": "next|react"}],
     "no-use-before-declare": true,
-    "no-var-keyword": false,
+    "no-var-keyword": true,  // false in oauth and appsdashboard
     "no-var-requires": false,
+    "object-curly-spacing": [true, "never"],
+    "object-literal-key-quotes": [true, "as-needed"],
+    "object-literal-shorthand": true,
     "object-literal-sort-keys": false,
     "one-line": [
       true,
@@ -75,24 +112,44 @@
       "check-finally",
       "check-whitespace"
     ],
+    "one-variable-per-declaration": false,
+    // "ordered-imports": {
+    //   "severity": "warning"
+    // },
+    "prefer-const": [
+      true,
+      {
+        "destructuring": "all"
+      }
+    ],
+    // "prefer-for-of": {
+    //   "severity": "warning"
+    // },
+    "prefer-template": true,
     "quotemark": [
       true,
       "double",
       "avoid-escape"
     ],
     "radix": true,
-    "semicolon": [true, "always"],
+    "semicolon": [true, "always", "ignore-bound-class-methods"],
     "switch-default": true,
-    "trailing-comma": [
+    "trailing-comma": [  // compatible with prettier trailingComma rule
       true,
       {
-        "multiline": "always",
+        "multiline": {
+          "array":"never",
+          "exports":"always",
+          "fuctions": "ignore",
+          "objects":"ignore",
+          "typeLiterals": "ignore"
+        },
         "singleline": "never"
       }
     ],
     "triple-equals": [
       true,
-      "allow-null-check"
+      "allow-null-check"  // undesirable but might break things to change
     ],
     "typedef-whitespace": [
       true,
@@ -111,15 +168,19 @@
         "variable-declaration": "space"
       }
     ],
+    "use-isnan": true,
     "use-strict": [
       false,
       "check-module",
       "check-function"
     ],
-    "variable-name": [
+    "valid-typeof": true,
+    "variable-name": [  // format checking not enabled in apps-dashboard; causing new errors
       true,
       "allow-leading-underscore",
-      "ban-keywords"
+      "allow-pascal-case",
+      "ban-keywords",
+      "check-format"
     ],
     "whitespace": [
       true,
