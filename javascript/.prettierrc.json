@@ -3,8 +3,9 @@
     {
       "files": "*",
       "options": {
-        "trailingComma": "es5",
-        "bracketSpacing": false
+        "trailingComma": "all",
+        "bracketSpacing": true,
+        "printWidth": 100
       }
     }
   ]
