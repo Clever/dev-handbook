@@ -1,10 +1,10 @@
 # This is the default Clever Golang Makefile.
 # It is stored in the dev-handbook repo, github.com/Clever/dev-handbook
 # Please do not alter this file directly.
-GOLANG_MK_VERSION := 0.1.5
+GOLANG_MK_VERSION := 0.2.0
 
 SHELL := /bin/bash
-.PHONY: golang-godep-vendor golang-test-deps $(GODEP)
+.PHONY: golang-test-deps $(GOPATH)/bin/dep
 
 # if the gopath includes several directories, use only the first
 GOPATH=$(shell echo $$GOPATH | cut -d: -f1)
@@ -27,36 +27,36 @@ _ := $(if  \
 		$(error must be running Go version ^$(1) - you are running $(shell go version | cut -d" " -f3 | cut -c3-)))
 endef
 
-export GO15VENDOREXPERIMENT=1
-
 # FGT is a utility that exits with 1 whenever any stderr/stdout output is recieved.
 FGT := $(GOPATH)/bin/fgt
 $(FGT):
 	go get github.com/GeertJohan/fgt
 
-# Godep is a tool used to manage Golang dependencies in the style of the Go 1.5
-# vendoring experiment.
-GODEP := $(GOPATH)/bin/godep
-$(GODEP):
-	go get -u github.com/tools/godep
+DEP_VERSION = v0.3.2
+
+# Dep is a tool used to manage Golang dependencies. It is the offical vendoring experiment, but
+# not yet the official tool for Golang.
+$(GOPATH)/src/github.com/golang/dep:
+	@git clone --branch $(DEP_VERSION) https://github.com/golang/dep.git $(GOPATH)/src/github.com/golang/dep
+$(GOPATH)/bin/dep: $(GOPATH)/src/github.com/golang/dep
+	@git -C $(GOPATH)/src/github.com/golang/dep checkout tags/$(DEP_VERSION)
+	@go build -o $(GOPATH)/bin/dep github.com/golang/dep/cmd/dep
+
+golang-dep-vendor-deps: $(GOPATH)/bin/dep
+
+# golang-godep-vendor is a target for saving dependencies with the dep tool
+# to the vendor/ directory. All nested vendor/ directories are deleted via
+# the prune command.
+# arg1: pkg path
+define golang-dep-vendor
+dep ensure
+dep prune
+endef
 
 # Golint is a tool for linting Golang code for common errors.
 GOLINT := $(GOPATH)/bin/golint
 $(GOLINT):
 	go get github.com/golang/lint/golint
-
-# golang-vendor-deps installs all dependencies needed for different test cases.
-golang-godep-vendor-deps: $(GODEP)
-
-# golang-godep-vendor is a target for saving dependencies with the godep tool
-# to the vendor/ directory. All nested vendor/ directories are deleted as they
-# are not handled well by the Go toolchain.
-# arg1: pkg path
-define golang-godep-vendor
-$(GODEP) save $(1)
-@# remove any nested vendor directories
-find vendor/ -path '*/vendor' -type d | xargs -IX rm -r X
-endef
 
 # golang-fmt-deps requires the FGT tool for checking output
 golang-fmt-deps: $(FGT)
