@@ -4,7 +4,8 @@
 GOLANG_MK_VERSION := 0.2.0
 
 SHELL := /bin/bash
-.PHONY: golang-test-deps $(GOPATH)/bin/dep
+SYSTEM := $(shell uname -a | cut -d" " -f1 | tr '[:upper:]' '[:lower:]')
+.PHONY: golang-test-deps bin/dep golang-ensure-curl-installed
 
 # if the gopath includes several directories, use only the first
 GOPATH=$(shell echo $$GOPATH | cut -d: -f1)
@@ -32,25 +33,27 @@ FGT := $(GOPATH)/bin/fgt
 $(FGT):
 	go get github.com/GeertJohan/fgt
 
-DEP_VERSION = v0.3.2
+golang-ensure-curl-installed:
+	@command -v curl >/dev/null 2>&1 || { echo >&2 "curl not installed. Please install curl."; exit 1; }
 
+DEP_VERSION = v0.3.2
+DEP_INSTALLED := $(shell [[ -e "bin/dep" ]] && bin/dep version | grep version | grep -v go | cut -d: -f2 | tr -d '[:space:]')
 # Dep is a tool used to manage Golang dependencies. It is the offical vendoring experiment, but
 # not yet the official tool for Golang.
-$(GOPATH)/src/github.com/golang/dep:
-	@git clone --branch $(DEP_VERSION) https://github.com/golang/dep.git $(GOPATH)/src/github.com/golang/dep
-$(GOPATH)/bin/dep: $(GOPATH)/src/github.com/golang/dep
-	@git -C $(GOPATH)/src/github.com/golang/dep checkout tags/$(DEP_VERSION)
-	@go build -o $(GOPATH)/bin/dep github.com/golang/dep/cmd/dep
+bin/dep: golang-ensure-curl-installed
+	@mkdir -p bin
+	@[[ "$(DEP_VERSION)" != "$(DEP_INSTALLED)" ]] && \
+		echo "Updating dep..." && \
+		curl -o bin/dep -sL https://github.com/golang/dep/releases/download/$(DEP_VERSION)/dep-$(SYSTEM)-amd64 && \
+		chmod +x bin/dep || true
 
-golang-dep-vendor-deps: $(GOPATH)/bin/dep
+golang-dep-vendor-deps: bin/dep
 
 # golang-godep-vendor is a target for saving dependencies with the dep tool
 # to the vendor/ directory. All nested vendor/ directories are deleted via
 # the prune command.
-# arg1: pkg path
 define golang-dep-vendor
-dep ensure
-dep prune
+bin/dep ensure
 endef
 
 # Golint is a tool for linting Golang code for common errors.
