@@ -53,8 +53,7 @@ github.com
 │               ├── mgo (v2)
 ```
 
-### New Packages
-
+### New Packages 
 When adding a new package, you can simply use `make vendor` to update your imports.
 This should bring in the new dependency that was previously undeclared.
 The change should be reflected in `Godeps/Godeps.json` as well as `vendor/`.

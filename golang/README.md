@@ -32,10 +32,10 @@ let g:syntastic_go_checkers = ['golint', 'govet']
 
 #### Recommended setup
 
-* Makefiles: A Go package should have a Makefile that runs "golint" on all files. See the [gearcmd Makefile](https://github.com/Clever/gearcmd/blob/master/Makefile) as an example.
+* Makefiles: A Go package should have a Makefile that runs "golint" on all files. See the [sfncli Makefile](https://github.com/Clever/sfncli/blob/master/Makefile) as an example.
 
 - toolchain version check
-- godep
+- dep
 - testing
   - gofmt
   - golint
@@ -114,8 +114,10 @@ Drone should build your executable and it should be copied into Docker:
 
 ## Dependencies
 
-We prefer `glide` to manage golang dependencies.
-Some repos may still use `godeps`.
+We use `dep` to manage golang dependencies. See our [`dep` documentation](./glide.md).
+
+
+### Deprecated tooling
 
 ### Glide
 
