@@ -58,6 +58,19 @@ If you have constraints in place in `Gopkg.toml`, it will pull down the latest v
 ./bin/dep ensure
 ```
 
+## My Build Timed Out?
 
+Do you have output like this?
+
+```
+make install_deps
+Updating dep...
+bin/dep ensure
+
+command make install_deps took more than 10 minutes since last output
+```
+
+This is usually due to missing SSH access to github private repos.
+See the docs on confluence for the Build System to remedy the situation.
 
 
