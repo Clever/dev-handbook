@@ -58,7 +58,31 @@ If you have constraints in place in `Gopkg.toml`, it will pull down the latest v
 ./bin/dep ensure
 ```
 
-## My Build Timed Out?
+## Build Errors
+
+If you've just converted or created a new repo which has private dependencies, you're likely hitting a permissions error.
+
+This is usually due to missing SSH access to github private repos.
+See the docs on confluence for the Build System to remedy the situation.
+
+
+### Cannot Find Package build errors?
+
+This happens when the build system cannot access Github repos.
+
+Example build output:
+```
+go build -o bin/dpt-id-mapper github.com/Clever/dpt-id-mapper
+worker/worker.go:13:2: cannot find package "github.com/Clever/go-utils/stringset" in any of:
+	/usr/local/go/src/github.com/Clever/go-utils/stringset (from $GOROOT)
+	/home/ubuntu/.go_workspace/src/github.com/Clever/go-utils/stringset (from $GOPATH)
+main.go:8:2: cannot find package "github.com/Clever/worker-util/archive" in any of:
+	/usr/local/go/src/github.com/Clever/worker-util/archive (from $GOROOT)
+	/home/ubuntu/.go_workspace/src/github.com/Clever/worker-util/archive (from $GOPATH)
+
+```
+
+### My Build Timed Out?
 
 Do you have output like this?
 
@@ -70,7 +94,8 @@ bin/dep ensure
 command make install_deps took more than 10 minutes since last output
 ```
 
-This is usually due to missing SSH access to github private repos.
-See the docs on confluence for the Build System to remedy the situation.
+Add SSH access.
+
+
 
 
