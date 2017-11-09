@@ -55,7 +55,7 @@ If you have constraints in place in `Gopkg.toml`, it will pull down the latest v
 3. Run:
 
 ```
-make install_deps
+./bin/dep ensure
 ```
 
 
