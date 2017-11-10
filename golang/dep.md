@@ -20,18 +20,35 @@ This will then be invoked locally with `make install_deps`. It will do the follo
 - update `Gopkg.toml` if you have added a dependency
 
 
-## New Packages
+# Useful Commands
 
-Access the local copy of `dep` in `./bin/dep`. If it isn't there, run `make bin/dep`.
-Then you can:
+Run `make bin/dep` to make sure the repo's local copy of `dep` is present. We use this to maintain the same version of tooling in every repo.
+
+
+## New Dependency
+
+If you would like to add the dependency with a constraint (suggested), append it to the repo link:
+
+```
+# by sha
+./bin/dep ensure -add github.com/foo/bar@814c04f245fe9014406a79ece9222d502175d15b
+
+# by semver
+./bin/dep ensure -add github.com/foo/bar@^2.0.0
+```
+
+If you don't care about the version, simply add it without a constraint.
+**This is not suggested because your build will become needlessly fragile.**
 
 ```
 ./bin/dep ensure -add github.com/foo/bar
 ```
 
 
-## Update Every Package
+## Update Every Dependency
 
+This will update every dependency as much as possible with existing constraints.
+If a dependency is locked to a specific commit in `Gopkg.toml`, that dependency **will not** be changed.
 ```
 ./bin/dep ensure -update
 ```
@@ -51,12 +68,9 @@ If you have constraints in place in `Gopkg.toml`, it will pull down the latest v
 ## Removing A Dependency
 
 1. Remove the imports and all usage from your code.
-2. Remove [[constraint]] rules from Gopkg.toml (if any).
-3. Run:
+2. Remove `[[constraint]]` rules from `Gopkg.toml` (if any).
+3. Run: `./bin/dep ensure`
 
-```
-./bin/dep ensure
-```
 
 ## Build Errors
 
