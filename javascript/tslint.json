@@ -1,18 +1,12 @@
 {
   "extends": ["tslint-eslint-rules", "tslint-react"],
   "rules": {
-    "align": [
-      true,
-      "parameters",
-      "statements"
-    ],
     "ban": false,
     "class-name": true,
     "comment-format": [
       true,
       "check-space"
     ],
-    "curly": [true, "ignore-same-line"],  // matches prettier
     "eofline": true,
     "forin": true,
     "indent": [
@@ -21,7 +15,6 @@
     ],
     "interface-name": true,
     "jsdoc-format": true,
-    // turn off unused tslint-react rules and enable desired rules
     "jsx-alignment": false,
     "jsx-boolean-value": false,
     "jsx-curly-spacing": false,
@@ -37,15 +30,9 @@
     "label-position": true,
     "max-line-length": [
       true,
-      100
+      120
     ],
     "member-access": false,
-    "member-ordering": [
-      true,
-      "public-before-private",
-      "static-before-instance",
-      "variables-before-functions"
-    ],
     "no-any": false,
     "no-arg": true,
     "no-bitwise": true,
@@ -53,6 +40,7 @@
     "no-consecutive-blank-lines": false,
     "no-console": [
       true,
+      "log",
       "debug",
       "info",
       "time",
@@ -74,33 +62,16 @@
     "no-parameter-properties": true,
     "no-regex-spaces": true,
     "no-require-imports": false,
-    "no-shadowed-variable": [ // true in spreadsheet and apps-dashboard; false in oauth (which disables it for variables and parameters)
-      true,
-      {
-        "class": true,
-        "enum": true,
-        "function": false,
-        "import": true,
-        "interface": true,
-        "namespace": true,
-        "typeAlias": true,
-        "typeParameter": true
-      }
-    ],
+    // To enable this, we need whitelist support and for this bug to be fixed: https://github.com/palantir/tslint/issues/3078
+    "no-shadowed-variable": false,
     "no-sparse-arrays": true,
     "no-string-literal": true,
     "no-string-throw": true,
     "no-switch-case-fall-through": true,
     "no-trailing-whitespace": true,
-    // "no-unnecessary-initializer": {
-    //   "severity": "warning"
-    // },
     "no-unused-expression": [true, "allow-fast-null-checks"],
-    "no-unused-variable": [true, {"ignore-pattern": "next|react"}],
-    "no-use-before-declare": true,
-    "no-var-keyword": true,  // false in oauth and appsdashboard
+    "no-var-keyword": true,
     "no-var-requires": false,
-    "object-curly-spacing": [true, "never"],
     "object-literal-key-quotes": [true, "as-needed"],
     "object-literal-shorthand": true,
     "object-literal-sort-keys": false,
@@ -113,18 +84,12 @@
       "check-whitespace"
     ],
     "one-variable-per-declaration": false,
-    // "ordered-imports": {
-    //   "severity": "warning"
-    // },
     "prefer-const": [
       true,
       {
         "destructuring": "all"
       }
     ],
-    // "prefer-for-of": {
-    //   "severity": "warning"
-    // },
     "prefer-template": true,
     "quotemark": [
       true,
@@ -134,7 +99,7 @@
     "radix": true,
     "semicolon": [true, "always", "ignore-bound-class-methods"],
     "switch-default": true,
-    "trailing-comma": [  // compatible with prettier trailingComma rule
+    "trailing-comma": [
       true,
       {
         "multiline": {
@@ -149,7 +114,7 @@
     ],
     "triple-equals": [
       true,
-      "allow-null-check"  // undesirable but might break things to change
+      "allow-null-check"
     ],
     "typedef-whitespace": [
       true,
@@ -175,7 +140,7 @@
       "check-function"
     ],
     "valid-typeof": true,
-    "variable-name": [  // format checking not enabled in apps-dashboard; causing new errors
+    "variable-name": [
       true,
       "allow-leading-underscore",
       "allow-pascal-case",
