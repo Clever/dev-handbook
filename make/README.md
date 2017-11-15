@@ -50,8 +50,11 @@ $(eval $(call node-version-check,$(NODE_VERSION)))
 check-coffee-file-count:
   $(call node-coffeescript-file-count-check,$(COFFEE_FILE_COUNT))
 
+typechecker:
+	$(call node-typecheck,backend/server.ts)
+
 run:
-  NODE_ENV=development node_modules/node-dev/bin/node-dev server.coffee
+  NODE_ENV=development node_modules/.bin/ts-node --ignoreWarnings 2307 backend/server.ts
 ```
 
 ## Thrift
