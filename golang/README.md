@@ -114,7 +114,7 @@ Drone should build your executable and it should be copied into Docker:
 
 ## Dependencies
 
-We use `dep` to manage golang dependencies. See our [`dep` documentation](./glide.md).
+We use `dep` to manage golang dependencies. See our [`dep` documentation](./dep.md).
 
 
 ### Deprecated tooling
