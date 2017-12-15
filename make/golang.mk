@@ -154,6 +154,19 @@ $(call golang-vet,$(1))
 $(call golang-test-strict,$(1))
 endef
 
+# golang-build: builds a golang binary. ensures CGO build is done during CI. This is needed to make a binary that works with a Docker alpine image.
+# arg1: pkg path
+# arg2: executable name
+define golang-build
+@echo "BUILDING..."
+@if [ -z "$$CI" ]; then \
+	go build -o build/$(2) $(1); \
+else \
+	echo "-> Building CGO binary"; \
+	CGO_ENABLED=0 go build -installsuffix cgo -o build/$(2) $(1); \
+fi;
+endef
+
 # golang-update-makefile downloads latest version of golang.mk
 golang-update-makefile:
 	@wget https://raw.githubusercontent.com/Clever/dev-handbook/master/make/golang.mk -O /tmp/golang.mk 2>/dev/null
