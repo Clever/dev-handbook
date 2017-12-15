@@ -160,10 +160,10 @@ endef
 define golang-build
 @echo "BUILDING..."
 @if [ -z "$$CI" ]; then \
-	go build -o build/$(2) $(1); \
+	go build -o bin/$(2) $(1); \
 else \
 	echo "-> Building CGO binary"; \
-	CGO_ENABLED=0 go build -installsuffix cgo -o build/$(2) $(1); \
+	CGO_ENABLED=0 go build -installsuffix cgo -o bin/$(2) $(1); \
 fi;
 endef
 
