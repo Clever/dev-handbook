@@ -1,7 +1,7 @@
 # This is the default Clever Golang Makefile.
 # It is stored in the dev-handbook repo, github.com/Clever/dev-handbook
 # Please do not alter this file directly.
-GOLANG_MK_VERSION := 0.2.0
+GOLANG_MK_VERSION := 0.3.0
 
 SHELL := /bin/bash
 SYSTEM := $(shell uname -a | cut -d" " -f1 | tr '[:upper:]' '[:lower:]')
@@ -52,9 +52,16 @@ golang-dep-vendor-deps: bin/dep
 # golang-godep-vendor is a target for saving dependencies with the dep tool
 # to the vendor/ directory. All nested vendor/ directories are deleted via
 # the prune command.
+# In CI, -vendor-only is used to avoid updating the lock file.
+ifndef CI
 define golang-dep-vendor
-bin/dep ensure
+bin/dep ensure -v
 endef
+else
+define golang-dep-vendor
+bin/dep ensure -v -vendor-only
+endef
+endif
 
 # Golint is a tool for linting Golang code for common errors.
 GOLINT := $(GOPATH)/bin/golint
