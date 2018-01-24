@@ -1,7 +1,7 @@
 # This is the default Clever Golang Makefile.
 # It is stored in the dev-handbook repo, github.com/Clever/dev-handbook
 # Please do not alter this file directly.
-GOLANG_MK_VERSION := 0.3.1
+GOLANG_MK_VERSION := 0.3.2
 
 SHELL := /bin/bash
 SYSTEM := $(shell uname -a | cut -d" " -f1 | tr '[:upper:]' '[:lower:]')
@@ -18,7 +18,7 @@ define golang-version-check
 _ := $(if  \
 		$(shell  \
 			expr >/dev/null  \
-				`go version | cut -d" " -f3 | cut -c3- | cut -d. -f2`  \
+				`go version | cut -d" " -f3 | cut -c3- | cut -d. -f2 | sed -E 's/beta[0-9]+//'`  \
 				\>= `echo $(1) | cut -d. -f2`  \
 				\&  \
 				`go version | cut -d" " -f3 | cut -c3- | cut -d. -f1`  \
