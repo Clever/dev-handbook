@@ -40,12 +40,17 @@ DEP_VERSION = v0.4.1
 DEP_INSTALLED := $(shell [[ -e "bin/dep" ]] && bin/dep version | grep version | grep -v go | cut -d: -f2 | tr -d '[:space:]')
 # Dep is a tool used to manage Golang dependencies. It is the offical vendoring experiment, but
 # not yet the official tool for Golang.
+ifeq ($(DEP_VERSION),$(DEP_INSTALLED))
+bin/dep: # nothing to do, dep is already up-to-date
+else
+CACHED_DEP = /tmp/dep-$(DEP_VERSION)
 bin/dep: golang-ensure-curl-installed
+	@echo "Updating dep..."
 	@mkdir -p bin
-	@[[ "$(DEP_VERSION)" != "$(DEP_INSTALLED)" ]] && \
-		echo "Updating dep..." && \
-		curl -o bin/dep -sL https://github.com/golang/dep/releases/download/$(DEP_VERSION)/dep-$(SYSTEM)-amd64 && \
-		chmod +x bin/dep || true
+	@if [ ! -f $(CACHED_DEP) ]; then curl -o $(CACHED_DEP) -sL https://github.com/golang/dep/releases/download/$(DEP_VERSION)/dep-$(SYSTEM)-amd64; fi;
+	@cp $(CACHED_DEP) bin/dep
+	@chmod +x bin/dep || true
+endif
 
 golang-dep-vendor-deps: bin/dep
 
