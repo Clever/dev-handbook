@@ -36,7 +36,7 @@ $(FGT):
 golang-ensure-curl-installed:
 	@command -v curl >/dev/null 2>&1 || { echo >&2 "curl not installed. Please install curl."; exit 1; }
 
-DEP_VERSION = v0.3.2
+DEP_VERSION = v0.4.1
 DEP_INSTALLED := $(shell [[ -e "bin/dep" ]] && bin/dep version | grep version | grep -v go | cut -d: -f2 | tr -d '[:space:]')
 # Dep is a tool used to manage Golang dependencies. It is the offical vendoring experiment, but
 # not yet the official tool for Golang.
