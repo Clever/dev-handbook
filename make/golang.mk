@@ -1,7 +1,7 @@
 # This is the default Clever Golang Makefile.
 # It is stored in the dev-handbook repo, github.com/Clever/dev-handbook
 # Please do not alter this file directly.
-GOLANG_MK_VERSION := 0.3.3
+GOLANG_MK_VERSION := 0.3.4
 
 SHELL := /bin/bash
 SYSTEM := $(shell uname -a | cut -d" " -f1 | tr '[:upper:]' '[:lower:]')
@@ -52,7 +52,12 @@ bin/dep: golang-ensure-curl-installed
 	@chmod +x bin/dep || true
 endif
 
-golang-dep-vendor-deps: bin/dep
+REF = $(shell go list) # returns "github.com/<org>/<repo>"
+golang-verify-no-self-references:
+	@if grep -q -i "$(REF)" Gopkg.lock; then echo "Error: Gopkg.lock includes a self-reference ($(REF)), which is not allowed. See: https://github.com/golang/dep/issues/1690" && exit 1; fi;
+	@if grep -q -i "$(REF)" Gopkg.toml; then echo "Error: Gopkg.toml includes a self-reference ($(REF)), which is not allowed. See: https://github.com/golang/dep/issues/1690" && exit 1; fi;
+
+golang-dep-vendor-deps: bin/dep golang-verify-no-self-references
 
 # golang-godep-vendor is a target for saving dependencies with the dep tool
 # to the vendor/ directory. All nested vendor/ directories are deleted via
