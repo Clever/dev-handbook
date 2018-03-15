@@ -1,7 +1,7 @@
 # This is the default Clever Golang Makefile.
 # It is stored in the dev-handbook repo, github.com/Clever/dev-handbook
 # Please do not alter this file directly.
-GOLANG_MK_VERSION := 0.3.4
+GOLANG_MK_VERSION := 0.3.5
 
 SHELL := /bin/bash
 SYSTEM := $(shell uname -a | cut -d" " -f1 | tr '[:upper:]' '[:lower:]')
@@ -52,7 +52,10 @@ bin/dep: golang-ensure-curl-installed
 	@chmod +x bin/dep || true
 endif
 
-REF = $(shell go list) # returns "github.com/<org>/<repo>"
+# figure out "github.com/<org>/<repo>"
+# `go list` will fail if there are no .go files in the directory
+# if this is the case, fall back to assuming github.com/Clever
+REF = $(shell go list || echo github.com/Clever/$(notdir $(shell pwd)))
 golang-verify-no-self-references:
 	@if grep -q -i "$(REF)" Gopkg.lock; then echo "Error: Gopkg.lock includes a self-reference ($(REF)), which is not allowed. See: https://github.com/golang/dep/issues/1690" && exit 1; fi;
 	@if grep -q -i "$(REF)" Gopkg.toml; then echo "Error: Gopkg.toml includes a self-reference ($(REF)), which is not allowed. See: https://github.com/golang/dep/issues/1690" && exit 1; fi;
