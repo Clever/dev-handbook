@@ -1,7 +1,7 @@
 # This is the default Clever Golang Makefile.
 # It is stored in the dev-handbook repo, github.com/Clever/dev-handbook
 # Please do not alter this file directly.
-GOLANG_MK_VERSION := 0.3.6
+GOLANG_MK_VERSION := 0.3.5
 
 SHELL := /bin/bash
 SYSTEM := $(shell uname -a | cut -d" " -f1 | tr '[:upper:]' '[:lower:]')
@@ -79,10 +79,7 @@ endif
 # Golint is a tool for linting Golang code for common errors.
 GOLINT := $(GOPATH)/bin/golint
 $(GOLINT):
-	mkdir -p $(GOPATH)/src/golang.org/x
-	rm -rf $(GOPATH)/src/golang.org/x/lint
-	git clone https://github.com/golang/lint.git $(GOPATH)/src/golang.org/x/lint
-	go get -u golang.org/x/lint/golint
+	go get github.com/golang/lint/golint
 
 # golang-fmt-deps requires the FGT tool for checking output
 golang-fmt-deps: $(FGT)
