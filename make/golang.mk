@@ -1,11 +1,14 @@
 # This is the default Clever Golang Makefile.
 # It is stored in the dev-handbook repo, github.com/Clever/dev-handbook
 # Please do not alter this file directly.
-GOLANG_MK_VERSION := 0.3.7
+GOLANG_MK_VERSION := 0.3.8
 
 SHELL := /bin/bash
 SYSTEM := $(shell uname -a | cut -d" " -f1 | tr '[:upper:]' '[:lower:]')
 .PHONY: golang-test-deps bin/dep golang-ensure-curl-installed
+
+# set timezone to UTC for golang to match circle and deploys
+export TZ=UTC
 
 # if the gopath includes several directories, use only the first
 GOPATH=$(shell echo $$GOPATH | cut -d: -f1)
