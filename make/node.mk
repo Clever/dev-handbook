@@ -7,10 +7,7 @@ SHELL := /bin/bash
 # This block checks and confirms that the proper node version is installed.
 # arg1: node version. e.g. v6
 define node-version-check
-_ := $(if \
-	$(shell node -v | grep $(1)), \
-	@echo "", \
-	$(error "Node $(1) is required, use nvm to install / use it"))
+_ := $(shell nvm use $(1))
 endef
 
 # This block checks and confirms the number of coffeescript files in the repo. The function must be
