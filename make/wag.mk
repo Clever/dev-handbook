@@ -37,7 +37,7 @@ wag-generate-deps: bin/wag jsdoc2md $(MOCKGEN)
 # arg2: pkg path
 define wag-generate
 bin/wag -go-package $(2)/gen-go -js-path ./gen-js -file $(1)
-(cd ./gen-js && jsdoc2md index.js types.js > ./README.md)
+(cd ./gen-js && jsdoc2md index.js errors.js > ./README.md)
 go generate $(2)/gen-go/server $(2)/gen-go/client $(2)/gen-go/models
 endef
 
