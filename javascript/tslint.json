@@ -1,5 +1,8 @@
 {
-  "extends": ["tslint-eslint-rules", "tslint-react"],
+  "extends": [
+    "tslint-eslint-rules",
+    "tslint-react"
+  ],
   "rules": {
     "ban": false,
     "class-name": true,
@@ -62,17 +65,22 @@
     "no-parameter-properties": true,
     "no-regex-spaces": true,
     "no-require-imports": false,
-    // To enable this, we need whitelist support and for this bug to be fixed: https://github.com/palantir/tslint/issues/3078
     "no-shadowed-variable": false,
     "no-sparse-arrays": true,
     "no-string-literal": true,
     "no-string-throw": true,
     "no-switch-case-fall-through": true,
     "no-trailing-whitespace": true,
-    "no-unused-expression": [true, "allow-fast-null-checks"],
+    "no-unused-expression": [
+      true,
+      "allow-fast-null-checks"
+    ],
     "no-var-keyword": true,
     "no-var-requires": false,
-    "object-literal-key-quotes": [true, "as-needed"],
+    "object-literal-key-quotes": [
+      true,
+      "as-needed"
+    ],
     "object-literal-shorthand": true,
     "object-literal-sort-keys": false,
     "one-line": [
@@ -97,16 +105,20 @@
       "avoid-escape"
     ],
     "radix": true,
-    "semicolon": [true, "always", "ignore-bound-class-methods"],
+    "semicolon": [
+      true,
+      "always",
+      "ignore-bound-class-methods"
+    ],
     "switch-default": true,
     "trailing-comma": [
       true,
       {
         "multiline": {
-          "array":"never",
-          "exports":"always",
+          "array": "never",
+          "exports": "always",
           "fuctions": "ignore",
-          "objects":"ignore",
+          "objects": "ignore",
           "typeLiterals": "ignore"
         },
         "singleline": "never"
