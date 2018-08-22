@@ -84,30 +84,30 @@ node-update-makefile:
 ## Linting / Formatting ##
 ##########################
 # Match .js, .ts, .jsx, and .tsx files. Ignore directories contaning installed dependencies or auto-generated files.
-NODE_ALL_FILES := $(shell find . -regex '.*\.[jt]s[x]\{0,1\}' -not -path "./node_modules/*" -a -not -path "./gen-js/*" -a -not -path "./build/*")
+NODE_ALL_FILES := $(shell find . -regex '.*\.[jt]s[x]\{0,1\}' -not -path "./node_modules/*" -a -not -path "./gen-js/*" -a -not -path "./build/*" -a -not -path "./__build/*")
 
 .PHONY: node-format
 node-format: node-prettier-format node-tslint-fix
 
 .PHONY: node-lint
-node-format: node-prettier-lint node-tslint
-
-.PHONY: node-tslint
-node-tslint:
-	@echo "Running tslint..."
-	@./node_modules/.bin/tslint -t verbose $(NODE_ALL_FILES)
+node-lint: node-prettier-lint node-tslint
 
 .PHONY: node-prettier-lint
 node-prettier-lint:
 	@echo "Running prettier lint..."
 	@./node_modules/.bin/prettier -l $(NODE_ALL_FILES)
 
-.PHONY: node-tslint-fix
-node-tslint-fix:
-	@echo "Running tslint fix..."
-	@./node_modules/.bin/tslint --fix -t verbose $(NODE_ALL_FILES)
+.PHONY: node-tslint
+node-tslint:
+	@echo "Running tslint..."
+	@./node_modules/.bin/tslint -t verbose $(NODE_ALL_FILES)
 
 .PHONY: node-prettier-format
 node-prettier-format:
 	@echo "Running prettier..."
 	@./node_modules/.bin/prettier --write $(NODE_ALL_FILES)
+
+.PHONY: node-tslint-fix
+node-tslint-fix:
+	@echo "Running tslint fix..."
+	@./node_modules/.bin/tslint --fix -t verbose $(NODE_ALL_FILES)
