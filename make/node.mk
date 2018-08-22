@@ -1,7 +1,7 @@
 # This is the default Clever Node Makefile.
 # It is stored in the dev-handbook repo, github.com/Clever/dev-handbook
 # Please do not alter this file directly.
-NODE_MK_VERSION := 0.3.2
+NODE_MK_VERSION := 0.3.3
 SHELL := /bin/bash
 
 # This block checks and confirms that the proper node version is installed.
@@ -79,3 +79,34 @@ node-coffee-edit-check:
 node-update-makefile:
 	@wget https://raw.githubusercontent.com/Clever/dev-handbook/master/make/node.mk -O /tmp/node.mk 2>/dev/null
 	@if ! grep -q $(NODE_MK_VERSION) /tmp/node.mk; then cp /tmp/node.mk node.mk && echo "node.mk updated"; else echo "node.mk is up-to-date"; fi
+
+##########################
+## Linting / Formatting ##
+##########################
+NODE_ALL_FILES := $(shell find -E . -regex '.*\.(ts|tsx|js|jsx)' -not -path "./node_modules/*" -a -not -path "./gen-js/*" -a -not -path "./build/*")
+
+.PHONY: node-format
+node-format: node-prettier-format node-tslint-fix
+
+.PHONY: node-lint
+node-format: node-prettier-lint node-tslint
+
+.PHONY: node-tslint
+node-tslint:
+	@echo "Running tslint..."
+	@./node_modules/.bin/tslint -t verbose $(NODE_ALL_FILES)
+
+.PHONY: node-prettier-lint
+node-prettier-lint:
+	@echo "Running prettier lint..."
+	@./node_modules/.bin/prettier -l $(NODE_ALL_FILES)
+
+.PHONY: node-tslint-fix
+node-tslint-fix:
+	@echo "Running tslint fix..."
+	@./node_modules/.bin/tslint --fix -t verbose $(NODE_ALL_FILES)
+
+.PHONY: node-prettier-format
+node-prettier-format:
+	@echo "Running prettier..."
+	@./node_modules/.bin/prettier --write $(NODE_ALL_FILES)
