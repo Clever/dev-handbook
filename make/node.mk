@@ -83,7 +83,8 @@ node-update-makefile:
 ##########################
 ## Linting / Formatting ##
 ##########################
-NODE_ALL_FILES := $(shell find -E . -regex '.*\.(ts|tsx|js|jsx)' -not -path "./node_modules/*" -a -not -path "./gen-js/*" -a -not -path "./build/*")
+# Match .js, .ts, .jsx, and .tsx files. Ignore directories contaning installed dependencies or auto-generated files.
+NODE_ALL_FILES := $(shell find . -regex '.*\.[jt]s[x]\{0,1\}' -not -path "./node_modules/*" -a -not -path "./gen-js/*" -a -not -path "./build/*")
 
 .PHONY: node-format
 node-format: node-prettier-format node-tslint-fix
