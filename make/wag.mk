@@ -1,6 +1,6 @@
 # This is the default Clever Wag Makefile.
 # Please do not alter this file directly.
-WAG_MK_VERSION := 0.3.2
+WAG_MK_VERSION := 0.3.3
 SHELL := /bin/bash
 SYSTEM := $(shell uname -a | cut -d" " -f1 | tr '[:upper:]' '[:lower:]')
 WAG_INSTALLED := $(shell [[ -e "bin/wag" ]] && bin/wag --version)
@@ -23,7 +23,7 @@ bin/wag: ensure-wag-version-set
 
 jsdoc2md:
 	hash npm 2>/dev/null || (echo "Could not run npm, please install node" && false)
-	hash jsdoc2md 2>/dev/null || npm install -g jsdoc-to-markdown@^2.0.0
+	test -f ./node_modules/.bin/jsdoc2md || npm install jsdoc-to-markdown@^2.0.0
 
 MOCKGEN := $(GOPATH)/bin/mockgen
 $(MOCKGEN):
@@ -37,7 +37,7 @@ wag-generate-deps: bin/wag jsdoc2md $(MOCKGEN)
 # arg2: pkg path
 define wag-generate
 bin/wag -go-package $(2)/gen-go -js-path ./gen-js -file $(1)
-(cd ./gen-js && jsdoc2md index.js types.js > ./README.md)
+(cd ./gen-js && ../node_modules/.bin/jsdoc2md index.js types.js > ./README.md)
 go generate $(2)/gen-go/server $(2)/gen-go/client $(2)/gen-go/models
 endef
 
