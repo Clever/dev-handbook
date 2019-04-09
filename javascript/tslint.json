@@ -1,7 +1,8 @@
 {
   "extends": [
     "tslint-eslint-rules",
-    "tslint-react"
+    "tslint-react",
+    "tslint-react-a11y"
   ],
   "rules": {
     "ban": false,
@@ -16,7 +17,6 @@
       true,
       "spaces"
     ],
-    "interface-name": true,
     "jsdoc-format": true,
     "jsx-alignment": false,
     "jsx-boolean-value": false,
@@ -29,11 +29,14 @@
     "jsx-no-string-ref": false,
     "jsx-self-close": true,
     "jsx-use-translation-function": false,
-    "jsx-wrap-multiline": true,
+    "jsx-wrap-multiline": false,
     "label-position": true,
     "max-line-length": [
       true,
-      120
+      {
+        "limit": 120,
+        "ignore-pattern": "^import"
+      }
     ],
     "member-access": false,
     "no-any": false,
