@@ -100,7 +100,7 @@ node-prettier-lint:
 .PHONY: node-tslint
 node-tslint:
 	@echo "Running tslint..."
-	@./node_modules/.bin/tslint -t verbose $(NODE_ALL_FILES)
+	@./node_modules/.bin/tslint --project tsconfig.json -t verbose $(NODE_ALL_FILES)
 
 .PHONY: node-prettier-format
 node-prettier-format:
@@ -110,4 +110,4 @@ node-prettier-format:
 .PHONY: node-tslint-fix
 node-tslint-fix:
 	@echo "Running tslint fix..."
-	@./node_modules/.bin/tslint --fix -t verbose $(NODE_ALL_FILES)
+	@./node_modules/.bin/tslint --fix --project tsconfig.json -t verbose $(NODE_ALL_FILES)
