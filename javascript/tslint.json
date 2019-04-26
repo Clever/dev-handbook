@@ -5,6 +5,7 @@
     "tslint-react-a11y"
   ],
   "rules": {
+    "await-promise": true,
     "ban": false,
     "class-name": true,
     "comment-format": [
