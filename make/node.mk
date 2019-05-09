@@ -80,6 +80,18 @@ node-update-makefile:
 	@wget https://raw.githubusercontent.com/Clever/dev-handbook/master/make/node.mk -O /tmp/node.mk 2>/dev/null
 	@if ! grep -q $(NODE_MK_VERSION) /tmp/node.mk; then cp /tmp/node.mk node.mk && echo "node.mk updated"; else echo "node.mk is up-to-date"; fi
 
+# node-npm-download is a target for installing dependencies with npm.
+# In CI, install is used to avoid updating the lock file.
+ifndef CI
+define node-npm-download
+npm update
+endef
+else
+define node-npm-download
+npm install
+endef
+endif
+
 ##########################
 ## Linting / Formatting ##
 ##########################
