@@ -3,7 +3,7 @@
 This document describes the workflow, conventions, and best practices we use with regard to Git. If you aren't already familiar with what Git does, how it works, and the basic commands (or you want a refresher), check out these links:
 
 - [Atlassian git tutorial](https://www.atlassian.com/git/tutorial/git-basics) - Covers the basics of configuring git and creating/cloning repos
-- [git - the simple quide](http://rogerdudler.github.io/git-guide/) - Introduces branches and pushing
+- [git - the simple guide](http://rogerdudler.github.io/git-guide/) - Introduces branches and pushing
 - [gittutorial](http://git-scm.com/docs/gittutorial) - A little more detail on all this stuff
 - [Interactive git](https://pcottle.github.io/learnGitBranching/) - With visualizations of branching, committing, etc
 - [Meta link - links to 6 more tutorials](http://sixrevisions.com/resources/git-tutorials-beginners) - Git magic (5) covers a lot of details glossed over by the previous links
