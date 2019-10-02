@@ -25,7 +25,7 @@ define lambda-build-node
 @npm install --quiet --production
 @cp -r node_modules/ bin/node_modules/
 @echo 'Creating zip file...'
-@(cd bin/ && zip -qr $(2).zip index.js node_modules/)
+@(cd bin/ && zip -qr $(2).zip *)
 @echo 'Restoring dev dependencies...'
 @npm install --quiet
 endef
