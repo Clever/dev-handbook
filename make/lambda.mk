@@ -15,17 +15,16 @@ define lambda-build-go
 endef
 
 # lambda-build-node: builds a lambda function written in Node
-# arg1: handler file path (src/handler/index.ts)
-# ark2: app/repo name
+# arg1: app/repo name
 define lambda-build-node
 @echo 'Compiling...'
-@node_modules/.bin/tsc --outDir bin/ $(1)
+@node_modules/.bin/tsc --outDir bin/
 @echo 'Prepping dependencies...'
 @rm -r node_modules/
 @npm install --quiet --production
 @cp -r node_modules/ bin/node_modules/
 @echo 'Creating zip file...'
-@(cd bin/ && zip -qr $(2).zip *)
+@(cd bin/ && zip -qr $(1).zip *)
 @echo 'Restoring dev dependencies...'
 @npm install --quiet
 endef
