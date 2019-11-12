@@ -35,11 +35,11 @@ Scope
 -----
 The following web services are in scope for this program:
 * https://clever.com (main website)
-* https://schools.clever.com (dashbaord for school districts)
+* https://schools.clever.com (dashboard for school districts)
 * https://apps.clever.com (dashboard for applications)
 * https://clever.com/oauth (instant login)
 * https://clever.com/in/ (portal)
-* https://requests.clever.com (districts request access to an app)
+* https://request.clever.com (districts request access to an app)
 
 **Signing up for a school district account**
 
