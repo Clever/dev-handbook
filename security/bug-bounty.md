@@ -25,27 +25,64 @@ In general, the following would not meet the threshold for severity:
 * Issues that can't be obviously exploited, like self-XSS (an XSS that requires the user to enter a payload that is executed against themselves).
 * Login/logout CSRF.
 * Vulnerabilities affecting users of unsupported or unpatched browsers and platforms.
+* Session management vulnerabilities related to sessions being invalidated after email/password change, inactivity, etc.
 
 Clever also reserves the right to deny eligibility for a vulnerability that was previously reported or discovered internally.
 
 * Be the first to report a specific vulnerability.
 * Disclose the vulnerability report directly and exclusively to us. Public disclosure or disclosure to other third parties, including vulnerability brokers, before we address your report will cause you to forfeit the reward.
 
+Payout principles
+-----------------
+
+If a vulnerability doesn’t have an actively exploitable attack (e.g. you’d need access to third-party data, user would need to be on outdated browser we don’t support, etc), but we still fix it, researchers are offered a Clever T-Shirt.
+
+The following guidelines suggest amounts to pay out, but the actual payout will be determined with a broader context of the vulnerability.
+
+## Impact
+Trivial ($50)
+Some low-value user information is leaked or modifiable, or availability is minorly impacted
+
+Minor ($100)
+More critical user information is leaked or modifiable, or available is considerably impacted
+
+Major ($500)
+Significant user information is leaked or modifiable, availability is seriously compromised.
+
+Critical ($1000)
+Remote code execution, or takeover of arbitrary accounts
+
+## Ease of exploitation
+Difficult (.5X)
+Requires complicated attack scenario with highly unusual access (e.g. Clever employee-level knowledge or similar).
+
+Moderate (1X)
+Somewhat difficult to exploit, requires privileged access at some level (e.g. must have a trusted apps account).
+
+Easy (2X)
+Requires only a moderate understanding of security vulnerability discovery and exploitation - no privileged access required
+
+Trivial (3X)
+Can be found by simple vulnerability scanners
+
+
+ 
+
 Scope
 -----
 The following web services are in scope for this program:
 * https://clever.com (main website)
-* https://schools.clever.com (dashbaord for school districts)
+* https://schools.clever.com (dashboard for school districts)
 * https://apps.clever.com (dashboard for applications)
 * https://clever.com/oauth (instant login)
 * https://clever.com/in/ (portal)
-* https://requests.clever.com (districts request access to an app)
+* https://goals.clever.com (Clever goals)
 
 **Signing up for a school district account**
 
 1. Go to the [schools demo signup](https://clever.com/signup/demo) page.
-2. Complete signup, and use a new district name that starts with "#DEMO". Click "Add".
-3. Click "Step 1: Set up accounts"
+2. Complete signup, and use a new district name that starts with "#DEMO" - click "ADD" after creating the name. Select "Other" for role, and enter "bug bounty security researcher". Select "Other" for SIS Type and App fields.
+3. Wait for email and follow instructions to set up account
 4. Select "Custom username and password" for the accounts
 5. For usernames and password, select "Clever Passwords based on SIS Data (Recommended)"
 6. For student information system, select "Other" and use any name.
