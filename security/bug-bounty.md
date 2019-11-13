@@ -65,19 +65,6 @@ Requires only a moderate understanding of security vulnerability discovery and e
 Trivial (3X)
 Can be found by simple vulnerability scanners
 
-
- 
-
-Scope
------
-The following web services are in scope for this program:
-* https://clever.com (main website)
-* https://schools.clever.com (dashboard for school districts)
-* https://apps.clever.com (dashboard for applications)
-* https://clever.com/oauth (instant login)
-* https://clever.com/in/ (portal)
-* https://goals.clever.com (Clever goals)
-
 **Signing up for a school district account**
 
 1. Go to the [schools demo signup](https://clever.com/signup/demo) page.
