@@ -25,6 +25,7 @@ In general, the following would not meet the threshold for severity:
 * Issues that can't be obviously exploited, like self-XSS (an XSS that requires the user to enter a payload that is executed against themselves).
 * Login/logout CSRF.
 * Vulnerabilities affecting users of unsupported or unpatched browsers and platforms.
+* Session management vulnerabilities related to sessions being invalidated after email/password change, inactivity, etc.
 
 Clever also reserves the right to deny eligibility for a vulnerability that was previously reported or discovered internally.
 
@@ -39,13 +40,13 @@ The following web services are in scope for this program:
 * https://apps.clever.com (dashboard for applications)
 * https://clever.com/oauth (instant login)
 * https://clever.com/in/ (portal)
-* https://request.clever.com (districts request access to an app)
+* https://goals.clever.com (Clever goals)
 
 **Signing up for a school district account**
 
 1. Go to the [schools demo signup](https://clever.com/signup/demo) page.
-2. Complete signup, and use a new district name that starts with "#DEMO". Click "Add".
-3. Click "Step 1: Set up accounts"
+2. Complete signup, and use a new district name that starts with "#DEMO" - click "ADD" after creating the name. Select "Other" for role, and enter "bug bounty security researcher". Select "Other" for SIS Type and App fields.
+3. Wait for email and follow instructions to set up account
 4. Select "Custom username and password" for the accounts
 5. For usernames and password, select "Clever Passwords based on SIS Data (Recommended)"
 6. For student information system, select "Other" and use any name.
