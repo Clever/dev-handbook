@@ -32,36 +32,23 @@ Clever also reserves the right to deny eligibility for a vulnerability that was 
 
 Payout principles
 -----------------
+If a vulnerability doesn’t have an actively exploitable attack (e.g. you’d need access to third-party data, user would need to be on outdated browser we don’t support, etc.), but we still fix it, researchers are offered a Clever T-Shirt.
 
-If a vulnerability doesn’t have an actively exploitable attack (e.g. you’d need access to third-party data, user would need to be on outdated browser we don’t support, etc), but we still fix it, researchers are offered a Clever T-Shirt.
+The following guidelines suggest a base amount (impact x ease of exploitation) to pay out, but the actual payout will be determined with a broader context of the vulnerability.
 
-The following guidelines suggest amounts to pay out, but the actual payout will be determined with a broader context of the vulnerability.
+| Impact | Amount | Scope |
+|--------|--------|-------|
+| Trivial | $50 | Some low-value user information is leaked or modifiable, or availability is minorly impacted. |
+| Minor | $100 | More critical user information is leaked or modifiable, or available is considerably impacted. |
+| Major | $500 | Significant user information is leaked or modifiable, availability is seriously compromised. |
+| Critical | $1000 | Remote code execution, or takeover of arbitrary accounts. |
 
-## Impact
-Trivial ($50)
-Some low-value user information is leaked or modifiable, or availability is minorly impacted
-
-Minor ($100)
-More critical user information is leaked or modifiable, or available is considerably impacted
-
-Major ($500)
-Significant user information is leaked or modifiable, availability is seriously compromised.
-
-Critical ($1000)
-Remote code execution, or takeover of arbitrary accounts
-
-## Ease of exploitation
-Difficult (.5X)
-Requires complicated attack scenario with highly unusual access (e.g. Clever employee-level knowledge or similar).
-
-Moderate (1X)
-Somewhat difficult to exploit, requires privileged access at some level (e.g. must have a trusted apps account).
-
-Easy (2X)
-Requires only a moderate understanding of security vulnerability discovery and exploitation - no privileged access required
-
-Trivial (3X)
-Can be found by simple vulnerability scanners
+| Ease of exploitation | Multiplier | Reason |
+|----------------------|------------|--------|
+| Difficult | 0.5x | Requires complicated attack scenario with highly unusual access (e.g. Clever employee-level knowledge or similar). |
+| Moderate | 1x | Somewhat difficult to exploit, requires privileged access at some level (e.g. must have a trusted application account). |
+| Easy | 2x | Requires only a moderate understanding of security vulnerability discovery and exploitation - no privileged access required. |
+| Trivial | 3x | Can be found by simple vulnerability scanners. |
 
 **Signing up for a school district account**
 
