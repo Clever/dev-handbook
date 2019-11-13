@@ -59,6 +59,17 @@ else  \
 fi
 endef
 
+# node-typecheck is a target for calling the typescript type checker on a repo.
+# It takes a single argument which is the entrypoint for the app.
+define node-typecheck
+./node_modules/.bin/ts-node --ignoreWarnings 2307 -e 'import "$(1)"; process.exit(0)' > /tmp/node-mk-typecheck 2>&1 || true
+-@grep "compile TypeScript" /tmp/node-mk-typecheck | wc -l > /tmp/node-mk-typecheck-fail-count
+@if [ "`cat /tmp/node-mk-typecheck-fail-count`" -gt "0" ]; then \
+	cat /tmp/node-mk-typecheck; \
+	exit 1; \
+fi
+endef
+
 # node-coffee-edit-check exits non-zero if this branch adds any lines to
 # coffeescript files. NOTE: Uses the merge-base, as otherwise we would get
 # changes in master that were merged after this branch diverged from master.
