@@ -32,6 +32,42 @@ Clever also reserves the right to deny eligibility for a vulnerability that was 
 * Be the first to report a specific vulnerability.
 * Disclose the vulnerability report directly and exclusively to us. Public disclosure or disclosure to other third parties, including vulnerability brokers, before we address your report will cause you to forfeit the reward.
 
+Payout principles
+-----------------
+
+If a vulnerability doesn’t have an actively exploitable attack (e.g. you’d need access to third-party data, user would need to be on outdated browser we don’t support, etc), but we still fix it, researchers are offered a Clever T-Shirt.
+
+The following guidelines suggest amounts to pay out, but the actual payout will be determined with a broader context of the vulnerability.
+
+## Impact
+Trivial ($50)
+Some low-value user information is leaked or modifiable, or availability is minorly impacted
+
+Minor ($100)
+More critical user information is leaked or modifiable, or available is considerably impacted
+
+Major ($500)
+Significant user information is leaked or modifiable, availability is seriously compromised.
+
+Critical ($1000)
+Remote code execution, or takeover of arbitrary accounts
+
+## Ease of exploitation
+Difficult (.5X)
+Requires complicated attack scenario with highly unusual access (e.g. Clever employee-level knowledge or similar).
+
+Moderate (1X)
+Somewhat difficult to exploit, requires privileged access at some level (e.g. must have a trusted apps account).
+
+Easy (2X)
+Requires only a moderate understanding of security vulnerability discovery and exploitation - no privileged access required
+
+Trivial (3X)
+Can be found by simple vulnerability scanners
+
+
+ 
+
 Scope
 -----
 The following web services are in scope for this program:
