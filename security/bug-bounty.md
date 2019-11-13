@@ -1,4 +1,4 @@
-Clever is committed to working with security experts around the world to stay up to date with the latest security techniques. If you have discovered a security issue that you believe we should know about, we'd love to hear from you. You can read about our security and privacy efforts on our [security page](https://clever.com/security).
+Clever is committed to working with security experts around the world to stay up to date with the latest security techniques. If you have discovered a security issue that you believe we should know about, we'd love to hear from you. You can read about our security and privacy efforts on our [security page](https://clever.com/trust/security).
 
 Coordinated disclosure rules
 ----------------------------
