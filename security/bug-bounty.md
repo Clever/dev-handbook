@@ -50,25 +50,41 @@ The following guidelines suggest a base amount (impact x ease of exploitation) t
 | Easy | 2x | Requires only a moderate understanding of security vulnerability discovery and exploitation - no privileged access required. |
 | Trivial | 3x | Can be found by simple vulnerability scanners. |
 
-**Signing up for a school district account**
+Setting up accounts
+-------------------
+Many of our web services require authentication in order to access them. To assist in vulnerability finding, follow the appropriate instructions for the respective web service.
 
-1. Go to the [schools demo signup](https://clever.com/signup/demo) page.
-2. Complete signup, and use a new district name that starts with "#DEMO" - click "ADD" after creating the name. Select "Other" for role, and enter "bug bounty security researcher". Select "Other" for SIS Type and App fields.
-3. Wait for email and follow instructions to set up account
-4. Select "Custom username and password" for the accounts
-5. For usernames and password, select "Clever Passwords based on SIS Data (Recommended)"
-6. For student information system, select "Other" and use any name.
-7. Upload sample data through the [Web Upload](https://schools.clever.com/settings/system/upload) interface, which you can find under Settings => Sync. You can find a set of sample .csv files there.
+**Dashboard for school districts**
+1. Go to the [schools demo signup](https://go.clever.com/districtsignup) page.
+2. Fill out the form, paying special attention to the following fields:
+  * Use a district name that starts with "#DEMO".
+  * Select "Other" for role, and enter "Bug bounty security researcher" for title.
+  * Select "Other" for Student Information System (SIS).
+3. Wait for the onboarding email to setup your password on first login.
+4. On login, you’ll need to setup rostering to create test teacher and student accounts.
+  * Select “Sync” on the left-hand sidebar.
+  * Select “Other” as the SIS type.
+  * Upload some sample students through the [Web Upload](https://schools.clever.com/sync/upload) (accessible through Sync => Upload). Some example CSVs are provided on the page.
+5. After some example data is synced with Clever, you can create the logins for those accounts.
+  * Select “Portal” on the left-hand sidebar.
+  * Select “[SSO Settings](https://schools.clever.com/instant-login/settings)” on the sub sidebar.
+  * Click on the “Add Login Method” button.
+  * Click on “Clever Passwords Authentication” to generate usernames and passwords.
 
-**Signing up for an application account**
-
+**Dashboard for applications**
 1. Go to the [application developer signup](https://apps.clever.com/signup) page.
-2. Complete signup, and use an application name that starts with "#DEMO".
-3. From the [Application](https://apps.clever.com/partner/applications) page, you can access the District Signup URL. You can visit that link while signed in as a school district user to add the application and share data.
-4. Once the district has approved the application, you can enable Instant Login for them to test it.
+2. Fill out the form, paying special attention to the following fields:
+  * Use an application name that starts with "#DEMO".
 
-For more more information, see the [Clever Developer documentation](http://dev.clever.com/).
+Interacting between accounts
+----------------------------
+With a school district account and an application account, you can authorize using the application from the school district, to then test Instant Login.
 
-You can also see a demo of Instant Login [here](https://www.youtube.com/watch?v=tblg884yjQU).
+**Testing Instant Login**
+1. Sign in using your application account.
+2. From the [Application](https://apps.clever.com/partner/applications) page, you can access the District Signup URL. This link allows your created school district to add and authorize the application to share data.
+3. Once your district has approved the application, you can enable Instant Login to test it.
+
+For more information, see the [Clever Developer documentation](http://dev.clever.com/).
 
 Thank you for helping keep Clever safe!
