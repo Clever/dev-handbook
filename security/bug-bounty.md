@@ -2,12 +2,10 @@ Clever is committed to working with security experts around the world to stay up
 
 Coordinated disclosure rules
 ----------------------------
-
-* Please let us know as soon as possible upon discovery of a potential security issue, and we’ll make every effort to quickly correct the issue.
-* Provide us with a reasonable amount of time to fix the issue before publishing it elsewhere.
-* Make a good faith effort to not leak, manipulate, or destroy any user data, or affect the availability of the site. Please only test against accounts you own yourself or with explicit permission of the account holder. Do not attempt to access data that does not belong to your test accounts.
-* Please refrain from automated/scripted account creation.
-* Please use demo district accounts. If you sign up as a regular district, instead of following the steps below, your report will not be eligible for a bounty.
+* Act in good faith. Do not leak, manipulate, or destroy any user data, or affect the availability of the site. Test against accounts you yourself own, or with explicit permission of the account holder. Do not attempt to access data that does not belong to your test account(s).
+* Alert us as soon as possible. Let us know upon discovery of a potential security issue, and we’ll make every effort to quickly correct the issue.
+* Let us triage, discuss, then publish. Provide us with a reasonable amount of time to fix the issue, and discuss with us before publishing it elsewhere.
+* Please use demo accounts. Not following the account creation steps below will render your report ineligible for a bounty. This includes automated/scripted account creation.
 
 Bounty eligibility
 ------------------
