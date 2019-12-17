@@ -9,3 +9,4 @@ All the things you need to know about being a developer at Clever.
 * [Testing](./testing.md)
 * [Logging](./logging.md)
 * [Documentation](./documentation.md)
+* [Running Locally](./runninglocally.md)
