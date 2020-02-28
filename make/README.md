@@ -90,3 +90,7 @@ swagger-generate: validate swagger-generate-go-server-deps swagger-generate-java
 	$(call swagger-generate-javascript-client,$(SWAGGER_CONFIG),$(SWAGGER_CLIENT_NPM_PACKAGE),$(VERSION))
 	$(call swagger-generate-go-client,$(SWAGGER_CONFIG))
 ```
+
+# SQL
+
+- install and run safesql (a Golang SQL injection checking tool)
