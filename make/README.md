@@ -94,3 +94,5 @@ swagger-generate: validate swagger-generate-go-server-deps swagger-generate-java
 # SQL
 
 - install and run safesql (a Golang SQL injection checking tool)
+
+Safesql provides an option to ignore a line or query. If you plan to ignore a safesql failure, discuss it with security before release. 
