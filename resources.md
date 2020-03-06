@@ -13,4 +13,4 @@ Development tools we use, and resources to learn more about them.
 
 ### JavaScript
 
-- [Five Patterns to Help You Tame Asynchronous JavaScript](http://tech.pro/blog/1402/five-patterns-to-help-you-tame-asynchronous-javascript)
+- [Five Patterns to Help You Tame Asynchronous JavaScript](http://sking7.github.io/articles/389411742.html)
