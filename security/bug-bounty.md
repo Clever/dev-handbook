@@ -73,7 +73,7 @@ These products all work together. To get access to accounts for testing, follow 
 **Next, get access to the sandbox district account**
 1. Go to the [schools password reset](https://clever.com/oauth/district_admin/recover-account) page.
 2. Enter your email address with "+hackerone" appened to the name (e.g. if the email you used for the application developer signup was `name@example.com`, enter `name+hackerone@example.com`).
-3. Wait for the password rest email to set up your password.
+3. Wait for the password reset email to set up your password.
 4. Go to your [portal settings](https://schools.clever.com/portal/settings) and copy your portal URL.
 
 **Access the portal**
