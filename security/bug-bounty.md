@@ -52,39 +52,42 @@ The following guidelines suggest a base amount (impact x ease of exploitation) t
 
 Setting up accounts
 -------------------
-Many of our web services require authentication in order to access them. To assist in vulnerability finding, follow the appropriate instructions for the respective web service.
 
-**Dashboard for school districts**
-1. Go to the [schools demo signup](https://go.clever.com/districtsignup) page.
-2. Fill out the form, paying special attention to the following fields:
-  * Use a district name that starts with "#DEMO".
-  * Select "Other" for role, and enter "Bug bounty security researcher" for title.
-  * Select "Other" for Student Information System (SIS).
-3. Wait for the onboarding email to setup your password on first login.
-4. On login, you’ll need to setup rostering to create test teacher and student accounts.
-  * Select “Sync” on the left-hand sidebar.
-  * Select “Other” as the SIS type.
-  * Upload some sample students through the [Web Upload](https://schools.clever.com/sync/upload) (accessible through Sync => Upload). Some example CSVs are provided on the page.
-5. After some example data is synced with Clever, you can create the logins for those accounts.
-  * Select “Portal” on the left-hand sidebar.
-  * Select “[SSO Settings](https://schools.clever.com/instant-login/settings)” on the sub sidebar.
-  * Click on the “Add Login Method” button.
-  * Click on “Clever Passwords Authentication” to generate usernames and passwords.
+Clever's bug bounty has five products in scope:
+* Clever Portal (https://clever.com)
+* Schools Dashboard (https://schools.clever.com)
+* Application Dashboard (https://apps.clever.com)
+* Clever API (https://api.clever.com)
+* Clever Family Portal (https://family.clever.com)
 
-**Dashboard for applications**
+These products all work together. To get access to accounts for testing, follow these instructions:
+
+**Create an application developer account**
 1. Go to the [application developer signup](https://apps.clever.com/signup) page.
 2. Fill out the form, paying special attention to the following fields:
+  * Use "HackerOne" as company name. *This is important, otherwise you won't be able to access the sandbox district account*.
+  * Use an email address that you have access to. Do not use a "+" sign alias, as we will create a separate account using one.
   * Use an application name that starts with "#DEMO".
+  * The other fields don't matter or can be changed later.
 
-Interacting between accounts
-----------------------------
-With a school district account and an application account, you can authorize using the application from the school district, to then test Instant Login.
+**Next, get access to the sandbox district account**
+1. Go to the [schools password reset](https://clever.com/oauth/district_admin/recover-account) page.
+2. Enter your email address with "+hackerone" appened to the name (e.g. if the email you used for the application developer signup was `name@example.com`, enter `name+hackerone@example.com`).
+3. Wait for the password reset email to set up your password.
+4. Go to your [portal settings](https://schools.clever.com/portal/settings) and copy your portal URL.
 
-**Testing Instant Login**
-1. Sign in using your application account.
-2. From the [Application](https://apps.clever.com/partner/applications) page, you can access the District Signup URL. This link allows your created school district to add and authorize the application to share data.
-3. Once your district has approved the application, you can enable Instant Login to test it.
+**Access the portal**
+1. By default, the sandbox district portal is configured to use student and teacher numbers as the username and password.
+2. Visit the [data browser](https://schools.clever.com/browser) and click on a teacher or student to get their student or teacher number.
+3. Visit the portal URL and log in as a teacher or student.
 
-For more information, see the [Clever Developer documentation](http://dev.clever.com/).
+ **Access the API**
+For information about the API, see the [Clever Developer documentation](http://dev.clever.com/).
 
-Thank you for helping keep Clever safe!
+**Access the Family Portal**
+1. Go to the [Family Portal settings](https://schools.clever.com/family-portal) page.
+2. Select the "Upload a .csv file for parent/guardian contacts" option, and configure at least one student with an email that you have access to.
+3. Click "Send Invites".
+4. Wait for the email, and accept the invite to create a Family Portal account.
+
+Please reach out with any questions to security@clever.com. Thank you for helping keep Clever safe!
