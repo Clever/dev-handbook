@@ -23,7 +23,7 @@ bin/wag: ensure-wag-version-set
 
 jsdoc2md:
 	hash npm 2>/dev/null || (echo "Could not run npm, please install node" && false)
-	test -f ./node_modules/.bin/jsdoc2md || npm install jsdoc-to-markdown@^2.0.0
+	test -f ./node_modules/.bin/jsdoc2md || npm install jsdoc-to-markdown@^4.0.0
 
 # wag-generate-deps installs all dependencies needed for wag generate.
 wag-generate-deps: bin/wag jsdoc2md
