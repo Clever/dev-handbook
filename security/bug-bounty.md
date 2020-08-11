@@ -39,7 +39,7 @@ The following guidelines suggest a base amount (impact x ease of exploitation) t
 | Impact | Amount | Scope |
 |--------|--------|-------|
 | Trivial | $50 | Some low-value user information is leaked or modifiable, or availability is minorly impacted. |
-| Minor | $100 | More critical user information is leaked or modifiable, or available is considerably impacted. |
+| Minor | $100 | More critical user information is leaked or modifiable, or availability is considerably impacted. |
 | Major | $500 | Significant user information is leaked or modifiable, availability is seriously compromised. |
 | Critical | $1000 | Remote code execution, or takeover of arbitrary accounts. |
 
