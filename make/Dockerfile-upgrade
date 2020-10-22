@@ -1,0 +1,11 @@
+FROM golang:1.13-stretch
+
+COPY ark/ /go/src/github.com/Clever/ark/
+COPY golang-v1.mk /go/src/github.com/Clever/dev-handbook/make/golang-v1.mk
+COPY golang.mk /go/src/github.com/Clever/dev-handbook/make/golang.mk
+
+WORKDIR /go/src/github.com/Clever/ark
+
+COPY bootstrap.sh bootstrap.sh
+
+ENTRYPOINT ["/bin/bash"]
