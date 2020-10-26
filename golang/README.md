@@ -114,10 +114,14 @@ Drone should build your executable and it should be copied into Docker:
 
 ## Dependencies
 
-We use `dep` to manage golang dependencies. See our [`dep` documentation](./dep.md).
+We use `go mod` to manage golang dependencies. See [go/mod](https://clever.atlassian.net/wiki/spaces/ENG/pages/1149337706/go+modules).
 
 
 ### Deprecated tooling
+
+### Dep
+
+See our [`dep` documentation](./dep.md).
 
 ### Glide
 
