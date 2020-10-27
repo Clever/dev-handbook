@@ -1,12 +1,1 @@
-{
-  "overrides": [
-    {
-      "files": "*",
-      "options": {
-        "trailingComma": "all",
-        "bracketSpacing": true,
-        "printWidth": 100
-      }
-    }
-  ]
-}
+"@clever/prettier-config"
