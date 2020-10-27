@@ -35,6 +35,8 @@ _ := $(if  \
 endef
 
 # FGT is a utility that exits with 1 whenever any stderr/stdout output is recieved.
+# We pin its version since its a simple tool that does its job as-is;
+# so we're defended against it breaking or changing in the future.
 FGT := $(GOPATH)/bin/fgt
 $(FGT):
 	go get github.com/GeertJohan/fgt@262f7b11eec07dc7b147c44641236f3212fee89d
@@ -43,6 +45,8 @@ golang-ensure-curl-installed:
 	@command -v curl >/dev/null 2>&1 || { echo >&2 "curl not installed. Please install curl."; exit 1; }
 
 # Golint is a tool for linting Golang code for common errors.
+# We pin its version because an update could add a new lint check which would make
+# previously passing tests start failing without changing our code.
 GOLINT := $(GOPATH)/bin/golint
 $(GOLINT):
 	go get golang.org/x/lint/golint@738671d3881b9731cc63024d5d88cf28db875626
