@@ -32,10 +32,14 @@ wag-generate-deps: bin/wag jsdoc2md
 # arg1: path to swagger.yml
 # arg2: pkg path
 define wag-generate
-/bin/sh -c 'if [ -f go.mod ]; \
-then bin/wag -output-path gen-go -js-path ./gen-js -file $(1); \
-else bin/wag -go-package $(2)/gen-go -js-path ./gen-js -file $(1); \
-fi'
+bin/wag -go-package $(2)/gen-go -js-path ./gen-js -file $(1)
+(cd ./gen-js && ../node_modules/.bin/jsdoc2md index.js types.js > ./README.md)
+endef
+
+# wag-generate-mod is a target for generating code from a swagger.yml using wag for modules repos
+# arg1: path to swagger.yml
+define wag-generate-mod
+bin/wag -output-path gen-go -js-path ./gen-js -file $(1)
 (cd ./gen-js && ../node_modules/.bin/jsdoc2md index.js types.js > ./README.md)
 endef
 
