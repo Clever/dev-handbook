@@ -1,6 +1,6 @@
 # This is the default Clever Wag Makefile.
 # Please do not alter this file directly.
-WAG_MK_VERSION := 0.4.2
+WAG_MK_VERSION := 0.4.3
 SHELL := /bin/bash
 SYSTEM := $(shell uname -a | cut -d" " -f1 | tr '[:upper:]' '[:lower:]')
 WAG_INSTALLED := $(shell [[ -e "bin/wag" ]] && bin/wag --version)
@@ -33,6 +33,13 @@ wag-generate-deps: bin/wag jsdoc2md
 # arg2: pkg path
 define wag-generate
 bin/wag -go-package $(2)/gen-go -js-path ./gen-js -file $(1)
+(cd ./gen-js && ../node_modules/.bin/jsdoc2md index.js types.js > ./README.md)
+endef
+
+# wag-generate-mod is a target for generating code from a swagger.yml using wag for modules repos
+# arg1: path to swagger.yml
+define wag-generate-mod
+bin/wag -output-path gen-go -js-path ./gen-js -file $(1)
 (cd ./gen-js && ../node_modules/.bin/jsdoc2md index.js types.js > ./README.md)
 endef
 
