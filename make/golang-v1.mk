@@ -150,6 +150,26 @@ else \
 fi;
 endef
 
+# golang-bump-major-version bumps the module's major version in go.mod, 
+# VERSION, swagger.yml, and non-vendored Go files.
+define golang-bump-major-version
+# bump go.mod
+$(eval $@OLD_VERSION := $(shell cat swagger.yml | grep 'version:\s[0-9].[0-9].[0-9]' | sed 's/[:|[:alpha:]|[:space:]]//g' | cut -d. -f1 ||\ 
+cat VERSION.yml | sed 's/[:|[:alpha:]|[:space:]]//g' | cut -d. -f1))
+$(eval $@NEW_VERSION := $(shell echo $$(($($@OLD_VERSION)+1))))
+sed -i '' '1s/v$(1)/v$($@NEW_VERSION)/' go.mod 
+
+# if wag, bump wag version
+test -f swagger.yml && sed -i '' 's/version: $(1).[[:digit:]].[[:digit:]]/version: $($@NEW_VERSION).0.0/' swagger.yml || true
+# if has VERSION file, bump version
+test -f VERSION && sed -i '' 's/$(1).[[:digit:]].[[:digit:]]/$($@NEW_VERSION).0.0/' VERSION || true
+
+# update imports in all *.go files
+$(eval $@_ESC_OLD_PKG :=  $(shell head -1 go.mod | sed 's/module //' | sed 's/\//\\\//g'))
+$(eval $@_ESC_NEW_PKG := $(shell head -1 go.mod | sed '1s/v$(1)/v$($@NEW_VERSION)/' | sed 's/module //' | sed 's/\//\\\//g'))
+find . -name '*.go' -not -path './vendor/*' -print0 | xargs -0 sed -i '' 's/$($@_ESC_OLD_PKG)/$($@_ESC_NEW_PKG)/'
+endef
+
 # golang-update-makefile downloads latest version of golang.mk
 golang-update-makefile:
 	@wget https://raw.githubusercontent.com/Clever/dev-handbook/master/make/golang-v1.mk -O /tmp/golang.mk 2>/dev/null
