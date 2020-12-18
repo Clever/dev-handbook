@@ -155,7 +155,7 @@ endef
 define golang-bump-major-version
 # bump go.mod
 $(eval $@OLD_VERSION := $(shell cat swagger.yml | grep 'version:\s[0-9].[0-9].[0-9]' | sed 's/[:|[:alpha:]|[:space:]]//g' | cut -d. -f1 ||\ 
-cat VERSION.yml | sed 's/[:|[:alpha:]|[:space:]]//g' | cut -d. -f1))
+cat VERSION | sed 's/[:|[:alpha:]|[:space:]]//g' | cut -d. -f1))
 $(eval $@NEW_VERSION := $(shell echo $$(($($@OLD_VERSION)+1))))
 sed -i '' '1s/v$(1)/v$($@NEW_VERSION)/' go.mod 
 
