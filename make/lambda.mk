@@ -1,7 +1,7 @@
 # This is the default Clever lambda Makefile.
 # It is stored in the dev-handbook repo, github.com/Clever/dev-handbook
 # Please do not alter this file directly.
-LAMBDA_MK_VERSION := 0.2.3
+LAMBDA_MK_VERSION := 0.2.4
 SHELL := /bin/bash
 
 GOPATH ?= $(HOME)/go
@@ -27,6 +27,8 @@ define lambda-build-node
 @rm -r node_modules/
 @npm install --quiet --production
 @cp -r node_modules/ bin/node_modules/
+@echo 'Copying kvconfig.yml...'	
+@cp kvconfig.yml bin/kvconfig.yml
 @echo 'Creating zip file...'
 @(cd bin/ && zip -qr $(1).zip *)
 @echo 'Restoring dev dependencies...'
