@@ -7,11 +7,9 @@ Coordinated disclosure rules
 * Let us triage, discuss, then publish. Provide us with a reasonable amount of time to fix the issue, and discuss with us before publishing it elsewhere.
 * Please use demo accounts. Not following the account creation steps below will render your report ineligible for a bounty. This includes automated/scripted account creation.
 * Using automated scanners and testing tools to send large number of requests (more than 1000 per day per endpoint) against the endpoints in the products, without prior notice or alerting to security@clever.com could render your report ineligible for bounty and could inevitably prompt us to disallow you from our program. If you are reporting a vulnerability regarding rate limiting or denial of service, you should let us know about the email address, account name, account ID, or other identifier associated with your testing setup, so that we can filter and attribute those large number of requests to you. 
-
-** You should include a custom HTTP header in all your traffic. For example:
-A header that includes your username: X-Bug-Bounty:HackerOne-<username>
-A header that includes a unique or identifiable flag X-Bug-Bounty:ID-<sha256-flag>
-
+* You should include a custom HTTP header in all your traffic. For example:
+  * A header that includes your username: X-Bug-Bounty: `HackerOne-Username`
+  * A header that includes a unique or identifiable flag X-Bug-Bounty:`Unique-ID`
 
 Bounty eligibility
 ------------------
