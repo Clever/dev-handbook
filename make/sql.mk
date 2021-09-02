@@ -1,7 +1,7 @@
 # This is the default Clever SQL Makefile.
 # It is stored in the dev-handbook repo, github.com/Clever/dev-handbook
 # Please do not alter this file directly.
-SQL_MK_VERSION := 0.0.3
+SQL_MK_VERSION := 0.0.4
 
 # USAGE:
 # - safesql
@@ -24,7 +24,7 @@ GOPATH=$(shell echo $$GOPATH | cut -d: -f1)
 # run-safesql runs safesql on the pkg
 # arg1: pkg path
 define run-safesql
-@go get github.com/stripe/safesql
+@go install -mod=readonly github.com/stripe/safesql@latest
 @echo ""
 @echo "SCANNING SQL $(1)..."
 $(GOPATH)/bin/safesql $(1)
