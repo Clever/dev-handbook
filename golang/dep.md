@@ -1,5 +1,17 @@
 # Dep
 
+## Dep Obsolete
+
+Dep is obsolete.  It is replaced by Go Modules.
+
+```bash
+go mod help
+```
+
+## For older systems 
+
+For repos not yet converted to go modules.
+
 `dep` is a prototype dependency management tool for Go.
 `dep` is the official experiment, but not yet the official tool.
 

@@ -1,12 +1,15 @@
 # This is the default Clever Wag Makefile.
 # Please do not alter this file directly.
-WAG_MK_VERSION := 0.4.3
+WAG_MK_VERSION := 0.4.4
 SHELL := /bin/bash
 SYSTEM := $(shell uname -a | cut -d" " -f1 | tr '[:upper:]' '[:lower:]')
 WAG_INSTALLED := $(shell [[ -e "bin/wag" ]] && bin/wag --version)
 WAG_LATEST = $(shell curl --retry 5 -f -s https://api.github.com/repos/Clever/wag/releases/latest | grep tag_name | cut -d\" -f4)
 
-.PHONY: bin/wag wag-update-makefile wag-generate-deps ensure-wag-version-set
+.PHONY: wag-update-makefile ensure-wag-version-set wag-generate-deps
+
+# identify path to jsdoc2md which makes it a file target
+VPATH = node_modules/.bin
 
 ensure-wag-version-set:
 	@ if [[ "$(WAG_VERSION)" = "" ]]; then \
@@ -20,6 +23,7 @@ bin/wag: ensure-wag-version-set
 	@echo "Checking for wag updates..."
 	@echo "Using wag version $(WAG_VERSION)"
 	@[[ "$(WAG_VERSION)" != "$(WAG_INSTALLED)" ]] && echo "Updating wag..." && curl --retry 5 -f -sL https://github.com/Clever/wag/releases/download/$(WAG_VERSION)/wag-$(WAG_VERSION)-$(SYSTEM)-amd64.tar.gz | tar -xz -C bin || true
+	@[[ "$(WAG_VERSION)" != "$(WAG_INSTALLED)" ]] && touch swagger.yml || true
 
 jsdoc2md:
 	hash npm 2>/dev/null || (echo "Could not run npm, please install node" && false)

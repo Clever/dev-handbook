@@ -1,5 +1,17 @@
 # Godep
 
+## Godep Obsolete
+
+Godep is obsolete.  It is replaced by Go Modules.
+
+```bash
+go mod help
+```
+
+## For older systems 
+
+If your system is not yet converted to modules.
+
 [TL;DR; how do I do X](#how-do-i)
 
 Godep is a tool for vendoring dependencies.

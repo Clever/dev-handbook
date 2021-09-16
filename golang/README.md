@@ -13,7 +13,7 @@ This is highly suggested before you begin writing Go code for production.
 
 ## Golang versions
 
-All golang services written by Clever should be on Go 1.8.
+All golang services written by Clever should be on Go 1.16.
 
 ## Style
 
@@ -35,7 +35,6 @@ let g:syntastic_go_checkers = ['golint', 'govet']
 * Makefiles: A Go package should have a Makefile that runs "golint" on all files. See the [sfncli Makefile](https://github.com/Clever/sfncli/blob/master/Makefile) as an example.
 
 - toolchain version check
-- dep
 - testing
   - gofmt
   - golint
