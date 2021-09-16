@@ -1,5 +1,17 @@
 # Glide
 
+## Glide Obsolete
+
+Glide is obsolete.  It is replaced by Go Modules.
+
+```bash
+go mod help
+```
+
+## For older systems 
+
+For repos not yet converted to go modules.
+
 Glide is a tool for managing golang dependencies. You can use it to update, pin, and fetch dependencies. Some of the advantages of glide are:
   - Supports semantic versioning
   - No need to checkin the vendor directory
