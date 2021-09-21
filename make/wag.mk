@@ -1,6 +1,6 @@
 # This is the default Clever Wag Makefile.
 # Please do not alter this file directly.
-WAG_MK_VERSION := 0.4.4
+WAG_MK_VERSION := 0.5.0
 SHELL := /bin/bash
 SYSTEM := $(shell uname -a | cut -d" " -f1 | tr '[:upper:]' '[:lower:]')
 WAG_INSTALLED := $(shell [[ -e "bin/wag" ]] && bin/wag --version)
@@ -31,6 +31,20 @@ jsdoc2md:
 
 # wag-generate-deps installs all dependencies needed for wag generate.
 wag-generate-deps: bin/wag jsdoc2md
+
+# wag-yaml-aliases generate code workaround to use YAML aliases in swagger.yml for modules repos
+# wag parses the file into go-yaml's MapSlice, which does not handle out of order aliases: https://github.com/go-yaml/yaml/issues/438
+# arg1: path to swagger.yml
+# arg2: pkg path
+define wag-yaml-aliases
+@if [ -z "$$CI" ]; then \
+	cat $(1) | python3 -c "import sys, yaml, json; y=yaml.load(sys.stdin.read()); print(yaml.dump(y))" > /tmp/swagger.catapult.yml; \
+	bin/wag -output-path gen-go -js-path ./gen-js -file /tmp/swagger.catapult.yml; \
+	(cd ./gen-js && ../node_modules/.bin/jsdoc2md index.js types.js > ./README.md); \
+else \
+	echo "skipping wag in Circle CI"; \
+fi;
+endef
 
 # wag-generate is a target for generating code from a swagger.yml using wag
 # arg1: path to swagger.yml
