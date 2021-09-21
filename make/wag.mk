@@ -1,6 +1,10 @@
 # This is the default Clever Wag Makefile.
 # Please do not alter this file directly.
+<<<<<<< HEAD
 WAG_MK_VERSION := 0.5.0
+=======
+WAG_MK_VERSION := 0.4.4
+>>>>>>> master
 SHELL := /bin/bash
 SYSTEM := $(shell uname -a | cut -d" " -f1 | tr '[:upper:]' '[:lower:]')
 WAG_INSTALLED := $(shell [[ -e "bin/wag" ]] && bin/wag --version)
