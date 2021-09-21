@@ -35,7 +35,6 @@ wag-generate-deps: bin/wag jsdoc2md
 # wag-yaml-aliases generate code workaround to use YAML aliases in swagger.yml for modules repos
 # wag parses the file into go-yaml's MapSlice, which does not handle out of order aliases: https://github.com/go-yaml/yaml/issues/438
 # arg1: path to swagger.yml
-# arg2: pkg path
 define wag-yaml-aliases
 @if [ -z "$$CI" ]; then \
 	cat $(1) | python3 -c "import sys, yaml, json; y=yaml.load(sys.stdin.read()); print(yaml.dump(y))" > /tmp/swagger.catapult.yml; \
