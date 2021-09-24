@@ -1,6 +1,6 @@
 # This is the default Clever Wag Makefile.
 # Please do not alter this file directly.
-WAG_MK_VERSION := 0.5.0
+WAG_MK_VERSION := 0.5.1
 SHELL := /bin/bash
 SYSTEM := $(shell uname -a | cut -d" " -f1 | tr '[:upper:]' '[:lower:]')
 WAG_INSTALLED := $(shell [[ -e "bin/wag" ]] && bin/wag --version)
@@ -37,7 +37,7 @@ wag-generate-deps: bin/wag jsdoc2md
 # arg1: path to swagger.yml
 define wag-yaml-aliases
 @if [ -z "$$CI" ]; then \
-	cat $(1) | python3 -c "import sys, yaml, json; y=yaml.load(sys.stdin.read()); print(yaml.dump(y))" > /tmp/swagger.catapult.yml; \
+	cat $(1) | python3 -c "import sys, yaml, json; y=yaml.load(sys.stdin.read(), yaml.Loader); print(yaml.dump(y))" > /tmp/swagger.catapult.yml; \
 	bin/wag -output-path gen-go -js-path ./gen-js -file /tmp/swagger.catapult.yml; \
 	(cd ./gen-js && ../node_modules/.bin/jsdoc2md index.js types.js > ./README.md); \
 else \
