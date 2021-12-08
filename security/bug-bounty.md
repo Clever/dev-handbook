@@ -88,10 +88,10 @@ These products all work together. To get access to accounts for testing, follow 
  **Access the API**
 For information about the API, see the [Clever Developer documentation](http://dev.clever.com/).
 
-**Access the Family Portal**
-1. Go to the [Family Portal settings](https://schools.clever.com/family-portal) page.
+**Access the Clever Parents (previously Family Portal)**
+1. Go to the [Clever Parents settings](https://schools.clever.com/clever-parents/invitations) page.
 2. Select the "Upload a .csv file for parent/guardian contacts" option, and configure at least one student with an email that you have access to.
 3. Click "Send Invites".
-4. Wait for the email, and accept the invite to create a Family Portal account.
+4. Wait for the email, and accept the invite to create a Clever Parents account.
 
 Please reach out with any questions to security@clever.com. Thank you for helping keep Clever safe!
