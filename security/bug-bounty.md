@@ -21,7 +21,7 @@ Vulnerabilities are eligible for the bug bounty program if they meet a minimum s
 
 In general, the following would not meet the threshold for severity:
 
-* Denial of service, spamming, email modifications, or causing annoyance.
+* Denial of service, spamming, email content modifications, or causing annoyance.
 * Issues with Clever's email server configuration (SPF, DKIM, and DMARC) or name server configuration (DNSSEC).
 * Issues that can't be obviously exploited, like self-XSS (an XSS that requires the user to enter a payload that is executed against themselves).
 * Login/logout CSRF.
