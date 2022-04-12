@@ -1,7 +1,7 @@
 # This is the default Clever lambda Makefile.
 # It is stored in the dev-handbook repo, github.com/Clever/dev-handbook
 # Please do not alter this file directly.
-LAMBDA_MK_VERSION := 0.2.4
+LAMBDA_MK_VERSION := 0.3.0
 SHELL := /bin/bash
 
 GOPATH ?= $(HOME)/go
