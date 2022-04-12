@@ -30,6 +30,7 @@ In general, the following would not meet the threshold for severity:
 * Login/logout CSRF.
 * Session management vulnerabilities related to sessions being invalidated after email/password change, inactivity, etc.
 * Vulnerabilities affecting users of unsupported or unpatched browsers and platforms.
+* Missing best practices in SSL/TLS configuration.
 * Vulnerabilities on sites hosted by third-parties unless they lead to a vulnerability on the Clever services.
 
 Clever also reserves the right to deny eligibility for a vulnerability that was previously reported or discovered internally.
