@@ -1,16 +1,16 @@
 # This is the default Clever lambda Makefile.
 # It is stored in the dev-handbook repo, github.com/Clever/dev-handbook
 # Please do not alter this file directly.
-LAMBDA_MK_VERSION := 0.2.4
+LAMBDA_MK_VERSION := 0.3.0
 SHELL := /bin/bash
 
 GOPATH ?= $(HOME)/go
 
-# lambda-build-go: builds a lambda function written in Go
+# lambda-build-go: builds a lambda function written in Go to run on Arm64 architecture
 # arg1: pkg path
 # arg2: executable name
 define lambda-build-go
-@GOOS=linux go build -o bin/$(2) $(1)
+@GOOS=linux GOARCH=arm64 go build -o bin/$(2) $(1)
 # provided.al2 requires executable to be named `boostrap`
 # During migration include both `bootstrap` and `$(2)` in the
 # zip file, and once everything is on al2, remove `$(2)`
