@@ -32,7 +32,7 @@ In general, the following would not meet the threshold for severity:
 * Vulnerabilities affecting users of unsupported or unpatched browsers and platforms.
 * Missing best practices in SSL/TLS configuration.
 * Vulnerabilities on sites hosted by third-parties unless they lead to a vulnerability on the Clever services.
-* Vulnerabilities using public API keys for Launchdarkly and other data tracking (e.g. Segment) are NOT in scope, and will get you disqualified from program.
+  * This includes denial of service or causing annoyance on third-parties used by Clever. Actions falling underneath these services will get you disqualified from the program.
 
 
 Clever also reserves the right to deny eligibility for a vulnerability that was previously reported or discovered internally.
