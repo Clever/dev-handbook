@@ -1,7 +1,7 @@
 # This is the default Clever Golang Makefile.
 # It is stored in the dev-handbook repo, github.com/Clever/dev-handbook
 # Please do not alter this file directly.
-GOLANG_MK_VERSION := 1.0.1
+GOLANG_MK_VERSION := 1.0.2
 
 SHELL := /bin/bash
 SYSTEM := $(shell uname -a | cut -d" " -f1 | tr '[:upper:]' '[:lower:]')
@@ -102,6 +102,21 @@ define golang-test-strict
 @go test -v -race $(1)
 endef
 
+# golang-test-strict-cover-deps is here for consistency
+golang-test-strict-cover-deps:
+
+# golang-test-strict-cover uses the Go toolchain to run all tests in the pkg with the race and cover flag.
+# appends coverage results to coverage.txt
+# arg1: pkg path
+define golang-test-strict-cover
+@echo "TESTING $(1)..."
+@go test -v -race -cover -coverprofile=profile.tmp -covermode=atomic $(1)
+@if [ -f profile.tmp ]; then \
+  cat profile.tmp | tail -n +2 >> coverage.txt; \
+  rm profile.tmp; \
+fi;
+endef
+
 # golang-vet-deps is here for consistency
 golang-vet-deps:
 
@@ -137,17 +152,35 @@ $(call golang-vet,$(1))
 $(call golang-test-strict,$(1))
 endef
 
+# golang-test-all-strict-cover-deps: installs all dependencies needed for different test cases.
+golang-test-all-strict-cover-deps: golang-fmt-deps golang-lint-deps-strict golang-test-strict-cover-deps golang-vet-deps
+
+# golang-test-all-strict-cover calls fmt, lint, vet and test on the specified pkg with strict and cover
+# requirements that no errors are thrown while linting.
+# arg1: pkg path
+define golang-test-all-strict-cover
+$(call golang-fmt,$(1))
+$(call golang-lint-strict,$(1))
+$(call golang-vet,$(1))
+$(call golang-test-strict-cover,$(1))
+endef
+
 # golang-build: builds a golang binary. ensures CGO build is done during CI. This is needed to make a binary that works with a Docker alpine image.
 # arg1: pkg path
 # arg2: executable name
 define golang-build
-@echo "BUILDING..."
+@echo "BUILDING $(2)..."
 @if [ -z "$$CI" ]; then \
 	go build -o bin/$(2) $(1); \
 else \
 	echo "-> Building CGO binary"; \
 	CGO_ENABLED=0 go build -installsuffix cgo -o bin/$(2) $(1); \
 fi;
+endef
+
+# golang-setup-coverage: set up the coverage file
+define golang-setup-coverage:
+	@echo "mode: atomic" > coverage.txt
 endef
 
 # golang-update-makefile downloads latest version of golang.mk
