@@ -30,10 +30,8 @@ bin/wag: ensure-wag-version-set
 			tar xvf bin/wag-$(WAG_VERSION)-$(SYSTEM)-amd64.tar.gz -C bin;\
 			rm bin/wag-$(WAG_VERSION)-$(SYSTEM)-amd64.tar.gz ; \
 		fi;
-       
-	
-
 	@[[ "$(WAG_VERSION)" != "$(WAG_INSTALLED)" ]] && touch swagger.yml || true
+	
 jsdoc2md:
 	hash npm 2>/dev/null || (echo "Could not run npm, please install node" && false)
 	test -f ./node_modules/.bin/jsdoc2md || npm install jsdoc-to-markdown@^4.0.0
