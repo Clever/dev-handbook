@@ -24,7 +24,7 @@ bin/wag: ensure-wag-version-set
 	$(eval WAG_VERSION := $(if $(filter latest,$(WAG_VERSION)),$(WAG_LATEST),$(WAG_VERSION)))
 	@echo "Checking for wag updates..."
 	@echo "Using wag version $(WAG_INSTALLED)"
-	@[[ "$(WAG_VERSION)" != "$(WAG_INSTALLED)" ]] && echo "Updating wag...to $(WAG_LATEST)"  && wget -P bin https://github.com/Clever/wag/releases/download/$(WAG_VERSION)/wag-$(WAG_VERSION)-$(SYSTEM)-amd64.tar.gz
+	@[[ "$(WAG_VERSION)" != "$(WAG_INSTALLED)" ]] && echo "Updating wag...to $(WAG_VERSION)"  && wget -P bin https://github.com/Clever/wag/releases/download/$(WAG_VERSION)/wag-$(WAG_VERSION)-$(SYSTEM)-amd64.tar.gz
 	@if [ -a bin/wag-$(WAG_VERSION)-$(SYSTEM)-amd64.tar.gz ] ; \
 		then \
 			tar xvf bin/wag-$(WAG_VERSION)-$(SYSTEM)-amd64.tar.gz -C bin;\
