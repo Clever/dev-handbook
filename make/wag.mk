@@ -1,6 +1,6 @@
 # This is the default Clever Wag Makefile.
 # Please do not alter this file directly.
-WAG_MK_VERSION := 0.6.0
+WAG_MK_VERSION := 0.6.1
 SHELL := /bin/bash
 SYSTEM := $(shell uname -a | cut -d" " -f1 | tr '[:upper:]' '[:lower:]')
 ifndef CI
@@ -23,10 +23,17 @@ bin/wag: ensure-wag-version-set
 	@mkdir -p bin
 	$(eval WAG_VERSION := $(if $(filter latest,$(WAG_VERSION)),$(WAG_LATEST),$(WAG_VERSION)))
 	@echo "Checking for wag updates..."
-	@echo "Using wag version $(WAG_VERSION)"
-	@[[ "$(WAG_VERSION)" != "$(WAG_INSTALLED)" ]] && echo "Updating wag..." && curl --retry 5 -f -sL https://github.com/Clever/wag/releases/download/$(WAG_VERSION)/wag-$(WAG_VERSION)-$(SYSTEM)-amd64.tar.gz | tar -xz -C bin || true
-	@[[ "$(WAG_VERSION)" != "$(WAG_INSTALLED)" ]] && touch swagger.yml || true
+	@echo "Using wag version $(WAG_INSTALLED)"
+	@[[ "$(WAG_VERSION)" != "$(WAG_INSTALLED)" ]] && echo "Updating wag...to $(WAG_VERSION)"  && wget -P bin https://github.com/Clever/wag/releases/download/$(WAG_VERSION)/wag-$(WAG_VERSION)-$(SYSTEM)-amd64.tar.gz
+	@if [ -a bin/wag-$(WAG_VERSION)-$(SYSTEM)-amd64.tar.gz ] ; \
+		then \
+			tar xvf bin/wag-$(WAG_VERSION)-$(SYSTEM)-amd64.tar.gz -C bin;\
+			rm bin/wag-$(WAG_VERSION)-$(SYSTEM)-amd64.tar.gz ; \
+		fi;
+       
+	
 
+	@[[ "$(WAG_VERSION)" != "$(WAG_INSTALLED)" ]] && touch swagger.yml || true
 jsdoc2md:
 	hash npm 2>/dev/null || (echo "Could not run npm, please install node" && false)
 	test -f ./node_modules/.bin/jsdoc2md || npm install jsdoc-to-markdown@^4.0.0
