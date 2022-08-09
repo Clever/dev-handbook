@@ -31,7 +31,7 @@ bin/wag: ensure-wag-version-set
 			rm bin/wag-$(WAG_VERSION)-$(SYSTEM)-amd64.tar.gz ; \
 		fi;
 	@[[ "$(WAG_VERSION)" != "$(WAG_INSTALLED)" ]] && touch swagger.yml || true
-	
+
 jsdoc2md:
 	hash npm 2>/dev/null || (echo "Could not run npm, please install node" && false)
 	test -f ./node_modules/.bin/jsdoc2md || npm install jsdoc-to-markdown@^4.0.0
@@ -75,6 +75,12 @@ define wag-generate-mod
 @if [ -z "$$CI" ]; then \
     bin/wag -output-path gen-go -js-path ./gen-js -file $(1); \
     (cd ./gen-js && ../node_modules/.bin/jsdoc2md index.js types.js > ./README.md); \
+	(cd ./gen-go/client && go get github.com/Clever/$(notdir $(CURDIR))/gen-go/models@INFRANG-4918); \
+	(cd ./gen-go/client && go get github.com/Clever/wag/wagclientlogger@wag-nightly-build); \
+	(cd ./gen-go/models && go mod vendor); \
+	(cd ./gen-go/models && go mod tidy); \
+	(cd ./gen-go/client && go mod vendor); \
+	(cd ./gen-go/client && go mod tidy); \
 else \
     echo "skipping wag-generate-mod in CI"; \
 fi;
