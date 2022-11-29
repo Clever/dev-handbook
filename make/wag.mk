@@ -52,7 +52,7 @@ endif
 define wag-yaml-aliases
 @if [ -z "$$CI" ]; then \
 	cat $(1) | python3 -c "import sys, yaml, json; y=yaml.load(sys.stdin.read(), yaml.Loader); print(yaml.dump(y))" > /tmp/swagger.catapult.yml; \
-	bin/wag -output-path gen-go -js-path ./gen-js -file /tmp/swagger.catapult.yml; \
+	bin/wag -output-path ./gen-go -js-path ./gen-js -file /tmp/swagger.catapult.yml; \
 	(cd ./gen-js && ../node_modules/.bin/jsdoc2md index.js types.js > ./README.md); \
 else \
 	echo "skipping wag-yaml-aliases in CI"; \
@@ -74,10 +74,9 @@ endef
 # wag-generate-mod is a target for generating code from a swagger.yml using wag for modules repos
 # arg1: path to swagger.yml
 define wag-generate-mod
-@if [ -z "$$CI" ]; then \
-    bin/wag -output-path gen-go -js-path ./gen-js -file $(1); \
+@if [ -z "$$CI"]; then \
+    bin/wag -output-path ./gen-go -js-path ./gen-js -file $(1); \
     (cd ./gen-js && ../node_modules/.bin/jsdoc2md index.js types.js > ./README.md); \
-else \
     echo "skipping wag-generate-mod in CI"; \
 fi;
 endef
