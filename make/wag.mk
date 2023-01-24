@@ -22,7 +22,6 @@ ensure-wag-version-set:
 bin/wag: ensure-wag-version-set
 	@mkdir -p bin
 	$(eval WAG_VERSION := $(if $(filter latest,$(WAG_VERSION)),$(WAG_LATEST),$(WAG_VERSION)))
-	@echo $(WAG_VERSION), $(WAG_INSTALLED)
 	@echo "Checking for wag updates..."
 	@echo "Using wag version $(WAG_INSTALLED)"
 	@if [[ "$(WAG_VERSION)" != "$(WAG_INSTALLED)" ]]; \
