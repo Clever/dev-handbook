@@ -1,4 +1,6 @@
-WAG_MK_VERSION := 0.6.3
+# This is the default Clever Wag Makefile.	
+# Please do not alter this file directly.
+WAG_MK_VERSION := 0.6.1
 SHELL := /bin/bash
 SYSTEM := $(shell uname -a | cut -d" " -f1 | tr '[:upper:]' '[:lower:]')
 ifndef CI
@@ -64,6 +66,9 @@ endef
 # arg2: pkg path
 define wag-generate
 @if [ -z "$$CI" ]; then \
+    bin/wag -go-package $(2)/gen-go -js-path ./gen-js -file $(1); \
+    (cd ./gen-js && ../node_modules/.bin/jsdoc2md index.js types.js > ./README.md); \
+else \
 	echo "skipping wag-generate in CI"; \
 fi;
 endef
@@ -71,7 +76,9 @@ endef
 # wag-generate-mod is a target for generating code from a swagger.yml using wag for modules repos
 # arg1: path to swagger.yml
 define wag-generate-mod
-@if [ -z "$$CI" ]; then \
+@if [ -z "$$CI"]; then \
+    bin/wag -output-path ./gen-go -js-path ./gen-js -file $(1); \
+    (cd ./gen-js && ../node_modules/.bin/jsdoc2md index.js types.js > ./README.md); \
     echo "skipping wag-generate-mod in CI"; \
 fi;
 endef
