@@ -1,9 +1,9 @@
-WAG_MK_VERSION := 0.6.1
+WAG_MK_VERSION := 0.6.3
 SHELL := /bin/bash
 SYSTEM := $(shell uname -a | cut -d" " -f1 | tr '[:upper:]' '[:lower:]')
 ifndef CI
 WAG_INSTALLED := $(shell [[ -e "bin/wag" ]] && bin/wag --version)
-WAG_LATEST = $(shell curl --retry 5 -f -s https://api.github.com/repos/Clever/wag/releases | grep tag_name | head -1 | cut -d\" -f4)
+WAG_LATEST = $(shell curl --retry 5 -f -s https://api.github.com/repos/Clever/wag/releases/latest | grep tag_name | cut -d\" -f4)
 endif
 .PHONY: wag-update-makefile ensure-wag-version-set wag-generate-deps
 
@@ -64,9 +64,6 @@ endef
 # arg2: pkg path
 define wag-generate
 @if [ -z "$$CI" ]; then \
-    bin/wag -go-package $(2)/gen-go -js-path ./gen-js -file $(1); \
-    (cd ./gen-js && ../node_modules/.bin/jsdoc2md index.js types.js > ./README.md); \
-else \
 	echo "skipping wag-generate in CI"; \
 fi;
 endef
@@ -75,9 +72,6 @@ endef
 # arg1: path to swagger.yml
 define wag-generate-mod
 @if [ -z "$$CI" ]; then \
-    bin/wag -output-path ./gen-go -js-path ./gen-js -file $(1); \
-    (cd ./gen-js && ../node_modules/.bin/jsdoc2md index.js types.js > ./README.md); \
-else \
     echo "skipping wag-generate-mod in CI"; \
 fi;
 endef
