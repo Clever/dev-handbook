@@ -79,7 +79,6 @@ define wag-generate-mod
     bin/wag -output-path ./gen-go -js-path ./gen-js -file $(1); \
     (cd ./gen-js && ../node_modules/.bin/jsdoc2md index.js types.js > ./README.md); \
 else \
-
     echo "skipping wag-generate-mod in CI"; \
 fi;
 endef
