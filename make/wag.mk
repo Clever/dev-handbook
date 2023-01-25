@@ -1,6 +1,6 @@
 # This is the default Clever Wag Makefile.
 # Please do not alter this file directly.
-WAG_MK_VERSION := 0.6.1
+WAG_MK_VERSION := 0.7.0
 SHELL := /bin/bash
 SYSTEM := $(shell uname -a | cut -d" " -f1 | tr '[:upper:]' '[:lower:]')
 ifndef CI
@@ -24,14 +24,15 @@ bin/wag: ensure-wag-version-set
 	$(eval WAG_VERSION := $(if $(filter latest,$(WAG_VERSION)),$(WAG_LATEST),$(WAG_VERSION)))
 	@echo "Checking for wag updates..."
 	@echo "Using wag version $(WAG_INSTALLED)"
-	@[[ "$(WAG_VERSION)" != "$(WAG_INSTALLED)" ]] && echo "Updating wag...to $(WAG_VERSION)"  && wget -P bin https://github.com/Clever/wag/releases/download/$(WAG_VERSION)/wag-$(WAG_VERSION)-$(SYSTEM)-amd64.tar.gz
+	@if [[ "$(WAG_VERSION)" != "$(WAG_INSTALLED)" ]]; \
+		then \
+			echo "Updating wag...to $(WAG_VERSION)"  && wget -P bin https://github.com/Clever/wag/releases/download/$(WAG_VERSION)/wag-$(WAG_VERSION)-$(SYSTEM)-amd64.tar.gz ; \
+		fi;
 	@if [ -a bin/wag-$(WAG_VERSION)-$(SYSTEM)-amd64.tar.gz ] ; \
 		then \
 			tar xvf bin/wag-$(WAG_VERSION)-$(SYSTEM)-amd64.tar.gz -C bin;\
 			rm bin/wag-$(WAG_VERSION)-$(SYSTEM)-amd64.tar.gz ; \
 		fi;
-       
-	
 
 	@[[ "$(WAG_VERSION)" != "$(WAG_INSTALLED)" ]] && touch swagger.yml || true
 jsdoc2md:
@@ -52,7 +53,7 @@ endif
 define wag-yaml-aliases
 @if [ -z "$$CI" ]; then \
 	cat $(1) | python3 -c "import sys, yaml, json; y=yaml.load(sys.stdin.read(), yaml.Loader); print(yaml.dump(y))" > /tmp/swagger.catapult.yml; \
-	bin/wag -output-path gen-go -js-path ./gen-js -file /tmp/swagger.catapult.yml; \
+	bin/wag -output-path ./gen-go -js-path ./gen-js -file /tmp/swagger.catapult.yml; \
 	(cd ./gen-js && ../node_modules/.bin/jsdoc2md index.js types.js > ./README.md); \
 else \
 	echo "skipping wag-yaml-aliases in CI"; \
@@ -75,7 +76,7 @@ endef
 # arg1: path to swagger.yml
 define wag-generate-mod
 @if [ -z "$$CI" ]; then \
-    bin/wag -output-path gen-go -js-path ./gen-js -file $(1); \
+    bin/wag -output-path ./gen-go -js-path ./gen-js -file $(1); \
     (cd ./gen-js && ../node_modules/.bin/jsdoc2md index.js types.js > ./README.md); \
 else \
     echo "skipping wag-generate-mod in CI"; \
