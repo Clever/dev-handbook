@@ -6,7 +6,7 @@ See the [editor setup guide](https://clever.atlassian.net/wiki/display/ENG/How+t
 
 ## Style
 
-We use [tslint](https://github.com/palantir/tslint) for linting and automatic formatting of JavaScript, TypeScript, JSX, and TSX files.
+We use [eslint](https://eslint.org/) for linting and automatic formatting of JavaScript, TypeScript, JSX, and TSX files.
 
 
 We use [prettier](https://github.com/prettier/prettier) to automatically format JavaScript, TypeScript, JSX, TSX, and Less files. Our code mostly conforms to Prettier's preferred styles, with a couple of tweaks.
@@ -14,25 +14,18 @@ We use [prettier](https://github.com/prettier/prettier) to automatically format 
 
 ### Set Up Code Linting and Formatting
 
-This section describes how to convert a repo with eslint and tslint to use prettier and our newer tslint configuration instead.
+This section describes how to convert a repo with eslint to use prettier and our newer eslint configuration instead.
 
-1. Remove eslint:
+1. Upgrade eslint:
+	- Update the `.eslintrc.js` and `tsconfig.json` to the versions from this directory.
+	- Update `eslint` to major version 5+. For example,`npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin`.
+	- `npm install --save-dev eslint-config-prettier@6.12 eslint-plugin-jsx-a11y@6.3 eslint-plugin-react@7.21 eslint-plugin-react-hooks@4.1` for additional react eslint rule definitions
 
-	- Remove the `.eslintrc.yml` file
-	- Remove any `eslint` packages from package.json
-	- In the Makefile, remove any `eslint` lines from the `lint` command
-
-2. Upgrade tslint:
-	- Update the `tslint.json` and `tsconfig.json` to the versions from this directory.
-	- Update tslint to major version 5+. For example,`npm install --save-dev tslint@5.4`.
-	- `npm install --save-dev tslint-eslint-rules` to get additional tslint rule definitions that replace some from eslint
-	- `npm install --save-dev tslint-react` for additional react tslint rule definitions
-
-3. Install prettier and [Clever's shared configuration](https://github.com/Clever/prettier-config).
+2. Install prettier and [Clever's shared configuration](https://github.com/Clever/prettier-config).
  	- Add the `.prettierrc.json` prettier config file from this dev-handbook directory.
  	- `npm install --save-dev --exact prettier @clever/prettier-config`
 
-4. In the Makefile, define a make target to run prettier autoformatting. We like `format`:
+3. In the Makefile, define a make target to run prettier autoformatting. We like `format`:
 
 	```make
 
@@ -61,17 +54,17 @@ This section describes how to convert a repo with eslint and tslint to use prett
 	> Note that the `--write` flag means prettier will make changes to files. \
 	> The `--list-different` flag will only *list* files where the current format does not match prettier formatting.
 
-5.  In the Makefile, update the `lint` make target to include prettier linting:
+4.  In the Makefile, update the `lint` make target to include prettier linting:
 
 
 	```make
 	lint: format-check
-		./node_modules/.bin/tslint -t verbose $(TS_FILES)
+		./node_modules/.bin/eslint $(TS_FILES)
  	```
 
-6. Update code based on new linting.
+5. Update code based on new linting.
 	- run `make format-all`
-	- run `make tslint`
+	- run `make eslint`
 	- fix any remaining errors
 
 
@@ -81,7 +74,7 @@ This section describes how to convert a repo with eslint and tslint to use prett
 
 Prior to Q4 2017, the style guide we used is the [AirBnB Style Guide](https://github.com/airbnb/javascript).
 We also followed the [React/JSX](https://github.com/airbnb/javascript/tree/master/react) portion of that guide.
-We used both [`eslint`](http://eslint.org/) and [`tslint`](https://github.com/palantir/tslint).
+We used [`tslint`](https://github.com/palantir/tslint).
 The config files we used for both of these linters can be found in the `legacy` subdirectory.
 
 Additionally, we recommended the use of [`jscodeshift`](https://github.com/facebook/jscodeshift) to automatically refactor and improve code that failed linting.
