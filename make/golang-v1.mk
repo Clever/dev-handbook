@@ -1,7 +1,7 @@
 # This is the default Clever Golang Makefile.
 # It is stored in the dev-handbook repo, github.com/Clever/dev-handbook
 # Please do not alter this file directly.
-GOLANG_MK_VERSION := 1.1.0
+GOLANG_MK_VERSION := 1.2.0
 
 SHELL := /bin/bash
 SYSTEM := $(shell uname -a | cut -d" " -f1 | tr '[:upper:]' '[:lower:]')
@@ -47,6 +47,8 @@ golang-ensure-curl-installed:
 # Golint is a tool for linting Golang code for common errors.
 # We pin its version because an update could add a new lint check which would make
 # previously passing tests start failing without changing our code.
+# this package is deprecated and frozen
+# Infra recomendation is to eventaully move to https://github.com/golangci/golangci-lint so don't fail on linting error for now
 GOLINT := $(GOPATH)/bin/golint
 $(GOLINT):
 	go install -mod=readonly golang.org/x/lint/golint@738671d3881b9731cc63024d5d88cf28db875626
@@ -73,14 +75,6 @@ endef
 
 # golang-lint-deps-strict requires the golint tool for golang linting.
 golang-lint-deps-strict: $(GOLINT) $(FGT)
-
-# golang-lint-strict calls golint on all golang files in the pkg and fails if any lint
-# errors are found.
-# arg1: pkg path
-define golang-lint-strict
-@echo "LINTING $(1)..."
-@PKG_PATH=$$(go list -f '{{.Dir}}' $(1)); find $${PKG_PATH}/*.go -type f | grep -v gen_ | xargs $(FGT) $(GOLINT)
-endef
 
 # golang-test-deps is here for consistency
 golang-test-deps:
@@ -147,7 +141,7 @@ golang-test-all-strict-deps: golang-fmt-deps golang-lint-deps-strict golang-test
 # arg1: pkg path
 define golang-test-all-strict
 $(call golang-fmt,$(1))
-$(call golang-lint-strict,$(1))
+$(call golang-lint,$(1))
 $(call golang-vet,$(1))
 $(call golang-test-strict,$(1))
 endef
@@ -160,7 +154,7 @@ golang-test-all-strict-cover-deps: golang-fmt-deps golang-lint-deps-strict golan
 # arg1: pkg path
 define golang-test-all-strict-cover
 $(call golang-fmt,$(1))
-$(call golang-lint-strict,$(1))
+$(call golang-lint,$(1))
 $(call golang-vet,$(1))
 $(call golang-test-strict-cover,$(1))
 endef
