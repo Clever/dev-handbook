@@ -1,7 +1,7 @@
 # This is the default Clever Golang Makefile.
 # It is stored in the dev-handbook repo, github.com/Clever/dev-handbook
 # Please do not alter this file directly.
-GOLANG_MK_VERSION := 1.2.0
+GOLANG_MK_VERSION := 1.2.1
 
 SHELL := /bin/bash
 SYSTEM := $(shell uname -a | cut -d" " -f1 | tr '[:upper:]' '[:lower:]')
@@ -173,9 +173,8 @@ fi;
 endef
 
 # golang-setup-coverage: set up the coverage file
-define golang-setup-coverage:
+golang-setup-coverage:
 	@echo "mode: atomic" > coverage.txt
-endef
 
 # golang-update-makefile downloads latest version of golang.mk
 golang-update-makefile:
