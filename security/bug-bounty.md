@@ -54,13 +54,13 @@ The following guidelines suggest a base amount (impact x ease of exploitation) t
 |--------|--------|-------|
 | Trivial | $50 | Some low-value user information is leaked or modifiable, or availability is minorly impacted. |
 | Minor | $100 | More critical user information is leaked or modifiable, or availability is considerably impacted. |
-| Major | $500 | Significant user information is leaked or modifiable, availability is seriously compromised. |
+| Major | $500 | Significant user information is leaked or modifiable, or availability is seriously compromised. |
 | Critical | $1000 | Remote code execution, or takeover of arbitrary accounts. |
 
 | Ease of exploitation | Multiplier | Reason |
 |----------------------|------------|--------|
 | Difficult | 0.5x | Requires complicated attack scenario with highly unusual access (e.g. Clever employee-level knowledge or similar). |
-| Moderate | 1x | Somewhat difficult to exploit, requires privileged access at some level (e.g. must have a trusted application account). |
+| Moderate | 1x | Somewhat difficult to exploit, or requires privileged access at some level (e.g. must have a trusted application account). |
 | Easy | 2x | Requires only a moderate understanding of security vulnerability discovery and exploitation - no privileged access required. |
 | Trivial | 3x | Can be found by simple vulnerability scanners. |
 
