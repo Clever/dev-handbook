@@ -1,6 +1,0 @@
-
-{
-  "extensions": {
-    "ts": "ts-node/register"
-  }
-}
