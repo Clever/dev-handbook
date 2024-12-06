@@ -163,7 +163,7 @@ endef
 # arg1: pkg path
 # arg2: executable name
 define golang-build
-@@echo "BUILDING $(2)..."
+@echo "BUILDING $(2)..."
 @CGO_ENABLED=0 go build -o bin/$(2) $(1);
 endef
 
