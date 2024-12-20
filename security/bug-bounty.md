@@ -5,15 +5,15 @@ Coordinated disclosure rules
 * Act in good faith. Do not leak, manipulate, download or destroy any user data, or affect the availability of the site. Test against accounts you yourself own, or with explicit permission of the account holder. Do not attempt to access data that does not belong to your test account(s).
 * Alert us as soon as possible. Let us know upon discovery of a potential security issue, and we’ll make every effort to quickly correct the issue.
 * Do not disclose to the public or anyone else the details of the vulnerability without discussing with us the vulnerability first. Provide us with a reasonable amount of time to fix the issue, any you may publish the vulnerability after we have confirmed we have remediated the issue. You can also publish if it has been nine (9) months since disclosure of the vulnerability to Clever's security team.
-* Do not disclose to anyone any propriety data revealed during your testing or the content of any data you accessed because of any vulnerabilities.
+* Do not disclose to anyone any proprietary data revealed during your testing or the content of any data you accessed because of any vulnerabilities.
 * Please use demo accounts. Not following the account creation steps below will render your report ineligible for a bounty. This includes automated/scripted account creation.
 * Do not exploit any vulnerability beyond the minimal amount of testing required to prove that the vulnerability exists or to identify an indicator related to that vulnerability.
-* Using automated scanners and testing tools to send large number of requests (more than 1000 per day per endpoint) against the endpoints in the products, without prior notice or alerting to security@clever.com could render your report ineligible for bounty and could inevitably prompt us to disallow you from our program. If you are reporting a vulnerability regarding rate limiting or denial of service, you should let us know about the email address, account name, account ID, or other identifier associated with your testing setup, so that we can filter and attribute those large number of requests to you. 
+* Using automated scanners and testing tools to send a large number of requests (more than 1000 per day per endpoint) against the endpoints in the products, without prior notice or alerting to security@clever.com could render your report ineligible for bounty and could inevitably prompt us to disallow you from our program. If you are reporting a vulnerability regarding rate limiting or denial of service, you should let us know about the email address, account name, account ID, or other identifier associated with your testing setup, so that we can filter and attribute those large numbers of requests to you. 
 * You should include a custom HTTP header in all your traffic. For example:
   * A header that includes your username: X-Bug-Bounty: `HackerOne-Username`
   * A header that includes a unique or identifiable flag X-Bug-Bounty:`Unique-ID`
 
-If you make a good faith effort to conduct research and disclose vulnerabilities in accordance with our disclosure rules above, Clever will not recommend or pursue law enfgorcement or civil lawsuits related to such activities.
+If you make a good faith effort to conduct research and disclose vulnerabilities in accordance with our disclosure rules above, Clever will not recommend or pursue law enforcement or civil lawsuits related to such activities.
 
 Bounty eligibility
 ------------------
@@ -46,7 +46,7 @@ Clever also reserves the right to deny eligibility for a vulnerability that was 
 
 Payout principles
 -----------------
-If a vulnerability doesn’t have an actively exploitable attack (e.g. you’d need access to third-party data, user would need to be on outdated browser we don’t support, etc.), but we still fix it, researchers are offered a Clever T-Shirt.
+If a vulnerability doesn’t have an actively exploitable attack (e.g. you’d need access to third-party data, user would need to be on an outdated browser we don’t support, etc.), but we still fix it, researchers are offered a Clever T-Shirt.
 
 The following guidelines suggest a base amount (impact x ease of exploitation) to pay out, but the actual payout will be determined with a broader context of the vulnerability.
 
@@ -86,7 +86,7 @@ These products all work together. To get access to accounts for testing, follow 
 
 **Next, get access to the sandbox district account**
 1. Go to the [schools password reset](https://clever.com/oauth/district_admin/recover-account) page.
-2. Enter your email address with "+hackerone" appened to the name (e.g. if the email you used for the application developer signup was `name@example.com`, enter `name+hackerone@example.com`).
+2. Enter your email address with "+hackerone" appended to the name (e.g. if the email you used for the application developer signup was `name@example.com`, enter `name+hackerone@example.com`).
 3. Wait for the password reset email to set up your password.
 4. Go to your [portal settings](https://schools.clever.com/portal/settings) and copy your portal URL.
 
