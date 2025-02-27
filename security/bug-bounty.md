@@ -67,7 +67,7 @@ The following guidelines suggest a base amount (impact x ease of exploitation) t
 Setting up accounts
 -------------------
 
-Clever's bug bounty has five products in scope:
+Clever's bug bounty has four products in scope:
 * Clever Portal (https://clever.com)
 * Schools Dashboard (https://schools.clever.com)
 * Application Dashboard (https://apps.clever.com)
