@@ -8,7 +8,7 @@ Coordinated disclosure rules
 * Do not disclose to anyone any proprietary data revealed during your testing or the content of any data you accessed because of any vulnerabilities.
 * Please use demo accounts. Not following the account creation steps below will render your report ineligible for a bounty. This includes automated/scripted account creation.
 * Do not exploit any vulnerability beyond the minimal amount of testing required to prove that the vulnerability exists or to identify an indicator related to that vulnerability.
-* Using automated scanners and testing tools to send a large number of requests (more than 1000 per day per endpoint) against the endpoints in the products, without prior notice or alerting to security@clever.com could render your report ineligible for bounty and could inevitably prompt us to disallow you from our program. If you are reporting a vulnerability regarding rate limiting or denial of service, you should let us know about the email address, account name, account ID, or other identifier associated with your testing setup, so that we can filter and attribute those large numbers of requests to you. 
+* Using automated scanners and testing tools to send a large number of requests (more than 1000 per day per endpoint) against the endpoints in the products, without prior notice or alerting to security@clever.com could render your report ineligible for bounty and could inevitably prompt us to disallow you from our program. If you are reporting a vulnerability regarding rate limiting or denial of service, you should let us know about the email address, account name, account ID, or other identifier associated with your testing setup, so that we can filter and attribute those large numbers of requests to you.
 * You should include a custom HTTP header in all your traffic. For example:
   * A header that includes your username: X-Bug-Bounty: `HackerOne-Username`
   * A header that includes a unique or identifiable flag X-Bug-Bounty:`Unique-ID`
@@ -67,12 +67,11 @@ The following guidelines suggest a base amount (impact x ease of exploitation) t
 Setting up accounts
 -------------------
 
-Clever's bug bounty has five products in scope:
+Clever's bug bounty has four products in scope:
 * Clever Portal (https://clever.com)
 * Schools Dashboard (https://schools.clever.com)
 * Application Dashboard (https://apps.clever.com)
 * Clever API (https://api.clever.com)
-* Clever Family Portal (https://family.clever.com)
 
 These products all work together. To get access to accounts for testing, follow these instructions:
 
@@ -97,11 +96,5 @@ These products all work together. To get access to accounts for testing, follow 
 
  **Access the API**
 For information about the API, see the [Clever Developer documentation](http://dev.clever.com/).
-
-**Access the Clever Parents (previously Family Portal)**
-1. Go to the [Clever Parents settings](https://schools.clever.com/clever-parents/invitations) page.
-2. Select the "Upload a .csv file for parent/guardian contacts" option, and configure at least one student with an email that you have access to.
-3. Click "Send Invites".
-4. Wait for the email, and accept the invite to create a Clever Parents account.
 
 Please reach out with any questions to security@clever.com. Thank you for helping keep Clever safe!
