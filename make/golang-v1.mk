@@ -1,7 +1,11 @@
+# TODO: 5/15/25 - Delete this after we have rolled out the new CI system
+# and the v2 makefile to the majority of repos.
+
+
 # This is the default Clever Golang Makefile.
 # It is stored in the dev-handbook repo, github.com/Clever/dev-handbook
 # Please do not alter this file directly.
-GOLANG_MK_VERSION := 1.3.1
+GOLANG_MK_VERSION := 1.4.0
 
 SHELL := /bin/bash
 SYSTEM := $(shell uname -a | cut -d" " -f1 | tr '[:upper:]' '[:lower:]')
@@ -189,5 +193,5 @@ golang-setup-coverage:
 
 # golang-update-makefile downloads latest version of golang.mk
 golang-update-makefile:
-	@wget https://raw.githubusercontent.com/Clever/dev-handbook/master/make/golang-v1.mk -O /tmp/golang.mk 2>/dev/null
+	@wget https://raw.githubusercontent.com/Clever/dev-handbook/master/make/golang-v2.mk -O /tmp/golang.mk 2>/dev/null
 	@if ! grep -q $(GOLANG_MK_VERSION) /tmp/golang.mk; then cp /tmp/golang.mk golang.mk && echo "golang.mk updated"; else echo "golang.mk is up-to-date"; fi
