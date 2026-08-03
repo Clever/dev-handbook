@@ -21,7 +21,12 @@ Vulnerabilities are eligible for the bug bounty program if they meet a minimum s
 
 * Represent an active threat to the confidentiality or integrity of Clever user data.
 * Be possible to mitigate through standard defensive measures.
-* Include a clear description along with steps to reproduce, including attachments such as screenshots or proof of concept code as necessary.
+* Include a clear description along with steps to reproduce. The fastest reports to triage:
+  * Name the endpoint(s) that were hit.
+  * Name the type of account(s) involved (e.g. district admin, teacher, student, app developer), and which one performed which action if more than one is involved.
+  * State the scope of the boundary crossed, e.g. within the same account, across accounts in the same school/district, across schools in one district, or across districts entirely. This has a big impact on severity, so being explicit here helps us triage faster and more accurately.
+  * Include the actual request that caused the impact, such as a `curl` command or raw HTTP request, rather than just a description of it - we can act fastest on something we can replay directly.
+  * Use screenshots (e.g. from Burp Suite), proof of concept code, or a proof of concept video as supporting evidence, not a substitute for the above.
 
 In general, the following would not meet the threshold for severity:
 
