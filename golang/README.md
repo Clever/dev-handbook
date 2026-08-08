@@ -13,7 +13,7 @@ This is highly suggested before you begin writing Go code for production.
 
 ## Golang versions
 
-All golang services written by Clever should be on Go 1.16.
+All golang services written by Clever should be on a recent version of Go; look around for the current de facto standard.
 
 ## Style
 
@@ -99,13 +99,13 @@ If you need more than addition and presence methods, please consider using a mor
 
 #### runtime
 
-Drone should build your executable and it should be copied into Docker:
+CI should be able to build your executable and your container image. Regarding base image selection:
 
-- `gliderlabs/alpine:3.2`
+- `alpine:3` (or recent stable; look around for de facto standard)
   - smaller image footprint
   - requires additional build configuration
-  - see [catapult/Makefile](https://github.com/Clever/catapult/blob/master/Makefile) as an example
-- `debian:jessie`
+  - see [catapult/Dockerfile](https://github.com/Clever/catapult/blob/master/Dockerfile) as an example
+- `debian:bookworm-slim` (or recent stable; look around for de facto standard)
   - larger image
   - no special configuration needed
   - suggested if you have any dependencies you exec
@@ -131,4 +131,3 @@ See our [`glide` documentation](./glide.md)
 See our [`godeps` documentation](./godep.md).
 
 [Essential Godeps](https://docs.google.com/a/clever.com/document/d/1YZg2S7v1bir3MG1YvswAD2Y0KrsuDr-NCr6pPG2ycEM/edit?usp=sharing) for extended instruction.
-
