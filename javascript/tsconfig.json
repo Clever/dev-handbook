@@ -4,6 +4,7 @@
         "target": "es6",
         "noImplicitAny": false,
         "experimentalDecorators": true,
+        "noUnusedLocals": true,
         "lib": [
             "es2017"
         ],
